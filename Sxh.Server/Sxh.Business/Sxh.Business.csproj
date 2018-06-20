@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Shared.Library\Shared.Util\Shared.Util.csproj" />
+    <ProjectReference Include="..\Sxh.Db\Sxh.Db.csproj" />
+  </ItemGroup>
+
+</Project>

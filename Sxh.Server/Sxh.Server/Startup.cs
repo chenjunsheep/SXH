@@ -15,6 +15,10 @@ using Shared.Api.Swagger;
 using Startp.Server.Services;
 using Sxh.Server.Settings;
 using Swashbuckle.AspNetCore.Swagger;
+using Sxh.Db.Models;
+using Microsoft.EntityFrameworkCore;
+using Sxh.Business.Repository.Interface;
+using Sxh.Business.Repository;
 
 namespace Sxh.Server
 {
@@ -124,15 +128,17 @@ namespace Sxh.Server
 
         private void BuildServices(IServiceCollection services)
         {
-            //customized services
-            //services.AddScoped<IRepository, Repository>();
+            //public SxhContext(DbContextOptions options) : base(options) { }
+            services.AddDbContext<SxhContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SxhDbString")));
+            services.AddScoped<IBaseRepository, BaseRepository>();
+            services.AddScoped<ICalculateRepository, CalculateRepository>();
         }
 
         private void BuildSwaggerSettings(IServiceCollection services)
         {
             //swagger settings
             var rootPath = PlatformServices.Default.Application.ApplicationBasePath;
-            SwaggerManager.Instance.Register(Path.Combine(rootPath, "Shared.Util.dll")); //register customized models to swagger codegen
+            SwaggerManager.Instance.Register(Path.Combine(rootPath, "Sxh.Db.dll")); //register customized models to swagger codegen
             services.UseSwaggerDefault(Path.Combine(rootPath, "Sxh.Server.xml"));
             services.AddSwaggerGen(c => { c.SwaggerDoc(ApiVersion.V1, new Info { Title = $"{ApiVersion.V1} API version", Version = ApiVersion.V1 }); });
         }

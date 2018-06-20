@@ -8,7 +8,8 @@
     public class AppSetting
     {
         public Schedule Schedules { get; set; }
-        
+
+
         private static AppSetting _instance;
         public static AppSetting Instance
         {

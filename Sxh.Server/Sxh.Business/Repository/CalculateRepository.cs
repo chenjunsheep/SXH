@@ -52,7 +52,6 @@ namespace Sxh.Business.Repository
                 payment.ProductId = item.Id;
                 payment.NextPayment = item.ValueDate;
                 payment.LastUpdate = DateTime.Now;
-                payment.FreqCurrent = 1;
 
                 var dateDue = item.ValueDate.AddMonths(TypeParser.GetInt32Value(item.Deadline * 12));
                 switch ((PaymentType)item.PayTypeId)

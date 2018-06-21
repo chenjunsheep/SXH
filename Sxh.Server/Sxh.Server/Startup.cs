@@ -138,7 +138,7 @@ namespace Sxh.Server
         {
             //swagger settings
             var rootPath = PlatformServices.Default.Application.ApplicationBasePath;
-            SwaggerManager.Instance.Register(Path.Combine(rootPath, "Sxh.Db.dll")); //register customized models to swagger codegen
+            //SwaggerManager.Instance.Register(Path.Combine(rootPath, "Sxh.Db.dll")); //register customized models to swagger codegen
             services.UseSwaggerDefault(Path.Combine(rootPath, "Sxh.Server.xml"));
             services.AddSwaggerGen(c => { c.SwaggerDoc(ApiVersion.V1, new Info { Title = $"{ApiVersion.V1} API version", Version = ApiVersion.V1 }); });
         }

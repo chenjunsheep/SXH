@@ -19,6 +19,7 @@ using Sxh.Db.Models;
 using Microsoft.EntityFrameworkCore;
 using Sxh.Business.Repository.Interface;
 using Sxh.Business.Repository;
+using Sxh.Business;
 
 namespace Sxh.Server
 {
@@ -132,6 +133,7 @@ namespace Sxh.Server
             services.AddDbContext<SxhContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SxhDbString")));
             services.AddScoped<IBaseRepository, BaseRepository>();
             services.AddScoped<ICalculateRepository, CalculateRepository>();
+            services.AddScoped<IProxyRepository, ProxyRepository>();
         }
 
         private void BuildSwaggerSettings(IServiceCollection services)

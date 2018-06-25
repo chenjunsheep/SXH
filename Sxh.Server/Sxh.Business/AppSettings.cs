@@ -1,4 +1,4 @@
-﻿namespace Sxh.Server.Settings
+﻿namespace Sxh.Business
 {
     public class AppSettings
     {
@@ -8,7 +8,7 @@
     public class AppSetting
     {
         public Schedule Schedules { get; set; }
-
+        public ProxyInfo Proxy { get; set; }
 
         private static AppSetting _instance;
         public static AppSetting Instance
@@ -36,6 +36,12 @@
                 public string TargetServer { get; set; }
                 public int Frequency { get; set; }
             }
+        }
+
+        public class ProxyInfo
+        {
+            public string TargetHost { get; set; }
+            public string UserAgent { get; set; }
         }
     }
 }

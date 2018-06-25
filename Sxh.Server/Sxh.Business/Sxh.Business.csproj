@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.6" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\..\Shared.Library\Shared.Util\Shared.Util.csproj" />
     <ProjectReference Include="..\Sxh.Db\Sxh.Db.csproj" />
   </ItemGroup>

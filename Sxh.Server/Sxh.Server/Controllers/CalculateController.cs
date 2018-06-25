@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Shared.Api.Response;
 using Sxh.Business.Repository.Interface;
 
 namespace Sxh.Server.Controllers
@@ -18,16 +17,16 @@ namespace Sxh.Server.Controllers
         }
 
         [HttpGet("GeneratePaymentPlan")]
-        public async Task<IApiActionResult> GeneratePaymentPlan()
+        public async Task<IActionResult> GeneratePaymentPlan()
         {
             try
             {
                 await _repoCalculate.GeneratePaymentPlan();
-                return new ApiActionResultOK();
+                return Ok(true);
             }
             catch (Exception ex)
             {
-                return new ApiActionResultException(ex);
+                return ExceptionDefault(ex);
             }
         }
     }

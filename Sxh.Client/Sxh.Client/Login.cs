@@ -1,13 +1,7 @@
 ﻿using Sxh.Client.Business.Repository;
 using Sxh.Client.Business.ViewModel;
+using Sxh.Client.Util;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Sxh.Client
@@ -19,9 +13,11 @@ namespace Sxh.Client
             InitializeComponent();
         }
 
+        #region Event
+
         private async void btnLogin_Click(object sender, EventArgs e)
         {
-            UiRefresh(false);
+            this.UiFreeze(false);
 
             var repo = new LoginRepository();
             var taskLogin = repo.LoginAsync(new VmLogin()
@@ -46,7 +42,7 @@ namespace Sxh.Client
                 MessageBox.Show(msg, string.Empty, MessageBoxButtons.OK);
             }
 
-            UiRefresh(true);
+            this.UiFreeze(true);
         }
 
         private void MainForm_OnWindowClosed(object sender, EventArgs e)
@@ -54,15 +50,9 @@ namespace Sxh.Client
             Close();
         }
 
-        #region Private Method
+        #endregion
 
-        private void UiRefresh(bool enable)
-        {
-            foreach (Control ctr in Controls)
-            {
-                ctr.Enabled = enable;
-            }
-        }
+        #region Private Method
 
         #endregion
     }

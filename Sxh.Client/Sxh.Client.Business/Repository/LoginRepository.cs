@@ -16,7 +16,7 @@ namespace Sxh.Client.Business.Repository
             {
                 var proxyLogin = new ProxyLogin();
                 var tokenOffical = await proxyLogin.LoginAsync(para);
-                if (string.IsNullOrEmpty(tokenOffical))
+                if (tokenOffical == null || tokenOffical.Count == 0)
                 {
                     return "登陆失败，无法获取token";
                 }

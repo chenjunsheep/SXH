@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E4B0D21B-A1E8-4A94-ACA0-B5F4C394B7EE}</ProjectGuid>
+    <ProjectGuid>{3942DDCA-7D6C-4316-A741-A80BF83C35BA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Sxh.Client.Business</RootNamespace>
-    <AssemblyName>Sxh.Client.Business</AssemblyName>
+    <RootNamespace>Sxh.Shared</RootNamespace>
+    <AssemblyName>Sxh.Shared</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,9 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,29 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppSettings.cs" />
-    <Compile Include="BusinessCache.cs" />
-    <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Proxy\ProxyBase.cs" />
-    <Compile Include="Proxy\ProxyLogin.cs" />
-    <Compile Include="Proxy\ProxySearch.cs" />
-    <Compile Include="Repository\BaseRepository.cs" />
-    <Compile Include="Repository\LoginRepository.cs" />
-    <Compile Include="ViewModel\VmLogin.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\Shared.Library\Shared.Util\Shared.Util.csproj">
-      <Project>{aa1e031f-c1a5-4307-9579-a5f2d7d2655c}</Project>
-      <Name>Shared.Util</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Sxh.Shared\Sxh.Shared\Sxh.Shared.csproj">
-      <Project>{3942ddca-7d6c-4316-a741-a80bf83c35ba}</Project>
-      <Name>Sxh.Shared</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+    <Compile Include="Response\Model\PortionTransferItem.cs" />
+    <Compile Include="Response\Model\PortionTransferList.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

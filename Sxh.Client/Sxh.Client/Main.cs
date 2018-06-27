@@ -8,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -22,7 +23,9 @@ namespace Sxh.Client
 
         #region Private Member
 
-        private static bool _enableSearching = false;
+        const int DELAY = 0;
+        const int FREQ = 5;
+        private CancellationManager _cmSearching;
 
         #endregion
 
@@ -43,34 +46,21 @@ namespace Sxh.Client
             }
         }
 
-        private async void btnStart_Click(object sender, EventArgs e)
+        private void btnStart_Click(object sender, EventArgs e)
         {
-            _enableSearching = true;
-            UpdateButtons();
+            btnStart.Enabled = false;
+            btnStop.Enabled = !btnStart.Enabled;
 
-            const int FREQ = 5;
-            var timeLast = DateTime.Now;
-            var rd = new Random();
-            var proxySearch = new ProxySearch();
-            while (_enableSearching)
-            {
-                var ret = await proxySearch.SearchAsync(BusinessCache.UserLogin.TokenOffical);
-                Log($"{ret.rowSet[0].projectTitle} in ({(DateTime.Now - timeLast).TotalSeconds})s");
-                timeLast = DateTime.Now;
-                await Task.Delay((rd.Next(0, 10) + FREQ) * 1000);
-            }
-
-            UpdateButtons();
+            _cmSearching.Activate();
+            Task.Factory.StartNew(() => PerformSearching(_cmSearching), _cmSearching.Token);
         }
 
         private void btnStop_Click(object sender, EventArgs e)
         {
-            _enableSearching = false;
-            var btn = sender as Button;
-            if (btn != null)
-            {
-                btn.Enabled = false;
-            }
+            _cmSearching.Cancel();
+
+            btnStop.Enabled = false;
+            btnStart.Enabled = !btnStop.Enabled;
         }
 
         #endregion
@@ -79,7 +69,7 @@ namespace Sxh.Client
 
         private void Initialize()
         {
-            UpdateButtons();
+            _cmSearching = new CancellationManager();
 
             if (BusinessCache.UserLogin.HasValue)
             {
@@ -91,15 +81,78 @@ namespace Sxh.Client
             }
         }
 
-        private void UpdateButtons()
+        private void PerformSearching(CancellationManager manager)
         {
-            btnStart.Enabled = !_enableSearching;
-            btnStop.Enabled = _enableSearching;
+            var rd = new Random();
+            var proxySearch = new ProxySearch();
+            try
+            {
+                while (!manager.Token.IsCancellationRequested)
+                {
+                    BusinessCache.PoolTranser = proxySearch.SearchAsync(BusinessCache.UserLogin.TokenOffical).Result;
+                    var delay = (rd.Next(0, DELAY) + FREQ);
+                    Log($"+{delay}s searched");
+                    Task.Delay(delay * 1000).Wait();
+                };
+                manager.Token.ThrowIfCancellationRequested();
+            }
+            catch (AggregateException ex)
+            {
+                foreach (var v in ex.InnerExceptions)
+                {
+                    if (v is TaskCanceledException)
+                        Log($"Task {((TaskCanceledException)v).Task.Id} is canceled");
+                    else
+                        Log($"Exception: {v.ToString()}");
+                }
+            }
+            finally
+            {
+                manager.Dispose();
+            }
         }
 
         private void Log(string message)
         {
-            lblMessage.Text = $"[{DateTime.Now.ToString("hh:mm:ss")}] {message}";
+            //lblMessage.Text = $"[{DateTime.Now.ToString("hh:mm:ss")}] {message}";
+        }
+
+        #endregion
+
+        #region Class
+
+        private class CancellationManager
+        {
+            public CancellationTokenSource Souce { get; set; }
+            public CancellationToken Token { get; set; }
+
+            public CancellationManager()
+            {
+                Activate();
+            }
+
+            public void Activate()
+            {
+                Souce = new CancellationTokenSource();
+                Token = Souce.Token;
+            }
+
+            public void Cancel()
+            {
+                if (Souce != null)
+                {
+                    Souce.Cancel();
+                }
+            }
+
+            public void Dispose()
+            {
+                if (Souce != null)
+                {
+                    Souce.Dispose();
+                    Souce = null;
+                }
+            }
         }
 
         #endregion

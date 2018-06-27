@@ -51,6 +51,12 @@
     <Compile Include="Controls\UcDetailPool.Designer.cs">
       <DependentUpon>UcDetailPool.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\UcLogs.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UcLogs.Designer.cs">
+      <DependentUpon>UcLogs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,6 +74,9 @@
     <Compile Include="Util\UiExtension.cs" />
     <EmbeddedResource Include="Controls\UcDetailPool.resx">
       <DependentUpon>UcDetailPool.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UcLogs.resx">
+      <DependentUpon>UcLogs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

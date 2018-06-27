@@ -1,4 +1,5 @@
-﻿using Sxh.Client.Business.Repository;
+﻿using Sxh.Client.Business.Logs;
+using Sxh.Client.Business.Repository;
 using Sxh.Client.Business.ViewModel;
 using Sxh.Client.Util;
 using System;
@@ -39,6 +40,7 @@ namespace Sxh.Client
             }
             else
             {
+                LogManager.Instance.Message($"login faild: {msg}");
                 MessageBox.Show(msg, string.Empty, MessageBoxButtons.OK);
             }
 

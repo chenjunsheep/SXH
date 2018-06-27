@@ -1,13 +1,8 @@
 ﻿using Sxh.Client.Business;
+using Sxh.Client.Business.Logs;
 using Sxh.Client.Business.Proxy;
 using Sxh.Client.Util;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -23,7 +18,7 @@ namespace Sxh.Client
 
         #region Private Member
 
-        const int DELAY = 0;
+        const int DELAY = 10;
         const int FREQ = 5;
         private CancellationManager _cmSearching;
 
@@ -46,21 +41,28 @@ namespace Sxh.Client
             }
         }
 
-        private void btnStart_Click(object sender, EventArgs e)
+        private async void btnStart_Click(object sender, EventArgs e)
         {
             btnStart.Enabled = false;
             btnStop.Enabled = !btnStart.Enabled;
 
             _cmSearching.Activate();
-            Task.Factory.StartNew(() => PerformSearching(_cmSearching), _cmSearching.Token);
+            PerformSearching(_cmSearching);
+
+            while (!_cmSearching.IsCancelled)
+            {
+                await Task.Delay(1000);
+            }
+
+            btnStart.Enabled = true;
+            btnStop.Enabled = !btnStart.Enabled;
         }
 
         private void btnStop_Click(object sender, EventArgs e)
         {
-            _cmSearching.Cancel();
-
+            LogManager.Instance.Message($"searching task is on aborting, please wait...");
             btnStop.Enabled = false;
-            btnStart.Enabled = !btnStop.Enabled;
+            _cmSearching.Cancel();
         }
 
         #endregion
@@ -83,38 +85,30 @@ namespace Sxh.Client
 
         private void PerformSearching(CancellationManager manager)
         {
-            var rd = new Random();
-            var proxySearch = new ProxySearch();
-            try
-            {
-                while (!manager.Token.IsCancellationRequested)
+            Task.Factory.StartNew(() => {
+                var rd = new Random();
+                var proxySearch = new ProxySearch();
+                try
                 {
-                    BusinessCache.PoolTranser = proxySearch.SearchAsync(BusinessCache.UserLogin.TokenOffical).Result;
-                    var delay = (rd.Next(0, DELAY) + FREQ);
-                    Log($"+{delay}s searched");
-                    Task.Delay(delay * 1000).Wait();
-                };
-                manager.Token.ThrowIfCancellationRequested();
-            }
-            catch (AggregateException ex)
-            {
-                foreach (var v in ex.InnerExceptions)
-                {
-                    if (v is TaskCanceledException)
-                        Log($"Task {((TaskCanceledException)v).Task.Id} is canceled");
-                    else
-                        Log($"Exception: {v.ToString()}");
+                    while (!manager.Token.IsCancellationRequested)
+                    {
+                        BusinessCache.PoolTranser = proxySearch.SearchAsync(BusinessCache.UserLogin.TokenOffical).Result;
+                        var delay = (rd.Next(0, DELAY));
+                        LogManager.Instance.Message($"{FREQ}s+{delay}s searched");
+                        Task.Delay((FREQ + delay) * 1000).Wait();
+                    };
+                    manager.Token.ThrowIfCancellationRequested();
                 }
-            }
-            finally
-            {
-                manager.Dispose();
-            }
-        }
-
-        private void Log(string message)
-        {
-            //lblMessage.Text = $"[{DateTime.Now.ToString("hh:mm:ss")}] {message}";
+                catch (Exception ex)
+                {
+                    LogManager.Instance.Error($"{ex.Message}");
+                }
+                finally
+                {
+                    manager.Dispose();
+                    LogManager.Instance.Message($"searching task has been aborted");
+                }
+            }, manager.Token);
         }
 
         #endregion
@@ -125,6 +119,10 @@ namespace Sxh.Client
         {
             public CancellationTokenSource Souce { get; set; }
             public CancellationToken Token { get; set; }
+            public bool IsCancelled
+            {
+                get { return Souce == null; }
+            }
 
             public CancellationManager()
             {

@@ -41,6 +41,11 @@ namespace Sxh.Client
             }
         }
 
+        private void btnLogs_Click(object sender, EventArgs e)
+        {
+            splitMain.Panel2Collapsed = !splitMain.Panel2Collapsed;
+        }
+
         private async void btnStart_Click(object sender, EventArgs e)
         {
             btnStart.Enabled = false;
@@ -81,6 +86,9 @@ namespace Sxh.Client
             {
                 this.UiFreeze(false);
             }
+
+            splitMain.Panel2Collapsed = true;
+            btnStop.Enabled = false;
         }
 
         private void PerformSearching(CancellationManager manager)

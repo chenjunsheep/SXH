@@ -29,46 +29,144 @@
         private void InitializeComponent()
         {
             this.pnlMain = new System.Windows.Forms.TableLayoutPanel();
-            this.pnlButtons = new System.Windows.Forms.FlowLayoutPanel();
+            this.splitMain = new System.Windows.Forms.SplitContainer();
+            this.ucLogs = new Sxh.Client.Controls.UcLogs();
+            this.pnlDashboard = new System.Windows.Forms.TableLayoutPanel();
+            this.ucPoolTranser = new Sxh.Client.Controls.UcPoolTranser();
+            this.pnlButtonGroup = new System.Windows.Forms.TableLayoutPanel();
+            this.flowLeft = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnLogs = new System.Windows.Forms.Button();
+            this.flowRight = new System.Windows.Forms.FlowLayoutPanel();
             this.btnStart = new System.Windows.Forms.Button();
             this.btnStop = new System.Windows.Forms.Button();
-            this.ucLogs = new Sxh.Client.Controls.UcLogs();
-            this.ucPoolTranser = new Sxh.Client.Controls.UcPoolTranser();
             this.pnlMain.SuspendLayout();
-            this.pnlButtons.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitMain)).BeginInit();
+            this.splitMain.Panel1.SuspendLayout();
+            this.splitMain.Panel2.SuspendLayout();
+            this.splitMain.SuspendLayout();
+            this.pnlDashboard.SuspendLayout();
+            this.pnlButtonGroup.SuspendLayout();
+            this.flowLeft.SuspendLayout();
+            this.flowRight.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlMain
             // 
             this.pnlMain.ColumnCount = 1;
             this.pnlMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.pnlMain.Controls.Add(this.pnlButtons, 0, 1);
-            this.pnlMain.Controls.Add(this.ucLogs, 0, 2);
-            this.pnlMain.Controls.Add(this.ucPoolTranser, 0, 0);
+            this.pnlMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.pnlMain.Controls.Add(this.splitMain, 0, 0);
             this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMain.Location = new System.Drawing.Point(0, 0);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.RowCount = 3;
+            this.pnlMain.RowCount = 1;
             this.pnlMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.pnlMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.pnlMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.pnlMain.Size = new System.Drawing.Size(624, 511);
+            this.pnlMain.Size = new System.Drawing.Size(634, 461);
             this.pnlMain.TabIndex = 0;
             // 
-            // pnlButtons
+            // splitMain
             // 
-            this.pnlButtons.Controls.Add(this.btnStart);
-            this.pnlButtons.Controls.Add(this.btnStop);
-            this.pnlButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlButtons.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.pnlButtons.Location = new System.Drawing.Point(3, 379);
-            this.pnlButtons.Name = "pnlButtons";
-            this.pnlButtons.Size = new System.Drawing.Size(618, 29);
-            this.pnlButtons.TabIndex = 0;
+            this.splitMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitMain.Location = new System.Drawing.Point(3, 3);
+            this.splitMain.Name = "splitMain";
+            this.splitMain.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitMain.Panel1
+            // 
+            this.splitMain.Panel1.Controls.Add(this.pnlDashboard);
+            this.splitMain.Panel1MinSize = 1;
+            // 
+            // splitMain.Panel2
+            // 
+            this.splitMain.Panel2.Controls.Add(this.ucLogs);
+            this.splitMain.Panel2MinSize = 1;
+            this.splitMain.Size = new System.Drawing.Size(628, 455);
+            this.splitMain.SplitterDistance = 358;
+            this.splitMain.TabIndex = 4;
+            // 
+            // ucLogs
+            // 
+            this.ucLogs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucLogs.Location = new System.Drawing.Point(0, 0);
+            this.ucLogs.Name = "ucLogs";
+            this.ucLogs.Size = new System.Drawing.Size(628, 93);
+            this.ucLogs.TabIndex = 3;
+            // 
+            // pnlDashboard
+            // 
+            this.pnlDashboard.ColumnCount = 1;
+            this.pnlDashboard.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.pnlDashboard.Controls.Add(this.ucPoolTranser, 0, 0);
+            this.pnlDashboard.Controls.Add(this.pnlButtonGroup, 0, 1);
+            this.pnlDashboard.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlDashboard.Location = new System.Drawing.Point(0, 0);
+            this.pnlDashboard.Name = "pnlDashboard";
+            this.pnlDashboard.RowCount = 2;
+            this.pnlDashboard.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.pnlDashboard.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
+            this.pnlDashboard.Size = new System.Drawing.Size(628, 358);
+            this.pnlDashboard.TabIndex = 0;
+            // 
+            // ucPoolTranser
+            // 
+            this.ucPoolTranser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucPoolTranser.Location = new System.Drawing.Point(3, 3);
+            this.ucPoolTranser.Name = "ucPoolTranser";
+            this.ucPoolTranser.Size = new System.Drawing.Size(622, 323);
+            this.ucPoolTranser.TabIndex = 4;
+            // 
+            // pnlButtonGroup
+            // 
+            this.pnlButtonGroup.ColumnCount = 2;
+            this.pnlButtonGroup.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.pnlButtonGroup.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.pnlButtonGroup.Controls.Add(this.flowRight, 1, 0);
+            this.pnlButtonGroup.Controls.Add(this.flowLeft, 0, 0);
+            this.pnlButtonGroup.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlButtonGroup.Location = new System.Drawing.Point(0, 329);
+            this.pnlButtonGroup.Margin = new System.Windows.Forms.Padding(0);
+            this.pnlButtonGroup.Name = "pnlButtonGroup";
+            this.pnlButtonGroup.RowCount = 1;
+            this.pnlButtonGroup.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.pnlButtonGroup.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.pnlButtonGroup.Size = new System.Drawing.Size(628, 29);
+            this.pnlButtonGroup.TabIndex = 5;
+            // 
+            // flowLeft
+            // 
+            this.flowLeft.Controls.Add(this.btnLogs);
+            this.flowLeft.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLeft.Location = new System.Drawing.Point(0, 0);
+            this.flowLeft.Margin = new System.Windows.Forms.Padding(0);
+            this.flowLeft.Name = "flowLeft";
+            this.flowLeft.Size = new System.Drawing.Size(100, 29);
+            this.flowLeft.TabIndex = 0;
+            // 
+            // btnLogs
+            // 
+            this.btnLogs.Location = new System.Drawing.Point(3, 3);
+            this.btnLogs.Name = "btnLogs";
+            this.btnLogs.Size = new System.Drawing.Size(75, 23);
+            this.btnLogs.TabIndex = 0;
+            this.btnLogs.Text = "日志";
+            this.btnLogs.UseVisualStyleBackColor = true;
+            this.btnLogs.Click += new System.EventHandler(this.btnLogs_Click);
+            // 
+            // flowRight
+            // 
+            this.flowRight.Controls.Add(this.btnStart);
+            this.flowRight.Controls.Add(this.btnStop);
+            this.flowRight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowRight.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.flowRight.Location = new System.Drawing.Point(100, 0);
+            this.flowRight.Margin = new System.Windows.Forms.Padding(0);
+            this.flowRight.Name = "flowRight";
+            this.flowRight.Size = new System.Drawing.Size(528, 29);
+            this.flowRight.TabIndex = 6;
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(540, 3);
+            this.btnStart.Location = new System.Drawing.Point(450, 3);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(75, 23);
             this.btnStart.TabIndex = 0;
@@ -78,7 +176,7 @@
             // 
             // btnStop
             // 
-            this.btnStop.Location = new System.Drawing.Point(459, 3);
+            this.btnStop.Location = new System.Drawing.Point(369, 3);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(75, 23);
             this.btnStop.TabIndex = 1;
@@ -86,29 +184,12 @@
             this.btnStop.UseVisualStyleBackColor = true;
             this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
-            // ucLogs
-            // 
-            this.ucLogs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucLogs.Location = new System.Drawing.Point(3, 415);
-            this.ucLogs.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ucLogs.Name = "ucLogs";
-            this.ucLogs.Size = new System.Drawing.Size(618, 92);
-            this.ucLogs.TabIndex = 2;
-            // 
-            // ucPoolTranser
-            // 
-            this.ucPoolTranser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucPoolTranser.Location = new System.Drawing.Point(3, 4);
-            this.ucPoolTranser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ucPoolTranser.Name = "ucPoolTranser";
-            this.ucPoolTranser.Size = new System.Drawing.Size(618, 368);
-            this.ucPoolTranser.TabIndex = 3;
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(624, 511);
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ClientSize = new System.Drawing.Size(634, 461);
             this.Controls.Add(this.pnlMain);
             this.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -118,7 +199,14 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMain_FormClosed);
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.pnlMain.ResumeLayout(false);
-            this.pnlButtons.ResumeLayout(false);
+            this.splitMain.Panel1.ResumeLayout(false);
+            this.splitMain.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitMain)).EndInit();
+            this.splitMain.ResumeLayout(false);
+            this.pnlDashboard.ResumeLayout(false);
+            this.pnlButtonGroup.ResumeLayout(false);
+            this.flowLeft.ResumeLayout(false);
+            this.flowRight.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -126,10 +214,15 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel pnlMain;
-        private System.Windows.Forms.FlowLayoutPanel pnlButtons;
+        private System.Windows.Forms.SplitContainer splitMain;
+        private Controls.UcLogs ucLogs;
+        private System.Windows.Forms.TableLayoutPanel pnlDashboard;
+        private Controls.UcPoolTranser ucPoolTranser;
+        private System.Windows.Forms.TableLayoutPanel pnlButtonGroup;
+        private System.Windows.Forms.FlowLayoutPanel flowRight;
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Button btnStop;
-        private Controls.UcLogs ucLogs;
-        private Controls.UcPoolTranser ucPoolTranser;
+        private System.Windows.Forms.FlowLayoutPanel flowLeft;
+        private System.Windows.Forms.Button btnLogs;
     }
 }

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Sxh.Client.Business;
 using Sxh.Client.Business.Model;
+using Sxh.Client.Business.Proxy;
 
 namespace Sxh.Client.Controls
 {
@@ -27,6 +28,16 @@ namespace Sxh.Client.Controls
                 }
                 gridTransferPool.DataSource = data;
                 await Task.Delay(1000);
+            }
+        }
+
+        private void gridTransferPool_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            var grid = sender as DataGridView;
+            if (grid != null)
+            {
+                var projectId = grid.Rows[e.RowIndex].Cells["projectId"].Value;
+                System.Diagnostics.Process.Start(ProxyBase.CreateUri($"/portionTransferDetail?projectId={projectId}").AbsoluteUri);
             }
         }
     }

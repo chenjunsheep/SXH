@@ -25,7 +25,7 @@ namespace Sxh.Client.Business.Proxy
             return client;
         }
 
-        protected Uri CreateUri(string path)
+        public static Uri CreateUri(string path)
         {
             var uri = new Uri($"http://{AppSetting.Instance.Host}").AddPath(path);
             return uri;

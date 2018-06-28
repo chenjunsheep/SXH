@@ -61,6 +61,7 @@
             this.gridTransferPool.RowTemplate.Height = 23;
             this.gridTransferPool.Size = new System.Drawing.Size(200, 50);
             this.gridTransferPool.TabIndex = 0;
+            this.gridTransferPool.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.gridTransferPool_RowHeaderMouseDoubleClick);
             // 
             // projectId
             // 

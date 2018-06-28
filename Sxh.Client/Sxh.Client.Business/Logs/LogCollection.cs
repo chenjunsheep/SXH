@@ -10,7 +10,7 @@ namespace Sxh.Client.Business.Logs
         {
             var target = new Log() {
                 Type = logType,
-                Memo = $"[{DateTime.Now.ToString("hh:mm:ss")}] {memo}"
+                Memo = $"[{DateTime.Now.ToString("HH:mm:ss")}] {memo}"
             };
 
             Add(target);

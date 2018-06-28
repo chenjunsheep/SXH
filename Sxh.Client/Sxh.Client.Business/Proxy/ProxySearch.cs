@@ -1,15 +1,15 @@
 ﻿using System.Threading.Tasks;
 using System.Net.Http;
 using System.Net;
-using Sxh.Shared.Response.Model;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using Sxh.Client.Business.Model;
 
 namespace Sxh.Client.Business.Proxy
 {
     public class ProxySearch : ProxyBase
     {
-        public async Task<PortionTransferList> SearchAsync(CookieCollection tokenOffical)
+        public async Task<ClientPortionTransferList> SearchAsync(CookieCollection tokenOffical)
         {
             var cookieJar = new CookieContainer();
             using (var handler = new HttpClientHandler
@@ -45,7 +45,7 @@ namespace Sxh.Client.Business.Proxy
                     response.EnsureSuccessStatusCode();
 
                     var jsonString = await response.Content.ReadAsStringAsync();
-                    var target = JsonConvert.DeserializeObject<PortionTransferList>(jsonString);
+                    var target = JsonConvert.DeserializeObject<ClientPortionTransferList>(jsonString);
                     return target;
                 }
             }

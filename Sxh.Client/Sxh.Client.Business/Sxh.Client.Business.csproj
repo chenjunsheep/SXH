@@ -49,6 +49,8 @@
     <Compile Include="Logs\LogCollection.cs" />
     <Compile Include="Logs\LogManager.cs" />
     <Compile Include="Logs\LogType.cs" />
+    <Compile Include="Model\ClientPortionTransferItem.cs" />
+    <Compile Include="Model\ClientPortionTransferList.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proxy\ProxyBase.cs" />

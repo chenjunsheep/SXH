@@ -92,7 +92,7 @@ namespace Sxh.Client
                 {
                     while (!manager.Token.IsCancellationRequested)
                     {
-                        BusinessCache.PoolTranser = proxySearch.SearchAsync(BusinessCache.UserLogin.TokenOffical).Result;
+                        BusinessCache.PoolTranser = proxySearch.SearchAsync(BusinessCache.UserLogin.TokenOffical, ProxySearch.Parameter.Create()).Result;
                         var delay = (rd.Next(0, DELAY));
                         LogManager.Instance.Message($"{FREQ}s+{delay}s {BusinessCache.PoolTranser.Count} items were found");
                         Task.Delay((FREQ + delay) * 1000).Wait();

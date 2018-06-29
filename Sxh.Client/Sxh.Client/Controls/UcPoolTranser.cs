@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Shared.Util;
 using Sxh.Client.Business;
 using Sxh.Client.Business.Model;
 using Sxh.Client.Business.Proxy;
@@ -14,6 +16,29 @@ namespace Sxh.Client.Controls
         {
             InitializeComponent();
         }
+
+        #region Property
+
+        private List<string> _targets;
+        public List<string> Targets
+        {
+            get
+            {
+                if (_targets == null)
+                {
+                    _targets = new List<string>();
+                }
+                return _targets;
+            }
+            set { _targets = value; }
+        }
+
+        #endregion
+
+        #region Event
+
+        public event EventHandler OnTargeted;
+        public event EventHandler OnDeTargeted;
 
         private async void UcPoolTranser_Load(object sender, EventArgs e)
         {
@@ -36,9 +61,76 @@ namespace Sxh.Client.Controls
             var grid = sender as DataGridView;
             if (grid != null)
             {
-                var projectId = grid.Rows[e.RowIndex].Cells["projectId"].Value;
+                var projectId = grid.Rows[e.RowIndex].Cells[Namespace.GridColProjectId].Value;
                 System.Diagnostics.Process.Start(ProxyBase.CreateUri($"/portionTransferDetail?projectId={projectId}").AbsoluteUri);
             }
+        }
+
+        private void gridTransferPool_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            var grid = sender as DataGridView;
+            if (grid != null)
+            {
+                var isTarget = false;
+                var settings = BusinessCache.Settings;
+                if (e.ColumnIndex == 4) //rate displaying field index
+                {
+                    var rate = TypeParser.GetDoubleValue(grid.Rows[e.RowIndex].Cells[Namespace.GridColRate].Value);
+                    if (settings.Rate.HasValue && rate >= settings.Rate.Value)
+                    {
+                        isTarget = true;
+                    }
+                }
+
+                if (e.ColumnIndex == 5) //yijia displaying field index
+                {
+                    var yijia = TypeParser.GetDoubleValue(grid.Rows[e.RowIndex].Cells[Namespace.GridColYijia].Value);
+                    if (settings.Yijia.HasValue && yijia <= settings.Yijia.Value)
+                    {
+                        isTarget = true;
+                    }
+                }
+
+                e.CellStyle.ForeColor = Color.Black;
+
+                if (isTarget)
+                {
+                    e.CellStyle.ForeColor = Color.Red;
+
+                    var projectName = TypeParser.GetStringValue(grid.Rows[e.RowIndex].Cells[Namespace.GridColProjectName].Value);
+                    Targets.Add(projectName);
+                }
+            }
+        }
+
+        private void gridTransferPool_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            if (Targets.Count > 0)
+            {
+                if (OnTargeted != null)
+                {
+                    OnTargeted.Invoke(sender, e);
+                }
+            }
+            else
+            {
+                if (OnDeTargeted != null)
+                {
+                    OnDeTargeted.Invoke(sender, e);
+                }
+            }
+
+            Targets.Clear();
+        }
+
+        #endregion
+
+        private class Namespace
+        {
+            public const string GridColProjectId = "projectId";
+            public const string GridColProjectName = "projectTitle";
+            public const string GridColRate = "minTransferingRate";
+            public const string GridColYijia = "Yijia";
         }
     }
 }

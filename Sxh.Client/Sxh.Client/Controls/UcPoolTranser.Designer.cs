@@ -30,9 +30,11 @@
         {
             this.gridTransferPool = new System.Windows.Forms.DataGridView();
             this.projectId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.minTransferingRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Yijia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.projectTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DisplayTransferingRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DisplayRealtimeRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DisplayYijia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.transferingCopies = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.minTransferingPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.advicePrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,9 +50,11 @@
             this.gridTransferPool.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridTransferPool.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.projectId,
+            this.minTransferingRate,
+            this.Yijia,
             this.projectTitle,
             this.DisplayTransferingRate,
-            this.DisplayRealtimeRate,
+            this.DisplayYijia,
             this.transferingCopies,
             this.minTransferingPrice,
             this.advicePrice});
@@ -61,6 +65,8 @@
             this.gridTransferPool.RowTemplate.Height = 23;
             this.gridTransferPool.Size = new System.Drawing.Size(200, 50);
             this.gridTransferPool.TabIndex = 0;
+            this.gridTransferPool.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.gridTransferPool_CellFormatting);
+            this.gridTransferPool.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.gridTransferPool_DataBindingComplete);
             this.gridTransferPool.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.gridTransferPool_RowHeaderMouseDoubleClick);
             // 
             // projectId
@@ -72,6 +78,24 @@
             this.projectId.ReadOnly = true;
             this.projectId.Visible = false;
             this.projectId.Width = 66;
+            // 
+            // minTransferingRate
+            // 
+            this.minTransferingRate.DataPropertyName = "minTransferingRate";
+            this.minTransferingRate.HeaderText = "转让年化Val";
+            this.minTransferingRate.Name = "minTransferingRate";
+            this.minTransferingRate.ReadOnly = true;
+            this.minTransferingRate.Visible = false;
+            this.minTransferingRate.Width = 96;
+            // 
+            // Yijia
+            // 
+            this.Yijia.DataPropertyName = "Yijia";
+            this.Yijia.HeaderText = "溢价率Val";
+            this.Yijia.Name = "Yijia";
+            this.Yijia.ReadOnly = true;
+            this.Yijia.Visible = false;
+            this.Yijia.Width = 84;
             // 
             // projectTitle
             // 
@@ -90,13 +114,13 @@
             this.DisplayTransferingRate.ReadOnly = true;
             this.DisplayTransferingRate.Width = 78;
             // 
-            // DisplayRealtimeRate
+            // DisplayYijia
             // 
-            this.DisplayRealtimeRate.DataPropertyName = "DisplayRealtimeRate";
-            this.DisplayRealtimeRate.HeaderText = "溢折率";
-            this.DisplayRealtimeRate.Name = "DisplayRealtimeRate";
-            this.DisplayRealtimeRate.ReadOnly = true;
-            this.DisplayRealtimeRate.Width = 66;
+            this.DisplayYijia.DataPropertyName = "DisplayYijia";
+            this.DisplayYijia.HeaderText = "溢折率";
+            this.DisplayYijia.Name = "DisplayYijia";
+            this.DisplayYijia.ReadOnly = true;
+            this.DisplayYijia.Width = 66;
             // 
             // transferingCopies
             // 
@@ -138,9 +162,11 @@
         #endregion
         private System.Windows.Forms.DataGridView gridTransferPool;
         private System.Windows.Forms.DataGridViewTextBoxColumn projectId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn minTransferingRate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Yijia;
         private System.Windows.Forms.DataGridViewTextBoxColumn projectTitle;
         private System.Windows.Forms.DataGridViewTextBoxColumn DisplayTransferingRate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DisplayRealtimeRate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DisplayYijia;
         private System.Windows.Forms.DataGridViewTextBoxColumn transferingCopies;
         private System.Windows.Forms.DataGridViewTextBoxColumn minTransferingPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn advicePrice;

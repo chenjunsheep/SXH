@@ -13,11 +13,19 @@ namespace Sxh.Client.Business.Model
             }
         }
 
-        public string DisplayRealtimeRate
+        public double Yijia
         {
             get
             {
-                return minTransferingPrice.HasValue && advicePrice.HasValue ? $"{100 * Math.Round((minTransferingPrice.Value - advicePrice.Value) / advicePrice.Value, 4)}%" : string.Empty;
+                return minTransferingPrice.HasValue && advicePrice.HasValue ? 100 * Math.Round((minTransferingPrice.Value - advicePrice.Value) / advicePrice.Value, 4) : 0;
+            }
+        }
+
+        public string DisplayYijia
+        {
+            get
+            {
+                return $"{Yijia}%";
             }
         }
     }

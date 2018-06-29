@@ -79,6 +79,18 @@ namespace Sxh.Client
             lblOverview.Text = GenerateOverviewInfo();
         }
 
+        private void UcPoolTranser_OnTargeted(object sender, EventArgs e)
+        {
+            Text = string.Join(",", ucPoolTranser.Targets);
+            TopMost = true;
+        }
+        
+        private void UcPoolTranser_OnDeTargeted(object sender, EventArgs e)
+        {
+            Text = "主界面";
+            TopMost = false;
+        }
+
         #endregion
 
         #region Private Method
@@ -102,6 +114,11 @@ namespace Sxh.Client
             btnStop.Enabled = false;
 
             lblOverview.Text = GenerateOverviewInfo();
+
+            ucPoolTranser.OnTargeted -= UcPoolTranser_OnTargeted;
+            ucPoolTranser.OnTargeted += UcPoolTranser_OnTargeted;
+            ucPoolTranser.OnDeTargeted -= UcPoolTranser_OnDeTargeted;
+            ucPoolTranser.OnDeTargeted += UcPoolTranser_OnDeTargeted;
         }
 
         private void ButtonGroupFreeze(bool inprocess)

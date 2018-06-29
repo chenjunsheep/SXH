@@ -12,5 +12,7 @@ namespace Sxh.Client.Business
             get { return _poolTranser ?? (_poolTranser = new ClientPortionTransferList()); }
             set { _poolTranser = value; }
         }
+
+        public static UserSettings Settings { get; set; } = new UserSettings();
     }
 }

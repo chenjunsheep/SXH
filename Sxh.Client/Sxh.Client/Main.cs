@@ -18,8 +18,6 @@ namespace Sxh.Client
 
         #region Private Member
 
-        const int DELAY = 10;
-        const int FREQ = 5;
         private CancellationManager _cmSearching;
 
         #endregion
@@ -48,8 +46,7 @@ namespace Sxh.Client
 
         private async void btnStart_Click(object sender, EventArgs e)
         {
-            btnStart.Enabled = false;
-            btnStop.Enabled = !btnStart.Enabled;
+            ButtonGroupFreeze(true);
 
             _cmSearching.Activate();
             PerformSearching(_cmSearching);
@@ -59,15 +56,27 @@ namespace Sxh.Client
                 await Task.Delay(1000);
             }
 
-            btnStart.Enabled = true;
-            btnStop.Enabled = !btnStart.Enabled;
+            ButtonGroupFreeze(false);
         }
 
         private void btnStop_Click(object sender, EventArgs e)
         {
             LogManager.Instance.Message($"searching task is on aborting, please wait...");
-            btnStop.Enabled = false;
+            sender.BottonFreeze(false);
             _cmSearching.Cancel();
+        }
+
+        private void btnSettings_Click(object sender, EventArgs e)
+        {
+            var formSettings = new Settings();
+            formSettings.OnWindowClosed -= FormSettings_OnWindowClosed;
+            formSettings.OnWindowClosed += FormSettings_OnWindowClosed;
+            formSettings.ShowDialog();
+        }
+
+        private void FormSettings_OnWindowClosed(object sender, EventArgs e)
+        {
+            lblOverview.Text = GenerateOverviewInfo();
         }
 
         #endregion
@@ -76,6 +85,8 @@ namespace Sxh.Client
 
         private void Initialize()
         {
+            BusinessCache.Settings.TryRetriveFromConfig();
+
             _cmSearching = new CancellationManager();
 
             if (BusinessCache.UserLogin.HasValue)
@@ -89,21 +100,34 @@ namespace Sxh.Client
 
             splitMain.Panel2Collapsed = true;
             btnStop.Enabled = false;
+
+            lblOverview.Text = GenerateOverviewInfo();
+        }
+
+        private void ButtonGroupFreeze(bool inprocess)
+        {
+            btnStart.Enabled = !inprocess;
+            btnSettings.Enabled = !inprocess;
+            btnStop.Enabled = inprocess;
         }
 
         private void PerformSearching(CancellationManager manager)
         {
             Task.Factory.StartNew(() => {
+                var settingInfo = BusinessCache.Settings;
                 var rd = new Random();
                 var proxySearch = new ProxySearch();
                 try
                 {
                     while (!manager.Token.IsCancellationRequested)
                     {
-                        BusinessCache.PoolTranser = proxySearch.SearchAsync(BusinessCache.UserLogin.TokenOffical, ProxySearch.Parameter.Create()).Result;
-                        var delay = (rd.Next(0, DELAY));
-                        LogManager.Instance.Message($"{FREQ}s+{delay}s {BusinessCache.PoolTranser.Count} items were found");
-                        Task.Delay((FREQ + delay) * 1000).Wait();
+                        BusinessCache.PoolTranser = proxySearch.SearchAsync(
+                            BusinessCache.UserLogin.TokenOffical, 
+                            ProxySearch.Parameter.Create(settingInfo.Keywords)
+                        ).Result;
+                        var delay = (rd.Next(0, settingInfo.DelayTransfer));
+                        LogManager.Instance.Message($"{settingInfo.FreqTransfer}s+{delay}s {BusinessCache.PoolTranser.Count} items were found");
+                        Task.Delay((settingInfo.FreqTransfer + delay) * 1000).Wait();
                     };
                     manager.Token.ThrowIfCancellationRequested();
                 }
@@ -117,6 +141,22 @@ namespace Sxh.Client
                     LogManager.Instance.Message($"searching task has been aborted");
                 }
             }, manager.Token);
+        }
+
+        private string GenerateOverviewInfo()
+        {
+            var settingInfo = BusinessCache.Settings;
+            var keyword = !string.IsNullOrEmpty(settingInfo.Keywords) ? settingInfo.Keywords : "全部";
+            var msg = $"关键字: [{keyword}]; ";
+            if (settingInfo.Yijia.HasValue)
+            {
+                msg += $"溢价: [{settingInfo.Yijia.Value}%]; ";
+            }
+            if (settingInfo.Rate.HasValue)
+            {
+                msg += $"年化: [{settingInfo.Rate.Value}%]; ";
+            }
+            return msg;
         }
 
         #endregion

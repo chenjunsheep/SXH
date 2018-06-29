@@ -55,11 +55,6 @@ namespace Sxh.Client.Business.Proxy
         {
             public string Keyword { get; set; }
 
-            public static Parameter Create()
-            {
-                return Create(string.Empty);
-            }
-
             public static Parameter Create(string keywords)
             {
                 return new Parameter() { Keyword = keywords };

@@ -30,15 +30,17 @@
         {
             this.pnlMain = new System.Windows.Forms.TableLayoutPanel();
             this.splitMain = new System.Windows.Forms.SplitContainer();
-            this.ucLogs = new Sxh.Client.Controls.UcLogs();
             this.pnlDashboard = new System.Windows.Forms.TableLayoutPanel();
             this.ucPoolTranser = new Sxh.Client.Controls.UcPoolTranser();
             this.pnlButtonGroup = new System.Windows.Forms.TableLayoutPanel();
-            this.flowLeft = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnLogs = new System.Windows.Forms.Button();
             this.flowRight = new System.Windows.Forms.FlowLayoutPanel();
             this.btnStart = new System.Windows.Forms.Button();
             this.btnStop = new System.Windows.Forms.Button();
+            this.flowLeft = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnLogs = new System.Windows.Forms.Button();
+            this.ucLogs = new Sxh.Client.Controls.UcLogs();
+            this.btnSettings = new System.Windows.Forms.Button();
+            this.lblOverview = new System.Windows.Forms.Label();
             this.pnlMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitMain)).BeginInit();
             this.splitMain.Panel1.SuspendLayout();
@@ -46,20 +48,21 @@
             this.splitMain.SuspendLayout();
             this.pnlDashboard.SuspendLayout();
             this.pnlButtonGroup.SuspendLayout();
-            this.flowLeft.SuspendLayout();
             this.flowRight.SuspendLayout();
+            this.flowLeft.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlMain
             // 
             this.pnlMain.ColumnCount = 1;
             this.pnlMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.pnlMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.pnlMain.Controls.Add(this.splitMain, 0, 0);
+            this.pnlMain.Controls.Add(this.splitMain, 0, 1);
+            this.pnlMain.Controls.Add(this.lblOverview, 0, 0);
             this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMain.Location = new System.Drawing.Point(0, 0);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.RowCount = 1;
+            this.pnlMain.RowCount = 2;
+            this.pnlMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.pnlMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.pnlMain.Size = new System.Drawing.Size(634, 461);
             this.pnlMain.TabIndex = 0;
@@ -67,7 +70,7 @@
             // splitMain
             // 
             this.splitMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitMain.Location = new System.Drawing.Point(3, 3);
+            this.splitMain.Location = new System.Drawing.Point(3, 23);
             this.splitMain.Name = "splitMain";
             this.splitMain.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -80,17 +83,9 @@
             // 
             this.splitMain.Panel2.Controls.Add(this.ucLogs);
             this.splitMain.Panel2MinSize = 1;
-            this.splitMain.Size = new System.Drawing.Size(628, 455);
-            this.splitMain.SplitterDistance = 358;
+            this.splitMain.Size = new System.Drawing.Size(628, 435);
+            this.splitMain.SplitterDistance = 342;
             this.splitMain.TabIndex = 4;
-            // 
-            // ucLogs
-            // 
-            this.ucLogs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucLogs.Location = new System.Drawing.Point(0, 0);
-            this.ucLogs.Name = "ucLogs";
-            this.ucLogs.Size = new System.Drawing.Size(628, 93);
-            this.ucLogs.TabIndex = 3;
             // 
             // pnlDashboard
             // 
@@ -104,7 +99,7 @@
             this.pnlDashboard.RowCount = 2;
             this.pnlDashboard.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.pnlDashboard.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.pnlDashboard.Size = new System.Drawing.Size(628, 358);
+            this.pnlDashboard.Size = new System.Drawing.Size(628, 342);
             this.pnlDashboard.TabIndex = 0;
             // 
             // ucPoolTranser
@@ -112,7 +107,7 @@
             this.ucPoolTranser.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucPoolTranser.Location = new System.Drawing.Point(3, 3);
             this.ucPoolTranser.Name = "ucPoolTranser";
-            this.ucPoolTranser.Size = new System.Drawing.Size(622, 323);
+            this.ucPoolTranser.Size = new System.Drawing.Size(622, 307);
             this.ucPoolTranser.TabIndex = 4;
             // 
             // pnlButtonGroup
@@ -123,39 +118,20 @@
             this.pnlButtonGroup.Controls.Add(this.flowRight, 1, 0);
             this.pnlButtonGroup.Controls.Add(this.flowLeft, 0, 0);
             this.pnlButtonGroup.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlButtonGroup.Location = new System.Drawing.Point(0, 329);
+            this.pnlButtonGroup.Location = new System.Drawing.Point(0, 313);
             this.pnlButtonGroup.Margin = new System.Windows.Forms.Padding(0);
             this.pnlButtonGroup.Name = "pnlButtonGroup";
             this.pnlButtonGroup.RowCount = 1;
             this.pnlButtonGroup.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.pnlButtonGroup.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.pnlButtonGroup.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.pnlButtonGroup.Size = new System.Drawing.Size(628, 29);
             this.pnlButtonGroup.TabIndex = 5;
-            // 
-            // flowLeft
-            // 
-            this.flowLeft.Controls.Add(this.btnLogs);
-            this.flowLeft.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLeft.Location = new System.Drawing.Point(0, 0);
-            this.flowLeft.Margin = new System.Windows.Forms.Padding(0);
-            this.flowLeft.Name = "flowLeft";
-            this.flowLeft.Size = new System.Drawing.Size(100, 29);
-            this.flowLeft.TabIndex = 0;
-            // 
-            // btnLogs
-            // 
-            this.btnLogs.Location = new System.Drawing.Point(3, 3);
-            this.btnLogs.Name = "btnLogs";
-            this.btnLogs.Size = new System.Drawing.Size(75, 23);
-            this.btnLogs.TabIndex = 0;
-            this.btnLogs.Text = "日志";
-            this.btnLogs.UseVisualStyleBackColor = true;
-            this.btnLogs.Click += new System.EventHandler(this.btnLogs_Click);
             // 
             // flowRight
             // 
             this.flowRight.Controls.Add(this.btnStart);
             this.flowRight.Controls.Add(this.btnStop);
+            this.flowRight.Controls.Add(this.btnSettings);
             this.flowRight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowRight.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.flowRight.Location = new System.Drawing.Point(100, 0);
@@ -184,6 +160,54 @@
             this.btnStop.UseVisualStyleBackColor = true;
             this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
+            // flowLeft
+            // 
+            this.flowLeft.Controls.Add(this.btnLogs);
+            this.flowLeft.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLeft.Location = new System.Drawing.Point(0, 0);
+            this.flowLeft.Margin = new System.Windows.Forms.Padding(0);
+            this.flowLeft.Name = "flowLeft";
+            this.flowLeft.Size = new System.Drawing.Size(100, 29);
+            this.flowLeft.TabIndex = 0;
+            // 
+            // btnLogs
+            // 
+            this.btnLogs.Location = new System.Drawing.Point(3, 3);
+            this.btnLogs.Name = "btnLogs";
+            this.btnLogs.Size = new System.Drawing.Size(75, 23);
+            this.btnLogs.TabIndex = 0;
+            this.btnLogs.Text = "日志";
+            this.btnLogs.UseVisualStyleBackColor = true;
+            this.btnLogs.Click += new System.EventHandler(this.btnLogs_Click);
+            // 
+            // ucLogs
+            // 
+            this.ucLogs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucLogs.Location = new System.Drawing.Point(0, 0);
+            this.ucLogs.Name = "ucLogs";
+            this.ucLogs.Size = new System.Drawing.Size(628, 89);
+            this.ucLogs.TabIndex = 3;
+            // 
+            // btnSettings
+            // 
+            this.btnSettings.Location = new System.Drawing.Point(288, 3);
+            this.btnSettings.Name = "btnSettings";
+            this.btnSettings.Size = new System.Drawing.Size(75, 23);
+            this.btnSettings.TabIndex = 2;
+            this.btnSettings.Text = "设置";
+            this.btnSettings.UseVisualStyleBackColor = true;
+            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
+            // 
+            // lblOverview
+            // 
+            this.lblOverview.AutoSize = true;
+            this.lblOverview.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lblOverview.Location = new System.Drawing.Point(3, 3);
+            this.lblOverview.Name = "lblOverview";
+            this.lblOverview.Size = new System.Drawing.Size(628, 17);
+            this.lblOverview.TabIndex = 5;
+            this.lblOverview.Text = "信息概要";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -195,18 +219,19 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Main";
+            this.Text = "主界面";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMain_FormClosed);
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.pnlMain.ResumeLayout(false);
+            this.pnlMain.PerformLayout();
             this.splitMain.Panel1.ResumeLayout(false);
             this.splitMain.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitMain)).EndInit();
             this.splitMain.ResumeLayout(false);
             this.pnlDashboard.ResumeLayout(false);
             this.pnlButtonGroup.ResumeLayout(false);
-            this.flowLeft.ResumeLayout(false);
             this.flowRight.ResumeLayout(false);
+            this.flowLeft.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -224,5 +249,7 @@
         private System.Windows.Forms.Button btnStop;
         private System.Windows.Forms.FlowLayoutPanel flowLeft;
         private System.Windows.Forms.Button btnLogs;
+        private System.Windows.Forms.Button btnSettings;
+        private System.Windows.Forms.Label lblOverview;
     }
 }

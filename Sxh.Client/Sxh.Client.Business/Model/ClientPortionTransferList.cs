@@ -10,5 +10,14 @@ namespace Sxh.Client.Business.Model
         {
             get { return rowSet == null ? 0 : rowSet.Count; }
         }
+
+        public ClientPortionTransferItem TopItem
+        {
+            get
+            {
+                if (rowSet == null || rowSet.Count == 0) return new ClientPortionTransferItem();
+                return rowSet[0];
+            }
+        }
     }
 }

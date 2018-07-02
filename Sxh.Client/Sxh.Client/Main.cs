@@ -143,7 +143,7 @@ namespace Sxh.Client
                             ProxySearch.Parameter.Create(settingInfo.Keywords)
                         ).Result;
                         var delay = (rd.Next(0, settingInfo.DelayTransfer));
-                        LogManager.Instance.Message($"{settingInfo.FreqTransfer}s+{delay}s {BusinessCache.PoolTranser.Count} items were found");
+                        LogManager.Instance.Message($@"{BusinessCache.PoolTranser.TopItem.DisplayTransferingRate}/{BusinessCache.PoolTranser.TopItem.DisplayYijia} {BusinessCache.PoolTranser.TopItem.projectTitle} {BusinessCache.PoolTranser.Count} items were found ({settingInfo.FreqTransfer}s+{delay}s) ");
                         Task.Delay((settingInfo.FreqTransfer + delay) * 1000).Wait();
                     };
                     manager.Token.ThrowIfCancellationRequested();

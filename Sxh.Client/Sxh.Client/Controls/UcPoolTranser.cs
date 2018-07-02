@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Shared.Util;
 using Sxh.Client.Business;
+using Sxh.Client.Business.Logs;
 using Sxh.Client.Business.Model;
 using Sxh.Client.Business.Proxy;
 
@@ -71,14 +72,14 @@ namespace Sxh.Client.Controls
             var grid = sender as DataGridView;
             if (grid != null)
             {
-                var isTarget = false;
+                var msgTarget = string.Empty;
                 var settings = BusinessCache.Settings;
                 if (e.ColumnIndex == 4) //rate displaying field index
                 {
                     var rate = TypeParser.GetDoubleValue(grid.Rows[e.RowIndex].Cells[Namespace.GridColRate].Value);
                     if (settings.Rate.HasValue && rate >= settings.Rate.Value)
                     {
-                        isTarget = true;
+                        msgTarget += $" {settings.Rate.Value}% ";
                     }
                 }
 
@@ -87,18 +88,18 @@ namespace Sxh.Client.Controls
                     var yijia = TypeParser.GetDoubleValue(grid.Rows[e.RowIndex].Cells[Namespace.GridColYijia].Value);
                     if (settings.Yijia.HasValue && yijia <= settings.Yijia.Value)
                     {
-                        isTarget = true;
+                        msgTarget += $" {settings.Yijia.Value}% ";
                     }
                 }
 
                 e.CellStyle.ForeColor = Color.Black;
 
-                if (isTarget)
+                if (!string.IsNullOrEmpty(msgTarget))
                 {
                     e.CellStyle.ForeColor = Color.Red;
 
                     var projectName = TypeParser.GetStringValue(grid.Rows[e.RowIndex].Cells[Namespace.GridColProjectName].Value);
-                    Targets.Add(projectName);
+                    Targets.Add($"[{projectName} {msgTarget}]");
                 }
             }
         }
@@ -107,6 +108,8 @@ namespace Sxh.Client.Controls
         {
             if (Targets.Count > 0)
             {
+                LogManager.Instance.Message($"TARGETED! ==> {string.Join(",", Targets)}");
+
                 if (OnTargeted != null)
                 {
                     OnTargeted.Invoke(sender, e);

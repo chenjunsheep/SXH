@@ -36,6 +36,10 @@ if exist %pathWeb%\wwwroot\ rd /s /q %pathWeb%\wwwroot
 if exist %pathServer%\wwwroot\ rd /s /q %pathServer%\wwwroot
 
 echo =============^> %projectName% Server has been published
+
+echo =============^> publishing %projectName% Client...
+call %pathBat%\buildClient.bat
+
 echo =============^>
 echo =============^> Please find the published files at %cd%\%pathRelease%
 echo =============^>

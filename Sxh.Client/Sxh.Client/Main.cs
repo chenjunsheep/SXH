@@ -61,9 +61,9 @@ namespace Sxh.Client
 
         private void btnStop_Click(object sender, EventArgs e)
         {
-            LogManager.Instance.Message($"searching task is on aborting, please wait...");
             sender.BottonFreeze(false);
             _cmSearching.Cancel();
+            TopMost = false;
         }
 
         private void btnSettings_Click(object sender, EventArgs e)
@@ -142,9 +142,15 @@ namespace Sxh.Client
                             BusinessCache.UserLogin.TokenOffical, 
                             ProxySearch.Parameter.Create(settingInfo.Keywords)
                         ).Result;
+
                         var delay = (rd.Next(0, settingInfo.DelayTransfer));
-                        LogManager.Instance.Message($@"{BusinessCache.PoolTranser.TopItem.DisplayTransferingRate}/{BusinessCache.PoolTranser.TopItem.DisplayYijia} {BusinessCache.PoolTranser.TopItem.projectTitle} {BusinessCache.PoolTranser.Count} items were found ({settingInfo.FreqTransfer}s+{delay}s) ");
-                        Task.Delay((settingInfo.FreqTransfer + delay) * 1000).Wait();
+                        var msg = $"{BusinessCache.PoolTranser.TopItem.DisplayTransferingRate}/{BusinessCache.PoolTranser.TopItem.DisplayYijia} ";
+                        msg += $"{BusinessCache.PoolTranser.TopItem.transferingCopies} ";
+                        msg += $"{BusinessCache.PoolTranser.TopItem.projectTitle} ";
+                        msg += $"{BusinessCache.PoolTranser.Count} items were found ({settingInfo.FreqTransfer}s+{delay}s)";
+                        LogManager.Instance.Message(msg);
+
+                        Task.Delay((settingInfo.FreqTransfer + delay) * 1000).Wait(manager.Token);
                     };
                     manager.Token.ThrowIfCancellationRequested();
                 }
@@ -155,7 +161,6 @@ namespace Sxh.Client
                 finally
                 {
                     manager.Dispose();
-                    LogManager.Instance.Message($"searching task has been aborted");
                 }
             }, manager.Token);
         }

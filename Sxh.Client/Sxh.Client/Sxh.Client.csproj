@@ -86,6 +86,12 @@
     <Compile Include="Controls\UcPoolTranser.Designer.cs">
       <DependentUpon>UcPoolTranser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\UcSettingBasic.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UcSettingBasic.Designer.cs">
+      <DependentUpon>UcSettingBasic.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +118,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\UcPoolTranser.resx">
       <DependentUpon>UcPoolTranser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UcSettingBasic.resx">
+      <DependentUpon>UcSettingBasic.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

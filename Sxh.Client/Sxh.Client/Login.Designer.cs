@@ -72,7 +72,6 @@
             this.txtPasswordTran.Name = "txtPasswordTran";
             this.txtPasswordTran.Size = new System.Drawing.Size(294, 23);
             this.txtPasswordTran.TabIndex = 5;
-            this.txtPasswordTran.Text = "111111";
             this.txtPasswordTran.UseSystemPasswordChar = true;
             // 
             // txtPassword
@@ -82,7 +81,6 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(294, 23);
             this.txtPassword.TabIndex = 4;
-            this.txtPassword.Text = "Touzibao@201603";
             this.txtPassword.UseSystemPasswordChar = true;
             // 
             // label2
@@ -125,7 +123,6 @@
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(294, 23);
             this.txtUserName.TabIndex = 3;
-            this.txtUserName.Text = "chenjunsheep";
             // 
             // pnlButtons
             // 
@@ -162,6 +159,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "登陆";
             this.TopMost = true;
+            this.Load += new System.EventHandler(this.frmLogin_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.pnlButtons.ResumeLayout(false);

@@ -199,6 +199,9 @@
     <None Include="Resources\logo_select.ico" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="account.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="logo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

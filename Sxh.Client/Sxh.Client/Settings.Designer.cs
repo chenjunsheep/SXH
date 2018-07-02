@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Settings));
             this.pnlMain = new System.Windows.Forms.TableLayoutPanel();
             this.flowButtonGroup = new System.Windows.Forms.FlowLayoutPanel();
             this.btnSave = new System.Windows.Forms.Button();
@@ -121,7 +122,7 @@
             this.tabProxy.Location = new System.Drawing.Point(4, 26);
             this.tabProxy.Name = "tabProxy";
             this.tabProxy.Padding = new System.Windows.Forms.Padding(3);
-            this.tabProxy.Size = new System.Drawing.Size(492, 259);
+            this.tabProxy.Size = new System.Drawing.Size(570, 390);
             this.tabProxy.TabIndex = 1;
             this.tabProxy.Text = "代理设置";
             this.tabProxy.UseVisualStyleBackColor = true;
@@ -143,6 +144,7 @@
             this.ClientSize = new System.Drawing.Size(584, 461);
             this.Controls.Add(this.pnlMain);
             this.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Settings";
             this.Text = "设置";

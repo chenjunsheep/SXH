@@ -6,6 +6,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Shared.Util.Extension;
 
 namespace Sxh.Client
 {
@@ -17,6 +18,9 @@ namespace Sxh.Client
         }
 
         #region Private Member
+
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        private static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
 
         private CancellationManager _cmSearching;
 
@@ -61,9 +65,9 @@ namespace Sxh.Client
 
         private void btnStop_Click(object sender, EventArgs e)
         {
+            LogManager.Instance.Message("cancelling, please wait...");
             sender.BottonFreeze(false);
             _cmSearching.Cancel();
-            TopMost = false;
         }
 
         private void btnSettings_Click(object sender, EventArgs e)
@@ -81,14 +85,13 @@ namespace Sxh.Client
 
         private void UcPoolTranser_OnTargeted(object sender, EventArgs e)
         {
-            Text = string.Join(",", ucPoolTranser.Targets);
-            TopMost = true;
+            var msg = string.Join(",", ucPoolTranser.Targets).SubLeftString(10);
+            notify.ShowBalloonTip(2000, "Message", msg, ToolTipIcon.None);
         }
         
         private void UcPoolTranser_OnDeTargeted(object sender, EventArgs e)
         {
-            Text = "主界面";
-            TopMost = false;
+
         }
 
         #endregion
@@ -150,7 +153,7 @@ namespace Sxh.Client
                         msg += $"{BusinessCache.PoolTranser.Count} items were found ({settingInfo.FreqTransfer}s+{delay}s)";
                         LogManager.Instance.Message(msg);
 
-                        Task.Delay((settingInfo.FreqTransfer + delay) * 1000).Wait(manager.Token);
+                        Task.Delay((settingInfo.FreqTransfer + delay) * 1000).Wait();
                     };
                     manager.Token.ThrowIfCancellationRequested();
                 }
@@ -224,5 +227,21 @@ namespace Sxh.Client
         }
 
         #endregion
+
+        private void notify_DoubleClick(object sender, EventArgs e)
+        {
+            ShowWindow(Handle, 4);
+            WindowState = FormWindowState.Normal;
+            notify.Visible = false;
+        }
+
+        private void frmMain_SizeChanged(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Minimized)
+            {
+                Hide();
+                notify.Visible = true;
+            }
+        }
     }
 }

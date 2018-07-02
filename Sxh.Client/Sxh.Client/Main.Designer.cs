@@ -28,19 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.pnlMain = new System.Windows.Forms.TableLayoutPanel();
             this.splitMain = new System.Windows.Forms.SplitContainer();
             this.pnlDashboard = new System.Windows.Forms.TableLayoutPanel();
-            this.ucPoolTranser = new Sxh.Client.Controls.UcPoolTranser();
             this.pnlButtonGroup = new System.Windows.Forms.TableLayoutPanel();
             this.flowRight = new System.Windows.Forms.FlowLayoutPanel();
             this.btnStart = new System.Windows.Forms.Button();
             this.btnStop = new System.Windows.Forms.Button();
+            this.btnSettings = new System.Windows.Forms.Button();
             this.flowLeft = new System.Windows.Forms.FlowLayoutPanel();
             this.btnLogs = new System.Windows.Forms.Button();
-            this.ucLogs = new Sxh.Client.Controls.UcLogs();
-            this.btnSettings = new System.Windows.Forms.Button();
             this.lblOverview = new System.Windows.Forms.Label();
+            this.ucPoolTranser = new Sxh.Client.Controls.UcPoolTranser();
+            this.ucLogs = new Sxh.Client.Controls.UcLogs();
+            this.notify = new System.Windows.Forms.NotifyIcon(this.components);
             this.pnlMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitMain)).BeginInit();
             this.splitMain.Panel1.SuspendLayout();
@@ -102,14 +105,6 @@
             this.pnlDashboard.Size = new System.Drawing.Size(628, 342);
             this.pnlDashboard.TabIndex = 0;
             // 
-            // ucPoolTranser
-            // 
-            this.ucPoolTranser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucPoolTranser.Location = new System.Drawing.Point(3, 3);
-            this.ucPoolTranser.Name = "ucPoolTranser";
-            this.ucPoolTranser.Size = new System.Drawing.Size(622, 307);
-            this.ucPoolTranser.TabIndex = 4;
-            // 
             // pnlButtonGroup
             // 
             this.pnlButtonGroup.ColumnCount = 2;
@@ -160,6 +155,16 @@
             this.btnStop.UseVisualStyleBackColor = true;
             this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
+            // btnSettings
+            // 
+            this.btnSettings.Location = new System.Drawing.Point(288, 3);
+            this.btnSettings.Name = "btnSettings";
+            this.btnSettings.Size = new System.Drawing.Size(75, 23);
+            this.btnSettings.TabIndex = 2;
+            this.btnSettings.Text = "设置";
+            this.btnSettings.UseVisualStyleBackColor = true;
+            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
+            // 
             // flowLeft
             // 
             this.flowLeft.Controls.Add(this.btnLogs);
@@ -180,24 +185,6 @@
             this.btnLogs.UseVisualStyleBackColor = true;
             this.btnLogs.Click += new System.EventHandler(this.btnLogs_Click);
             // 
-            // ucLogs
-            // 
-            this.ucLogs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucLogs.Location = new System.Drawing.Point(0, 0);
-            this.ucLogs.Name = "ucLogs";
-            this.ucLogs.Size = new System.Drawing.Size(628, 89);
-            this.ucLogs.TabIndex = 3;
-            // 
-            // btnSettings
-            // 
-            this.btnSettings.Location = new System.Drawing.Point(288, 3);
-            this.btnSettings.Name = "btnSettings";
-            this.btnSettings.Size = new System.Drawing.Size(75, 23);
-            this.btnSettings.TabIndex = 2;
-            this.btnSettings.Text = "设置";
-            this.btnSettings.UseVisualStyleBackColor = true;
-            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
-            // 
             // lblOverview
             // 
             this.lblOverview.AutoSize = true;
@@ -208,6 +195,30 @@
             this.lblOverview.TabIndex = 5;
             this.lblOverview.Text = "信息概要";
             // 
+            // ucPoolTranser
+            // 
+            this.ucPoolTranser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucPoolTranser.Location = new System.Drawing.Point(3, 3);
+            this.ucPoolTranser.Name = "ucPoolTranser";
+            this.ucPoolTranser.Size = new System.Drawing.Size(622, 307);
+            this.ucPoolTranser.TabIndex = 4;
+            this.ucPoolTranser.Targets = ((System.Collections.Generic.List<string>)(resources.GetObject("ucPoolTranser.Targets")));
+            // 
+            // ucLogs
+            // 
+            this.ucLogs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucLogs.Location = new System.Drawing.Point(0, 0);
+            this.ucLogs.Name = "ucLogs";
+            this.ucLogs.Size = new System.Drawing.Size(628, 89);
+            this.ucLogs.TabIndex = 3;
+            // 
+            // notify
+            // 
+            this.notify.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.notify.Icon = ((System.Drawing.Icon)(resources.GetObject("notify.Icon")));
+            this.notify.Text = "SXH";
+            this.notify.DoubleClick += new System.EventHandler(this.notify_DoubleClick);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -216,12 +227,14 @@
             this.ClientSize = new System.Drawing.Size(634, 461);
             this.Controls.Add(this.pnlMain);
             this.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "主界面";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMain_FormClosed);
             this.Load += new System.EventHandler(this.frmMain_Load);
+            this.SizeChanged += new System.EventHandler(this.frmMain_SizeChanged);
             this.pnlMain.ResumeLayout(false);
             this.pnlMain.PerformLayout();
             this.splitMain.Panel1.ResumeLayout(false);
@@ -251,5 +264,6 @@
         private System.Windows.Forms.Button btnLogs;
         private System.Windows.Forms.Button btnSettings;
         private System.Windows.Forms.Label lblOverview;
+        private System.Windows.Forms.NotifyIcon notify;
     }
 }

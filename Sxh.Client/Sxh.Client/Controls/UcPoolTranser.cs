@@ -62,8 +62,8 @@ namespace Sxh.Client.Controls
             var grid = sender as DataGridView;
             if (grid != null)
             {
-                var projectId = grid.Rows[e.RowIndex].Cells[Namespace.GridColProjectId].Value;
-                System.Diagnostics.Process.Start(ProxyBase.CreateUri($"/portionTransferDetail?projectId={projectId}").AbsoluteUri);
+                var projectId = TypeParser.GetInt32Value(grid.Rows[e.RowIndex].Cells[Namespace.GridColProjectId].Value);
+                System.Diagnostics.Process.Start(ProxySearch.GetPathTranserDetail(projectId));
             }
         }
 
@@ -99,7 +99,7 @@ namespace Sxh.Client.Controls
                     e.CellStyle.ForeColor = Color.Red;
 
                     var projectName = TypeParser.GetStringValue(grid.Rows[e.RowIndex].Cells[Namespace.GridColProjectName].Value);
-                    Targets.Add($"[{projectName} {msgTarget}]");
+                    Targets.Add($"{projectName} {msgTarget}");
                 }
             }
         }
@@ -108,7 +108,7 @@ namespace Sxh.Client.Controls
         {
             if (Targets.Count > 0)
             {
-                LogManager.Instance.Message($"TARGETED! ==> {string.Join(",", Targets)}");
+                LogManager.Instance.Message($"==> {string.Join(", ", Targets)}");
 
                 if (OnTargeted != null)
                 {

@@ -51,6 +51,11 @@ namespace Sxh.Client.Business.Proxy
             }
         }
 
+        public static string GetPathTranserDetail(int projectId)
+        {
+            return CreateUri($"/portionTransferDetail?projectId={projectId}").AbsoluteUri;
+        }
+
         public class Parameter
         {
             public string Keyword { get; set; }

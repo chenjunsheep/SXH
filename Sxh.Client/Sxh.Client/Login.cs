@@ -6,8 +6,8 @@ using Sxh.Client.Business.ViewModel;
 using Sxh.Client.Util;
 using System;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
-using System.Xml;
 
 namespace Sxh.Client
 {
@@ -22,7 +22,7 @@ namespace Sxh.Client
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
-            LoadAccountXml();
+            Initialize();
         }
 
         private async void btnLogin_Click(object sender, EventArgs e)
@@ -65,28 +65,16 @@ namespace Sxh.Client
 
         #region Private Method
 
-        private void LoadAccountXml()
+        private void Initialize()
         {
-            const string FILE_ACCOUNT = "account.xml";
-            if (File.Exists(FILE_ACCOUNT))
+            BusinessCache.UserAccounts.Load();
+
+            var def = BusinessCache.UserAccounts.FirstOrDefault();
+            if (def != null)
             {
-                var xmlDoc = new XmlDocument();
-                xmlDoc.Load(FILE_ACCOUNT);
-
-                var selectSingleNode = xmlDoc.SelectSingleNode("root");
-                if (selectSingleNode != null)
-                {
-                    foreach (XmlElement childNode in selectSingleNode.ChildNodes)
-                    {
-                        var id = TypeParser.GetStringValue(childNode.GetAttribute("id"));
-                        var psw = TypeParser.GetStringValue(childNode.GetAttribute("psw"));
-                        var tsw = TypeParser.GetStringValue(childNode.GetAttribute("tsw"));
-
-                        txtUserName.Text = id;
-                        txtPassword.Text = psw;
-                        txtPasswordTran.Text = tsw;
-                    }
-                }
+                txtUserName.Text = def.UserName;
+                txtPassword.Text = def.Password;
+                txtPasswordTran.Text = def.PasswordTran;
             }
         }
 

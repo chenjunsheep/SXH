@@ -22,7 +22,7 @@ namespace Sxh.Client.Business.Repository
                 BusinessCache.UserLogin.PasswordTran = para.PasswordTran;
                 BusinessCache.UserLogin.TokenOffical = tokenOffical;
 
-                BusinessCache.Accounts.Add(BusinessCache.UserLogin);
+                BusinessCache.UserAccounts.UpdateTokenOffical(para.UserName, tokenOffical);
 
                 return string.Empty;
             }

@@ -1,5 +1,4 @@
 ﻿using Sxh.Client.Business.Model;
-using System.Collections.Generic;
 
 namespace Sxh.Client.Business
 {
@@ -7,16 +6,16 @@ namespace Sxh.Client.Business
     {
         public static User UserLogin { get; set; } = new User();
 
-        private static List<User> _accounts;
-        public static List<User> Accounts
+        private static UserAccountCollection _userAccounts;
+        public static UserAccountCollection UserAccounts
         {
             get
             {
-                if (_accounts == null)
+                if (_userAccounts == null)
                 {
-                    _accounts = new List<User>();
+                    _userAccounts = new UserAccountCollection();
                 }
-                return _accounts;
+                return _userAccounts;
             }
         }
 

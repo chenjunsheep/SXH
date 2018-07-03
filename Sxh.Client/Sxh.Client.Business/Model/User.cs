@@ -9,11 +9,11 @@ namespace Sxh.Client.Business.Model
         public string PasswordTran { get; set; }
         public CookieCollection TokenOffical { get; set; }
         public string TokenServer { get; set; }
-        public bool HasValue
+        public virtual bool HasValue
         {
             get
             {
-                return TokenOffical != null && TokenOffical.Count > 0;
+                return TokenOffical != null && TokenOffical.Count > 1;
             }
         }
     }

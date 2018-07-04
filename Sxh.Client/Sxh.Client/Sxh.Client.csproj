@@ -101,6 +101,12 @@
     <Compile Include="Controls\UcSettingProxy.Designer.cs">
       <DependentUpon>UcSettingProxy.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\UcSettingProxyItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UcSettingProxyItem.Designer.cs">
+      <DependentUpon>UcSettingProxyItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +139,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\UcSettingProxy.resx">
       <DependentUpon>UcSettingProxy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UcSettingProxyItem.resx">
+      <DependentUpon>UcSettingProxyItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
@@ -203,6 +212,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="logo.ico" />
+    <Content Include="proxy.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

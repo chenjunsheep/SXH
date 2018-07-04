@@ -67,6 +67,7 @@ namespace Sxh.Client
 
         private void Initialize()
         {
+            BusinessCache.UserProxies.Load();
             BusinessCache.UserAccounts.Load();
 
             var def = BusinessCache.UserAccounts.FirstOrDefault();

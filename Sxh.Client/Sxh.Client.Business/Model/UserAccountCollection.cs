@@ -11,7 +11,7 @@ namespace Sxh.Client.Business.Model
     {
         public void Load()
         {
-            LoadAccountXml();
+            LoadFile();
         }
 
         public void UpdateTokenOffical(string userName, CookieCollection token)
@@ -26,7 +26,7 @@ namespace Sxh.Client.Business.Model
             }
         }
 
-        private void LoadAccountXml()
+        private void LoadFile()
         {
             Clear();
 

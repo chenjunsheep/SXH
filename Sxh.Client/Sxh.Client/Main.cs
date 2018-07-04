@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Shared.Util.Extension;
+using Sxh.Shared.Tasks;
 
 namespace Sxh.Client
 {
@@ -66,7 +67,7 @@ namespace Sxh.Client
         private void btnStop_Click(object sender, EventArgs e)
         {
             LogManager.Instance.Message("cancelling, please wait...");
-            sender.BottonFreeze(false);
+            sender.CtrlFreeze(false);
             _cmSearching.Cancel();
         }
 
@@ -92,6 +93,22 @@ namespace Sxh.Client
         private void UcPoolTranser_OnDeTargeted(object sender, EventArgs e)
         {
 
+        }
+
+        private void notify_DoubleClick(object sender, EventArgs e)
+        {
+            ShowWindow(Handle, 4);
+            WindowState = FormWindowState.Normal;
+            notify.Visible = false;
+        }
+
+        private void frmMain_SizeChanged(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Minimized)
+            {
+                Hide();
+                notify.Visible = true;
+            }
         }
 
         #endregion
@@ -141,17 +158,23 @@ namespace Sxh.Client
                 {
                     while (!manager.Token.IsCancellationRequested)
                     {
-                        BusinessCache.PoolTranser = proxySearch.SearchAsync(
-                            BusinessCache.UserLogin.TokenOffical, 
-                            ProxySearch.Parameter.Create(settingInfo.Keywords)
-                        ).Result;
-
                         var delay = (rd.Next(0, settingInfo.DelayTransfer));
-                        var msg = $"{BusinessCache.PoolTranser.TopItem.DisplayTransferingRate}/{BusinessCache.PoolTranser.TopItem.DisplayYijia} ";
-                        msg += $"{BusinessCache.PoolTranser.TopItem.transferingCopies} ";
-                        msg += $"{BusinessCache.PoolTranser.TopItem.projectTitle} ";
-                        msg += $"{BusinessCache.PoolTranser.Count} items were found ({settingInfo.FreqTransfer}s+{delay}s)";
-                        LogManager.Instance.Message(msg);
+
+                        var searchProxy = BusinessCache.UserProxies.GetRandomProxy();
+                        if (searchProxy != null)
+                        {
+                            BusinessCache.PoolTranser = proxySearch.SearchAsync(searchProxy.TokenOffical, ProxySearch.Parameter.Create(settingInfo.Keywords)).Result;
+
+                            var msg = $"{BusinessCache.PoolTranser.TopItem.DisplayTransferingRate}/{BusinessCache.PoolTranser.TopItem.DisplayYijia} ";
+                            msg += $"{BusinessCache.PoolTranser.TopItem.transferingCopies} ";
+                            msg += $"{BusinessCache.PoolTranser.TopItem.projectTitle} ";
+                            msg += $"{searchProxy.UserName} {settingInfo.FreqTransfer}s+{delay}s";
+                            LogManager.Instance.Message(msg);
+                        }
+                        else
+                        {
+                            LogManager.Instance.Message("no proxy found");
+                        }
 
                         Task.Delay((settingInfo.FreqTransfer + delay) * 1000).Wait();
                     };
@@ -185,63 +208,5 @@ namespace Sxh.Client
         }
 
         #endregion
-
-        #region Class
-
-        private class CancellationManager
-        {
-            public CancellationTokenSource Souce { get; set; }
-            public CancellationToken Token { get; set; }
-            public bool IsCancelled
-            {
-                get { return Souce == null; }
-            }
-
-            public CancellationManager()
-            {
-                Activate();
-            }
-
-            public void Activate()
-            {
-                Souce = new CancellationTokenSource();
-                Token = Souce.Token;
-            }
-
-            public void Cancel()
-            {
-                if (Souce != null)
-                {
-                    Souce.Cancel();
-                }
-            }
-
-            public void Dispose()
-            {
-                if (Souce != null)
-                {
-                    Souce.Dispose();
-                    Souce = null;
-                }
-            }
-        }
-
-        #endregion
-
-        private void notify_DoubleClick(object sender, EventArgs e)
-        {
-            ShowWindow(Handle, 4);
-            WindowState = FormWindowState.Normal;
-            notify.Visible = false;
-        }
-
-        private void frmMain_SizeChanged(object sender, EventArgs e)
-        {
-            if (WindowState == FormWindowState.Minimized)
-            {
-                Hide();
-                notify.Visible = true;
-            }
-        }
     }
 }

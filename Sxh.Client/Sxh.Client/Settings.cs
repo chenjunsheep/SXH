@@ -36,6 +36,21 @@ namespace Sxh.Client
             Close();
         }
 
+        private void UcSettingProxy_OnProcessBegin(object sender, EventArgs e)
+        {
+            this.UiFreeze(false);
+        }
+
+        private void UcSettingProxy_OnProcessEnd(object sender, EventArgs e)
+        {
+            this.UiFreeze(true);
+        }
+
+        private void Settings_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            ucSettingProxy.CancelAllTask();
+        }
+
         #endregion
 
         #region Private Method
@@ -43,10 +58,14 @@ namespace Sxh.Client
         private void Initialize()
         {
             ucSettingBasic.Initialize();
+
+            ucSettingProxy.OnProcessBegin -= UcSettingProxy_OnProcessBegin;
+            ucSettingProxy.OnProcessBegin += UcSettingProxy_OnProcessBegin;
+            ucSettingProxy.OnProcessEnd -= UcSettingProxy_OnProcessEnd;
+            ucSettingProxy.OnProcessEnd += UcSettingProxy_OnProcessEnd;
         }
 
-        #endregion
 
-        
+        #endregion
     }
 }

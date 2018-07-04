@@ -23,6 +23,7 @@ namespace Sxh.Client.Business.Repository
                 BusinessCache.UserLogin.TokenOffical = tokenOffical;
 
                 BusinessCache.UserAccounts.UpdateTokenOffical(para.UserName, tokenOffical);
+                BusinessCache.UserProxies.UpdateFromUserAccount(BusinessCache.UserAccounts);
 
                 return string.Empty;
             }

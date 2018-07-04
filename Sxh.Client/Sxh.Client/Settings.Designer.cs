@@ -36,11 +36,13 @@
             this.tabBasic = new System.Windows.Forms.TabPage();
             this.ucSettingBasic = new Sxh.Client.Controls.UcSettingBasic();
             this.tabProxy = new System.Windows.Forms.TabPage();
+            this.ucSettingProxy = new Sxh.Client.Controls.UcSettingProxy();
             this.tabAcount = new System.Windows.Forms.TabPage();
             this.pnlMain.SuspendLayout();
             this.flowButtonGroup.SuspendLayout();
             this.tabSettings.SuspendLayout();
             this.tabBasic.SuspendLayout();
+            this.tabProxy.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlMain
@@ -119,6 +121,7 @@
             // 
             // tabProxy
             // 
+            this.tabProxy.Controls.Add(this.ucSettingProxy);
             this.tabProxy.Location = new System.Drawing.Point(4, 26);
             this.tabProxy.Name = "tabProxy";
             this.tabProxy.Padding = new System.Windows.Forms.Padding(3);
@@ -127,11 +130,21 @@
             this.tabProxy.Text = "代理设置";
             this.tabProxy.UseVisualStyleBackColor = true;
             // 
+            // ucSettingProxy
+            // 
+            this.ucSettingProxy.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucSettingProxy.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ucSettingProxy.Location = new System.Drawing.Point(3, 3);
+            this.ucSettingProxy.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ucSettingProxy.Name = "ucSettingProxy";
+            this.ucSettingProxy.Size = new System.Drawing.Size(564, 384);
+            this.ucSettingProxy.TabIndex = 0;
+            // 
             // tabAcount
             // 
             this.tabAcount.Location = new System.Drawing.Point(4, 26);
             this.tabAcount.Name = "tabAcount";
-            this.tabAcount.Size = new System.Drawing.Size(492, 259);
+            this.tabAcount.Size = new System.Drawing.Size(570, 390);
             this.tabAcount.TabIndex = 2;
             this.tabAcount.Text = "账号设置";
             this.tabAcount.UseVisualStyleBackColor = true;
@@ -147,14 +160,17 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Settings";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "设置";
             this.TopMost = true;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Settings_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Settings_FormClosed);
             this.Load += new System.EventHandler(this.Settings_Load);
             this.pnlMain.ResumeLayout(false);
             this.flowButtonGroup.ResumeLayout(false);
             this.tabSettings.ResumeLayout(false);
             this.tabBasic.ResumeLayout(false);
+            this.tabProxy.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -169,5 +185,6 @@
         private System.Windows.Forms.TabPage tabProxy;
         private System.Windows.Forms.TabPage tabAcount;
         private Controls.UcSettingBasic ucSettingBasic;
+        private Controls.UcSettingProxy ucSettingProxy;
     }
 }

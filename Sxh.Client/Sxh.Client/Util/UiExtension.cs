@@ -7,7 +7,7 @@ namespace Sxh.Client.Util
 {
     public static class UiExtension
     {
-        public static void UiFreeze(this Form from, bool enable)
+        public static void UiFreeze(this Control from, bool enable)
         {
             if (from != null)
             {
@@ -18,12 +18,12 @@ namespace Sxh.Client.Util
             }
         }
 
-        public static bool BottonFreeze(this object obj, bool enable)
+        public static bool CtrlFreeze(this object obj, bool enable)
         {
-            var btn = obj as Button;
+            var btn = obj as Control;
             if (btn == null)
             {
-                btn = new Button();
+                btn = new Control();
             }
             btn.Enabled = enable;
             return enable;

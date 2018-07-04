@@ -11,16 +11,20 @@ namespace Sxh.Client.Business.Proxy
     {
         public async Task<ClientPortionTransferList> SearchAsync(CookieCollection tokenOffical, Parameter filter)
         {
-            var cookieJar = new CookieContainer();
-            using (var handler = new HttpClientHandler
+            var ret = new ClientPortionTransferList();
+
+            if (tokenOffical != null && filter != null)
             {
-                CookieContainer = cookieJar,
-                UseCookies = true,
-            })
-            {
-                using (var client = CreateHttpClient(handler))
+                var cookieJar = new CookieContainer();
+                using (var handler = new HttpClientHandler
                 {
-                    var formData = new FormUrlEncodedContent(new[] {
+                    CookieContainer = cookieJar,
+                    UseCookies = true,
+                })
+                {
+                    using (var client = CreateHttpClient(handler))
+                    {
+                        var formData = new FormUrlEncodedContent(new[] {
                         new KeyValuePair<string, string>("title", filter.Keyword),
                         new KeyValuePair<string, string>("currentPage", "1"),
                         new KeyValuePair<string, string>("maxRowsPerPage", "15"),
@@ -34,21 +38,23 @@ namespace Sxh.Client.Business.Proxy
                         new KeyValuePair<string, string>("orderType", "desc"),
                     });
 
-                    var Uri = CreateUri("/portionTransfer/list");
+                        var Uri = CreateUri("/portionTransfer/list");
 
-                    foreach (Cookie token in tokenOffical)
-                    {
-                        cookieJar.Add(Uri, new Cookie(token.Name, token.Value));
+                        foreach (Cookie token in tokenOffical)
+                        {
+                            cookieJar.Add(Uri, new Cookie(token.Name, token.Value));
+                        }
+
+                        var response = await client.PostAsync(Uri, formData);
+                        response.EnsureSuccessStatusCode();
+
+                        var jsonString = await response.Content.ReadAsStringAsync();
+                        ret = JsonConvert.DeserializeObject<ClientPortionTransferList>(jsonString);
                     }
-
-                    var response = await client.PostAsync(Uri, formData);
-                    response.EnsureSuccessStatusCode();
-
-                    var jsonString = await response.Content.ReadAsStringAsync();
-                    var target = JsonConvert.DeserializeObject<ClientPortionTransferList>(jsonString);
-                    return target;
                 }
             }
+
+            return ret;
         }
 
         public static string GetPathTranserDetail(int projectId)

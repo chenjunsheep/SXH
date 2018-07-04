@@ -19,6 +19,19 @@ namespace Sxh.Client.Business
             }
         }
 
+        private static UserProxyCollection _userProxies;
+        public static UserProxyCollection UserProxies
+        {
+            get
+            {
+                if (_userProxies == null)
+                {
+                    _userProxies = new UserProxyCollection();
+                }
+                return _userProxies;
+            }
+        }
+
         private static ClientPortionTransferList _poolTranser;
         public static ClientPortionTransferList PoolTranser
         {

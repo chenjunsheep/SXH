@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Sxh.Client.Business;
-using Sxh.Client.Business.Logs;
 using Sxh.Shared.Tasks;
 
 namespace Sxh.Client.Controls
@@ -12,6 +11,10 @@ namespace Sxh.Client.Controls
     public partial class UcSettingProxy : UserControl
     {
         private CancellationManager _cmLoginProxy;
+        private CancellationManager CmLoginProxy
+        {
+            get { return _cmLoginProxy ?? (_cmLoginProxy = new CancellationManager()); }
+        }
 
         public UcSettingProxy()
         {
@@ -35,8 +38,8 @@ namespace Sxh.Client.Controls
                 OnProcessBegin.Invoke(sender, e);
             }
 
-            _cmLoginProxy.Activate();
-            await LoginBulkAsync(_cmLoginProxy);
+            CmLoginProxy.Activate();
+            await LoginBulkAsync(CmLoginProxy);
 
             if (OnProcessEnd != null)
             {
@@ -50,7 +53,7 @@ namespace Sxh.Client.Controls
 
         public void CancelAllTask()
         {
-            _cmLoginProxy.Cancel();
+            CmLoginProxy.Cancel();
         }
 
         #endregion
@@ -59,7 +62,6 @@ namespace Sxh.Client.Controls
 
         private void Initialize()
         {
-            _cmLoginProxy = new CancellationManager();
             LoadProxiesFromCache();
         }
 
@@ -102,6 +104,9 @@ namespace Sxh.Client.Controls
                     {
                         var ctrlProxy = ctrls[i];
                         await ctrlProxy.TryLogin();
+
+                        if (i == ctrls.Count - 1) { break; }
+
                         await Task.Delay(rd.Next(delayMin, delayMax) * 1000);
                     }
                     else

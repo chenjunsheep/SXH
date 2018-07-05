@@ -24,7 +24,7 @@ namespace Sxh.Shared.Tasks
 
         public void Cancel()
         {
-            if (Souce != null)
+            if (Souce != null && Souce.Token.CanBeCanceled)
             {
                 Souce.Cancel();
             }

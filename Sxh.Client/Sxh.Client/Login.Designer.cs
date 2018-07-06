@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.pnlMain = new System.Windows.Forms.TableLayoutPanel();
             this.txtPasswordTran = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -38,32 +38,32 @@
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.pnlButtons = new System.Windows.Forms.FlowLayoutPanel();
             this.btnLogin = new System.Windows.Forms.Button();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.pnlMain.SuspendLayout();
             this.pnlButtons.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // pnlMain
             // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.Controls.Add(this.txtPasswordTran, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.txtPassword, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.lblUserName, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.txtUserName, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.pnlButtons, 1, 3);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(400, 120);
-            this.tableLayoutPanel1.TabIndex = 0;
+            this.pnlMain.ColumnCount = 2;
+            this.pnlMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.pnlMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.pnlMain.Controls.Add(this.txtPasswordTran, 1, 2);
+            this.pnlMain.Controls.Add(this.txtPassword, 1, 1);
+            this.pnlMain.Controls.Add(this.label2, 0, 2);
+            this.pnlMain.Controls.Add(this.label1, 0, 1);
+            this.pnlMain.Controls.Add(this.lblUserName, 0, 0);
+            this.pnlMain.Controls.Add(this.txtUserName, 1, 0);
+            this.pnlMain.Controls.Add(this.pnlButtons, 1, 3);
+            this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlMain.Location = new System.Drawing.Point(0, 0);
+            this.pnlMain.Name = "pnlMain";
+            this.pnlMain.RowCount = 4;
+            this.pnlMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            this.pnlMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            this.pnlMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            this.pnlMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.pnlMain.Size = new System.Drawing.Size(400, 120);
+            this.pnlMain.TabIndex = 0;
             // 
             // txtPasswordTran
             // 
@@ -150,7 +150,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(400, 120);
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.pnlMain);
             this.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -160,8 +160,8 @@
             this.Text = "登陆";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.frmLogin_Load);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            this.pnlMain.ResumeLayout(false);
+            this.pnlMain.PerformLayout();
             this.pnlButtons.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -169,7 +169,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel pnlMain;
         private System.Windows.Forms.TextBox txtPasswordTran;
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Label label2;

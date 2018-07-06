@@ -5,6 +5,8 @@ namespace Sxh.Client.Business.Model
 {
     public class ClientPortionTransferItem : PortionTransferItem
     {
+        public int NexPaymentDayRemain { get; set; }
+
         public string DisplayTransferingRate
         {
             get
@@ -27,6 +29,16 @@ namespace Sxh.Client.Business.Model
             {
                 return $"{Yijia}%";
             }
+        }
+
+        public string GetProjectInformation()
+        {
+            return $"{DisplayTransferingRate}/{DisplayYijia} {transferingCopies} {projectTitle}";
+        }
+
+        public double GetAvailableCopies(double availableCash)
+        {
+            return Math.Floor(availableCash / minTransferingPrice.Value / 100) * 100;
         }
     }
 }

@@ -202,7 +202,6 @@
             this.ucPoolTranser.Name = "ucPoolTranser";
             this.ucPoolTranser.Size = new System.Drawing.Size(622, 307);
             this.ucPoolTranser.TabIndex = 4;
-            this.ucPoolTranser.Targets = ((System.Collections.Generic.List<string>)(resources.GetObject("ucPoolTranser.Targets")));
             // 
             // ucLogs
             // 

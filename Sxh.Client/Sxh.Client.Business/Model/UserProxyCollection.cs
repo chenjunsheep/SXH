@@ -11,7 +11,7 @@ namespace Sxh.Client.Business.Model
     {
         public void Load()
         {
-            LoadFile();
+            LoadFromFile();
         }
 
         public UserProxy GetRandomProxy()
@@ -59,6 +59,7 @@ namespace Sxh.Client.Business.Model
                     if (target != null && account.HasValue)
                     {
                         target.TokenOffical = account.TokenOffical;
+                        target.Enabled = true;
                     }
                 }
             }
@@ -79,7 +80,7 @@ namespace Sxh.Client.Business.Model
             }
         }
 
-        private void LoadFile()
+        private void LoadFromFile()
         {
             Clear();
 

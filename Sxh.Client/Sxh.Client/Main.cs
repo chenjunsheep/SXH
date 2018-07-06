@@ -3,7 +3,6 @@ using Sxh.Client.Business.Logs;
 using Sxh.Client.Business.Proxy;
 using Sxh.Client.Util;
 using System;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Shared.Util.Extension;
@@ -24,6 +23,10 @@ namespace Sxh.Client
         private static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
 
         private CancellationManager _cmSearching;
+        private CancellationManager CmSearching
+        {
+            get { return _cmSearching ?? (_cmSearching = new CancellationManager()); }
+        }
 
         #endregion
 
@@ -51,12 +54,12 @@ namespace Sxh.Client
 
         private async void btnStart_Click(object sender, EventArgs e)
         {
+            BusinessCache.PoolTranser.UnLock();
             ButtonGroupFreeze(true);
+            CmSearching.Activate();
+            PerformSearching(CmSearching);
 
-            _cmSearching.Activate();
-            PerformSearching(_cmSearching);
-
-            while (!_cmSearching.IsCancelled)
+            while (!CmSearching.IsCancelled)
             {
                 await Task.Delay(1000);
             }
@@ -68,7 +71,7 @@ namespace Sxh.Client
         {
             LogManager.Instance.Message("cancelling, please wait...");
             sender.CtrlFreeze(false);
-            _cmSearching.Cancel();
+            CmSearching.Cancel();
         }
 
         private void btnSettings_Click(object sender, EventArgs e)
@@ -86,8 +89,20 @@ namespace Sxh.Client
 
         private void UcPoolTranser_OnTargeted(object sender, EventArgs e)
         {
-            var msg = string.Join(",", ucPoolTranser.Targets).SubLeftString(10);
-            notify.ShowBalloonTip(2000, "Message", msg, ToolTipIcon.None);
+            BusinessCache.PoolTranser.Lock();
+
+            if (notify.Visible)
+            {
+                var msg = ucPoolTranser.GetTargetedProjectInfo();
+                if (!string.IsNullOrEmpty(msg))
+                {
+                    notify.ShowBalloonTip(2000, "Message", msg.SubLeftString(10), ToolTipIcon.None);
+                }
+            }
+
+            CmSearching.Cancel();
+            ButtonGroupFreeze(false);
+            ucPoolTranser.PerformTargeted();
         }
         
         private void UcPoolTranser_OnDeTargeted(object sender, EventArgs e)
@@ -118,8 +133,6 @@ namespace Sxh.Client
         private void Initialize()
         {
             BusinessCache.Settings.TryRetriveFromConfig();
-
-            _cmSearching = new CancellationManager();
 
             if (BusinessCache.UserLogin.HasValue)
             {
@@ -165,15 +178,12 @@ namespace Sxh.Client
                         {
                             BusinessCache.PoolTranser = proxySearch.SearchAsync(searchProxy.TokenOffical, ProxySearch.Parameter.Create(settingInfo.Keywords)).Result;
 
-                            var msg = $"{BusinessCache.PoolTranser.TopItem.DisplayTransferingRate}/{BusinessCache.PoolTranser.TopItem.DisplayYijia} ";
-                            msg += $"{BusinessCache.PoolTranser.TopItem.transferingCopies} ";
-                            msg += $"{BusinessCache.PoolTranser.TopItem.projectTitle} ";
-                            msg += $"{searchProxy.UserName} {settingInfo.FreqTransfer}s+{delay}s";
+                            var msg = $"{BusinessCache.PoolTranser.TopItem.GetProjectInformation()} {searchProxy.UserName} {settingInfo.FreqTransfer}s+{delay}s";
                             LogManager.Instance.Message(msg);
                         }
                         else
                         {
-                            LogManager.Instance.Message("no proxy found");
+                            throw new Exception("no proxy found");
                         }
 
                         Task.Delay((settingInfo.FreqTransfer + delay) * 1000).Wait();

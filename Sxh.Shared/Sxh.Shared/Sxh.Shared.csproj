@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Response\Model\CapitalFlowItem.cs" />
+    <Compile Include="Response\Model\CapitalFlowList.cs" />
     <Compile Include="Response\Model\PortionTransferItem.cs" />
     <Compile Include="Response\Model\PortionTransferList.cs" />
     <Compile Include="Tasks\CancellationManager.cs" />

@@ -25,18 +25,18 @@ namespace Sxh.Client.Business.Proxy
                     using (var client = CreateHttpClient(handler))
                     {
                         var formData = new FormUrlEncodedContent(new[] {
-                        new KeyValuePair<string, string>("title", filter.Keyword),
-                        new KeyValuePair<string, string>("currentPage", "1"),
-                        new KeyValuePair<string, string>("maxRowsPerPage", "15"),
-                        new KeyValuePair<string, string>("projectType", string.Empty),
-                        new KeyValuePair<string, string>("remainingCount", string.Empty),
-                        new KeyValuePair<string, string>("repayStrategy", string.Empty),
-                        new KeyValuePair<string, string>("hasTransfering", "true"),
-                        new KeyValuePair<string, string>("hasAcquiring", "false"),
-                        new KeyValuePair<string, string>("noDealing", "false"),
-                        new KeyValuePair<string, string>("orderBy", "minTransferingRate"),
-                        new KeyValuePair<string, string>("orderType", "desc"),
-                    });
+                            new KeyValuePair<string, string>("title", filter.Keyword),
+                            new KeyValuePair<string, string>("currentPage", "1"),
+                            new KeyValuePair<string, string>("maxRowsPerPage", "15"),
+                            new KeyValuePair<string, string>("projectType", string.Empty),
+                            new KeyValuePair<string, string>("remainingCount", string.Empty),
+                            new KeyValuePair<string, string>("repayStrategy", string.Empty),
+                            new KeyValuePair<string, string>("hasTransfering", "true"),
+                            new KeyValuePair<string, string>("hasAcquiring", "false"),
+                            new KeyValuePair<string, string>("noDealing", "false"),
+                            new KeyValuePair<string, string>("orderBy", "minTransferingRate"),
+                            new KeyValuePair<string, string>("orderType", "desc"),
+                        });
 
                         var Uri = CreateUri("/portionTransfer/list");
 

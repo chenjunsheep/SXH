@@ -77,6 +77,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Acquisition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Acquisition.Designer.cs">
+      <DependentUpon>Acquisition.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\UcLogs.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -128,6 +134,9 @@
       <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
     <Compile Include="Util\UiExtension.cs" />
+    <EmbeddedResource Include="Acquisition.resx">
+      <DependentUpon>Acquisition.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\UcLogs.resx">
       <DependentUpon>UcLogs.cs</DependentUpon>
     </EmbeddedResource>

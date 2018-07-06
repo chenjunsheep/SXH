@@ -8,6 +8,7 @@ using Sxh.Client.Business;
 using Sxh.Client.Business.Logs;
 using Sxh.Client.Business.Model;
 using Sxh.Client.Business.Proxy;
+using Sxh.Shared.Tasks;
 
 namespace Sxh.Client.Controls
 {
@@ -20,14 +21,20 @@ namespace Sxh.Client.Controls
 
         #region Property
 
-        private List<string> _targets;
-        public List<string> Targets
+        private CancellationManager _cmPoolReader;
+        private CancellationManager CmPoolReader
+        {
+            get { return _cmPoolReader ?? (_cmPoolReader = new CancellationManager()); }
+        }
+
+        private List<int> _targets;
+        private List<int> Targets
         {
             get
             {
                 if (_targets == null)
                 {
-                    _targets = new List<string>();
+                    _targets = new List<int>();
                 }
                 return _targets;
             }
@@ -44,17 +51,7 @@ namespace Sxh.Client.Controls
         private async void UcPoolTranser_Load(object sender, EventArgs e)
         {
             gridTransferPool.AutoGenerateColumns = false;
-
-            while (true)
-            {
-                var data = new List<ClientPortionTransferItem>();
-                if (BusinessCache.PoolTranser != null)
-                {
-                    data = BusinessCache.PoolTranser.rowSet;
-                }
-                gridTransferPool.DataSource = data;
-                await Task.Delay(1000);
-            }
+            await ReadPoolDataAsync();
         }
 
         private void gridTransferPool_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -72,34 +69,38 @@ namespace Sxh.Client.Controls
             var grid = sender as DataGridView;
             if (grid != null)
             {
-                var msgTarget = string.Empty;
+                var isTargeted = false;
                 var settings = BusinessCache.Settings;
-                if (e.ColumnIndex == 4) //rate displaying field index
+                var colName = grid.Columns[e.ColumnIndex].Name;
+                if (colName == Namespace.GridColRateDisplay)
                 {
                     var rate = TypeParser.GetDoubleValue(grid.Rows[e.RowIndex].Cells[Namespace.GridColRate].Value);
                     if (settings.Rate.HasValue && rate >= settings.Rate.Value)
                     {
-                        msgTarget += $" {settings.Rate.Value}% ";
+                        isTargeted = true;
                     }
                 }
 
-                if (e.ColumnIndex == 5) //yijia displaying field index
+                if (colName == Namespace.GridColYijiaDisplay)
                 {
                     var yijia = TypeParser.GetDoubleValue(grid.Rows[e.RowIndex].Cells[Namespace.GridColYijia].Value);
                     if (settings.Yijia.HasValue && yijia <= settings.Yijia.Value)
                     {
-                        msgTarget += $" {settings.Yijia.Value}% ";
+                        isTargeted = true;
                     }
                 }
 
                 e.CellStyle.ForeColor = Color.Black;
 
-                if (!string.IsNullOrEmpty(msgTarget))
+                if (isTargeted)
                 {
                     e.CellStyle.ForeColor = Color.Red;
 
-                    var projectName = TypeParser.GetStringValue(grid.Rows[e.RowIndex].Cells[Namespace.GridColProjectName].Value);
-                    Targets.Add($"{projectName} {msgTarget}");
+                    if (!BusinessCache.PoolTranser.IsLocked)
+                    {
+                        var projectId = TypeParser.GetInt32Value(grid.Rows[e.RowIndex].Cells[Namespace.GridColProjectId].Value);
+                        Targets.Add(projectId);
+                    }
                 }
             }
         }
@@ -108,7 +109,7 @@ namespace Sxh.Client.Controls
         {
             if (Targets.Count > 0)
             {
-                LogManager.Instance.Message($"==> {string.Join(", ", Targets)}");
+                LogManager.Instance.Message($"==> {GetTargetedProjectInfo()}");
 
                 if (OnTargeted != null)
                 {
@@ -128,12 +129,73 @@ namespace Sxh.Client.Controls
 
         #endregion
 
+        #region Public Method
+
+        public string GetTargetedProjectInfo()
+        {
+            var msg = string.Empty;
+            foreach (var projectId in Targets)
+            {
+                var targeted = BusinessCache.PoolTranser.GetProjectById(projectId);
+                if (targeted != null)
+                {
+                    msg += targeted.GetProjectInformation();
+                }
+            }
+            return msg;
+        }
+
+        public void PerformTargeted()
+        {
+            var acquisition = new Acquisition();
+            acquisition.SetProjectId(Targets[0]);
+            acquisition.ShowDialog();
+        }
+
+        #endregion
+
+        #region Private Method
+
+        private async Task<bool> ReadPoolDataAsync()
+        {
+            CmPoolReader.Activate();
+            try
+            {
+                while (true)
+                {
+                    if (CmPoolReader.Token.IsCancellationRequested) CmPoolReader.Token.ThrowIfCancellationRequested();
+
+                    var data = new List<ClientPortionTransferItem>();
+                    if (BusinessCache.PoolTranser != null)
+                    {
+                        data = BusinessCache.PoolTranser.rowSet;
+                    }
+                    gridTransferPool.DataSource = data;
+                    await Task.Delay(1000);
+                }
+            }
+            catch (Exception)
+            {
+                //do nothing
+            }
+            finally
+            {
+                CmPoolReader.Dispose();
+            }
+
+            return true;
+        }
+
+        #endregion
+
         private class Namespace
         {
             public const string GridColProjectId = "projectId";
             public const string GridColProjectName = "projectTitle";
             public const string GridColRate = "minTransferingRate";
+            public const string GridColRateDisplay = "DisplayTransferingRate";
             public const string GridColYijia = "Yijia";
+            public const string GridColYijiaDisplay = "DisplayYijia";
         }
     }
 }

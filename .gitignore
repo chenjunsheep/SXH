@@ -328,3 +328,5 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+Sxh.Client/Sxh.Client/account.xml
+Sxh.Client/Sxh.Client/proxy.xml

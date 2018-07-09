@@ -7,6 +7,7 @@
         public double? Rate { get; set; }
         public int FreqTransfer { get; set; }
         public int DelayTransfer { get; set; }
+        public bool AutoAcquire { get; set; }
 
         public class Namespance
         {
@@ -15,6 +16,7 @@
             public const string Rate = "Rate";
             public const string FreqTransfer = "FreqTransfer";
             public const string DelayTransfer = "DelayTransfer";
+            public const string AutoAcquire = "AutoAcquire";
         }
     }
 }

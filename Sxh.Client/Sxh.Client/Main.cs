@@ -51,22 +51,11 @@ namespace Sxh.Client
 
         private async void btnStart_Click(object sender, EventArgs e)
         {
-            BusinessCache.PoolTranser.UnLock();
-            ButtonGroupFreeze(true);
-            CmSearching.Activate();
-            PerformSearching(CmSearching);
-
-            while (!CmSearching.IsCancelled)
-            {
-                await Task.Delay(1000);
-            }
-
-            ButtonGroupFreeze(false);
+            await SearchingClickedAsync();
         }
 
         private void btnStop_Click(object sender, EventArgs e)
         {
-            LogManager.Instance.Message("cancelling, please wait...");
             sender.CtrlFreeze(false);
             CmSearching.Cancel();
         }
@@ -81,7 +70,7 @@ namespace Sxh.Client
 
         private void FormSettings_OnWindowClosed(object sender, EventArgs e)
         {
-            lblOverview.Text = GenerateOverviewInfo();
+            BindText();
         }
 
         private void UcPoolTranser_OnTargeted(object sender, EventArgs e)
@@ -97,9 +86,21 @@ namespace Sxh.Client
                 }
             }
 
-            CmSearching.Cancel();
-            ButtonGroupFreeze(false);
-            ucPoolTranser.PerformTargeted();
+            btnStop.PerformClick();
+
+            var available = ucPoolTranser.PerformTargeted();
+
+            if (available)
+            {
+                if (BusinessCache.Settings.AutoAcquire)
+                {
+                    btnStart.PerformClick();
+                }
+            }
+            else
+            {
+                LogManager.Instance.Message("无可用账户");
+            }
         }
         
         private void UcPoolTranser_OnDeTargeted(object sender, EventArgs e)
@@ -144,7 +145,7 @@ namespace Sxh.Client
             btnStop.Enabled = false;
 
             Text = $"欢迎你，{BusinessCache.UserLogin.UserName}";
-            lblOverview.Text = GenerateOverviewInfo();
+            BindText();
 
             ucPoolTranser.OnTargeted -= UcPoolTranser_OnTargeted;
             ucPoolTranser.OnTargeted += UcPoolTranser_OnTargeted;
@@ -191,7 +192,7 @@ namespace Sxh.Client
                             throw new Exception("no proxy found");
                         }
 
-                        Task.Delay((settingInfo.FreqTransfer + delay) * 1000).Wait();
+                        Task.Delay((settingInfo.FreqTransfer + delay) * 1000).Wait(manager.Token);
                     };
                     manager.Token.ThrowIfCancellationRequested();
                 }
@@ -206,20 +207,53 @@ namespace Sxh.Client
             }, manager.Token);
         }
 
-        private string GenerateOverviewInfo()
+        private void BindText()
+        {
+            BindTextMessage();
+            BindTextHighlight();
+        }
+
+        private void BindTextMessage()
         {
             var settingInfo = BusinessCache.Settings;
+            var msg = string.Empty;
             var keyword = !string.IsNullOrEmpty(settingInfo.Keywords) ? settingInfo.Keywords : "全部";
-            var msg = $"关键字: [{keyword}]; ";
+            msg += $"关键字: [{keyword}]";
             if (settingInfo.Yijia.HasValue)
             {
-                msg += $"溢价: [{settingInfo.Yijia.Value}%]; ";
+                msg += $"; 溢价: [{settingInfo.Yijia.Value}%]";
             }
             if (settingInfo.Rate.HasValue)
             {
-                msg += $"年化: [{settingInfo.Rate.Value}%]; ";
+                msg += $"; 年化: [{settingInfo.Rate.Value}%]";
             }
-            return msg;
+            lblMessage.Text = msg;
+        }
+
+        private void BindTextHighlight()
+        {
+            var settingInfo = BusinessCache.Settings;
+            var msg = string.Empty;
+            if (settingInfo.AutoAcquire)
+            {
+                msg += "已开启自动收购模式";
+            }
+            lblHighlight.Text = msg;
+        }
+
+        private async Task SearchingClickedAsync()
+        {
+            BusinessCache.PoolTranser.UnLock();
+            ButtonGroupFreeze(true);
+            CmSearching.Activate();
+            PerformSearching(CmSearching);
+
+            while (!CmSearching.IsCancelled)
+            {
+                await Task.Delay(1000);
+            }
+
+            ButtonGroupFreeze(false);
         }
 
         #endregion

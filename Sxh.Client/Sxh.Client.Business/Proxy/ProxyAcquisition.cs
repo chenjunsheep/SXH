@@ -107,7 +107,7 @@ namespace Sxh.Client.Business.Proxy
 
         public async Task<SxhResult> SubmitAsync(VmAcquire para)
         {
-            if (para != null)
+            if (para != null && para.IsAvailable)
             {
                 var cookieJar = new CookieContainer();
                 using (var handler = new HttpClientHandler
@@ -158,7 +158,7 @@ namespace Sxh.Client.Business.Proxy
                 }
             }
 
-            return new SxhResult(false);
+            return new SxhResult(false, $"invalid acquire parameter");
         }
 
         #endregion

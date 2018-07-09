@@ -31,10 +31,10 @@ namespace Sxh.Client.Business.Model
             return null;
         }
 
-        public UserAccount GetRandomAccount()
+        public UserAccount GetRandomAccount(double minCash)
         {
             var rd = new Random(DateTime.Now.Second);
-            var accounts = FindAll(p => p.Enabled).OrderBy(p => rd.Next()).ToList();
+            var accounts = FindAll(p => p.Enabled && p.Cash >= minCash).OrderBy(p => rd.Next()).ToList();
             if (accounts != null && accounts.Count > 0)
             {
                 var targetProxy = accounts[0];

@@ -35,6 +35,11 @@ namespace Sxh.Client
         private async void Acquisition_Load(object sender, EventArgs e)
         {
             await Initialize();
+            
+            if (BusinessCache.Settings.AutoAcquire)
+            {
+                btnSubmit.PerformClick();
+            }
         }
 
         private async void btnSubmit_Click(object sender, EventArgs e)
@@ -66,10 +71,19 @@ namespace Sxh.Client
 
         #region Public Method
 
-        public void SetProjectId(int projectId)
+        public bool SetProjectId(int projectId)
         {
             Project = BusinessCache.PoolTranser.GetProjectById(projectId);
-            Account = BusinessCache.UserAccounts.GetRandomAccount();
+            if (Project != null && Project.minTransferingPrice.HasValue)
+            {
+                Account = BusinessCache.UserAccounts.GetRandomAccount(Project.minTransferingPrice.Value * 100);
+                if (Account != null)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         #endregion
@@ -87,10 +101,7 @@ namespace Sxh.Client
                 LoadProjectInformation();
                 if (Project != null)
                 {
-                    if (Project.minTransferingPrice.HasValue)
-                    {
-                        txtCopy.Text = $"{Project.GetAvailableCopies(Account.Cash)}";
-                    }
+                    txtCopy.Text = $"{Project.GetAvailableCopies(Account.Cash)}";
                     await GetTokensAsync(Account, Project);
                     await GetVerifyCodeAsync(Account);
                 }
@@ -122,16 +133,31 @@ namespace Sxh.Client
             var verifyCode = await proxy.GetVerifyCodeAsync(account);
             if (verifyCode.IsSuccess)
             {
-                using (var ms = new MemoryStream(verifyCode.Data as byte[]))
+                var code = verifyCode.Data as byte[];
+                if (code != null)
                 {
-                    picVerifyCode.Image = Image.FromStream(ms);
+                    using (var ms = new MemoryStream(code))
+                    {
+                        picVerifyCode.Image = Image.FromStream(ms);
+                    }
+
+                    txtVerifyCode.Text = await DecodeVerifyCode(code);
+
+                    return true;
                 }
-                return true;
             }
-            else
+
+            return false;
+        }
+
+        private async Task<string> DecodeVerifyCode(byte[] code)
+        {
+            if (BusinessCache.Settings.AutoAcquire)
             {
-                return false;
+                var proxy = new ProxyDecoder();
+                return await proxy.DecodeAsync(code);
             }
+            return string.Empty;
         }
 
         private async Task<SxhResult> SubmitAsync()
@@ -156,7 +182,7 @@ namespace Sxh.Client
                 return await proxy.SubmitAsync(para);
             }
 
-            return new SxhResult();
+            return new SxhResult(false, $"invalid project or account");
         }
 
         private async Task SubmitClickedAsync()
@@ -167,17 +193,18 @@ namespace Sxh.Client
             await BusinessCache.UserAccounts.UpdateCashAsync(Account.UserName);
 
             this.UiFreeze(true);
+            Close();
 
-            if (ret.IsSuccess)
-            {
-                Close();
-            }
-            else
-            {
-                await GetVerifyCodeAsync(Account);
-                Account = BusinessCache.UserAccounts.GetAccount(Account.UserName);
-                if (Account != null) txtAccount.Text = $"{Account.Cash}";
-            }
+            //if (ret.IsSuccess)
+            //{
+            //    Close();
+            //}
+            //else
+            //{
+            //    await GetVerifyCodeAsync(Account);
+            //    Account = BusinessCache.UserAccounts.GetAccount(Account.UserName);
+            //    if (Account != null) txtAccount.Text = $"{Account.Cash}";
+            //}
 
             if (!string.IsNullOrEmpty(ret.Message))
                 LogManager.Instance.Message(ret.Message);

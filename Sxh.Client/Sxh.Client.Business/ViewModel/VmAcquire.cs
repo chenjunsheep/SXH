@@ -14,5 +14,20 @@ namespace Sxh.Client.Business.ViewModel
         public string TransactionPassword { get; set; }
         public string VerificationCode { get; set; }
         public CookieCollection TokenOffical { get; set; }
+
+        public bool IsAvailable
+        {
+            get
+            {
+                return AcquisitionPrice > 0 
+                    && Copies > 0 
+                    && ProjectId > 0 
+                    && !string.IsNullOrEmpty(TokenAcquire) 
+                    && !string.IsNullOrEmpty(TockenKey) 
+                    && !string.IsNullOrEmpty(TransactionPassword)
+                    && !string.IsNullOrEmpty(VerificationCode)
+                    && TokenOffical != null && TokenOffical.Count > 1;
+            }
+        }
     }
 }

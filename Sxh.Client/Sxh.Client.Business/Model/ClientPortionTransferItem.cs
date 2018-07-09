@@ -38,7 +38,11 @@ namespace Sxh.Client.Business.Model
 
         public double GetAvailableCopies(double availableCash)
         {
-            return Math.Floor(availableCash / minTransferingPrice.Value / 100) * 100;
+            if (minTransferingPrice.HasValue && transferingCopies.HasValue)
+            {
+                return Math.Min(Math.Floor(availableCash / minTransferingPrice.Value / 100) * 100, transferingCopies.Value);
+            }
+            return 0;
         }
     }
 }

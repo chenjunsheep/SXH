@@ -145,11 +145,19 @@ namespace Sxh.Client.Controls
             return msg;
         }
 
-        public void PerformTargeted()
+        public bool PerformTargeted()
         {
             var acquisition = new Acquisition();
-            acquisition.SetProjectId(Targets[0]);
-            acquisition.ShowDialog();
+            var available = acquisition.SetProjectId(Targets[0]);
+            if (available)
+            {
+                acquisition.ShowDialog();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         #endregion

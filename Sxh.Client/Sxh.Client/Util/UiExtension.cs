@@ -37,6 +37,7 @@ namespace Sxh.Client.Util
             setting.Rate = TypeParser.GetDouble(ConfigurationManager.AppSettings[UserSettings.Namespance.Rate]);
             setting.FreqTransfer = TypeParser.GetInt32Value(ConfigurationManager.AppSettings[UserSettings.Namespance.FreqTransfer], 60);
             setting.DelayTransfer = TypeParser.GetInt32Value(ConfigurationManager.AppSettings[UserSettings.Namespance.DelayTransfer]);
+            setting.AutoAcquire = TypeParser.GetBoolValue(ConfigurationManager.AppSettings[UserSettings.Namespance.AutoAcquire]);
         }
 
         public static void TrySaveToConfig(this UserSettings setting)
@@ -49,6 +50,7 @@ namespace Sxh.Client.Util
                 config.AppSettings.Settings[UserSettings.Namespance.Rate].Value = TypeParser.GetStringValue(setting.Rate);
                 config.AppSettings.Settings[UserSettings.Namespance.FreqTransfer].Value = TypeParser.GetStringValue(setting.FreqTransfer);
                 config.AppSettings.Settings[UserSettings.Namespance.DelayTransfer].Value = TypeParser.GetStringValue(setting.DelayTransfer);
+                config.AppSettings.Settings[UserSettings.Namespance.AutoAcquire].Value = TypeParser.GetStringValue(setting.AutoAcquire);
                 config.Save(ConfigurationSaveMode.Modified);
             }
         }

@@ -27,6 +27,8 @@ namespace Sxh.Client
 
         private async void btnLogin_Click(object sender, EventArgs e)
         {
+            Text = "登陆中，请稍后...";
+
             this.UiFreeze(false);
 
             var repo = new LoginRepository();
@@ -49,7 +51,7 @@ namespace Sxh.Client
             }
             else
             {
-                LogManager.Instance.Message($"login faild: {msg}");
+                Text = "登陆失败";
                 MessageBox.Show(msg, string.Empty, MessageBoxButtons.OK);
             }
 

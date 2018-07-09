@@ -174,7 +174,14 @@ namespace Sxh.Client
                         var searchProxy = BusinessCache.UserProxies.GetRandomProxy();
                         if (searchProxy != null)
                         {
-                            BusinessCache.PoolTranser = proxySearch.SearchAsync(searchProxy.TokenOffical, ProxySearch.Parameter.Create(settingInfo.Keywords)).Result;
+                            try
+                            {
+                                BusinessCache.PoolTranser = proxySearch.SearchAsync(searchProxy.TokenOffical, ProxySearch.Parameter.Create(settingInfo.Keywords)).Result;
+                            }
+                            catch (Exception ex)
+                            {
+                                LogManager.Instance.Error($"{ex.Message}");
+                            }
 
                             var msg = $"{BusinessCache.PoolTranser.TopItem.GetProjectInformation()} {searchProxy.UserName} {settingInfo.FreqTransfer}s+{delay}s";
                             LogManager.Instance.Message(msg);

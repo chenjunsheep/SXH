@@ -19,9 +19,6 @@ namespace Sxh.Client
 
         #region Private Member
 
-        [System.Runtime.InteropServices.DllImport("user32.dll")]
-        private static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
-
         private CancellationManager _cmSearching;
         private CancellationManager CmSearching
         {
@@ -112,7 +109,7 @@ namespace Sxh.Client
 
         private void notify_DoubleClick(object sender, EventArgs e)
         {
-            ShowWindow(Handle, 4);
+            ShowInTaskbar = true;
             WindowState = FormWindowState.Normal;
             notify.Visible = false;
         }
@@ -121,7 +118,7 @@ namespace Sxh.Client
         {
             if (WindowState == FormWindowState.Minimized)
             {
-                Hide();
+                ShowInTaskbar = false;
                 notify.Visible = true;
             }
         }
@@ -146,6 +143,7 @@ namespace Sxh.Client
             splitMain.Panel2Collapsed = true;
             btnStop.Enabled = false;
 
+            Text = $"欢迎你，{BusinessCache.UserLogin.UserName}";
             lblOverview.Text = GenerateOverviewInfo();
 
             ucPoolTranser.OnTargeted -= UcPoolTranser_OnTargeted;

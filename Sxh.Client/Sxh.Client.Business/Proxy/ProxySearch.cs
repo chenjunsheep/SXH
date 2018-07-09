@@ -46,10 +46,11 @@ namespace Sxh.Client.Business.Proxy
                         }
 
                         var response = await client.PostAsync(Uri, formData);
-                        response.EnsureSuccessStatusCode();
-
-                        var jsonString = await response.Content.ReadAsStringAsync();
-                        ret = JsonConvert.DeserializeObject<ClientPortionTransferList>(jsonString);
+                        if (response.IsSuccessStatusCode)
+                        {
+                            var jsonString = await response.Content.ReadAsStringAsync();
+                            ret = JsonConvert.DeserializeObject<ClientPortionTransferList>(jsonString);
+                        }
                     }
                 }
             }

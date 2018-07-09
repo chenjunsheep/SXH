@@ -30,13 +30,14 @@ namespace Sxh.Client.Business.Proxy
                     }
 
                     var response = await client.GetAsync(Uri);
-                    response.EnsureSuccessStatusCode();
-
-                    var jsonString = await response.Content.ReadAsStringAsync();
-                    var ret = JsonConvert.DeserializeObject<ClientCapitalFlowList>(jsonString);
-                    if (ret != null)
+                    if (response.IsSuccessStatusCode)
                     {
-                        return ret.GetCash();
+                        var jsonString = await response.Content.ReadAsStringAsync();
+                        var ret = JsonConvert.DeserializeObject<ClientCapitalFlowList>(jsonString);
+                        if (ret != null)
+                        {
+                            return ret.GetCash();
+                        }
                     }
                 }
             }

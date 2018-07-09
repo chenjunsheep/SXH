@@ -143,10 +143,12 @@
             // txtCopy
             // 
             this.txtCopy.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtCopy.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.txtCopy.Location = new System.Drawing.Point(103, 227);
             this.txtCopy.Name = "txtCopy";
             this.txtCopy.Size = new System.Drawing.Size(328, 23);
             this.txtCopy.TabIndex = 2;
+            this.txtCopy.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCopy_KeyDown);
             // 
             // lblCopy
             // 
@@ -231,10 +233,12 @@
             // txtVerifyCode
             // 
             this.txtVerifyCode.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtVerifyCode.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.txtVerifyCode.Location = new System.Drawing.Point(103, 199);
             this.txtVerifyCode.Name = "txtVerifyCode";
             this.txtVerifyCode.Size = new System.Drawing.Size(328, 23);
             this.txtVerifyCode.TabIndex = 1;
+            this.txtVerifyCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtVerifyCode_KeyDown);
             // 
             // flowButtonGroup
             // 

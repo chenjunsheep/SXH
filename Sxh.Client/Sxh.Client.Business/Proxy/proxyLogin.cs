@@ -31,12 +31,14 @@ namespace Sxh.Client.Business.Proxy
 
                     var Uri = CreateUri("/auth/loginSubmit");
                     var response = await client.PostAsync(Uri, formData);
-                    response.EnsureSuccessStatusCode();
-
-                    var responseCookies = cookieJar.GetCookies(Uri);
-                    return responseCookies;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var responseCookies = cookieJar.GetCookies(Uri);
+                        return responseCookies;
+                    }
                 }
             }
+            return new CookieCollection();
         }
     }
 }

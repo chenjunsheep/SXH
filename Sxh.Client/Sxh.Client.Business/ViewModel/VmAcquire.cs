@@ -7,6 +7,7 @@ namespace Sxh.Client.Business.ViewModel
         public double AcquisitionPrice { get; set; }
         public int Copies { get; set; }
         public int ProjectId { get; set; }
+        public string ProjectName { get; set; }
         public string TokenAcquire { get; set; }
         public string TockenKey { get; set; }
         public double ShowPrice { get; set; }

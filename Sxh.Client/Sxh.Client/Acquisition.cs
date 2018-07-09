@@ -1,17 +1,14 @@
 ﻿using Shared.Util;
 using Sxh.Client.Business;
+using Sxh.Client.Business.Logs;
 using Sxh.Client.Business.Model;
 using Sxh.Client.Business.Proxy;
 using Sxh.Client.Business.ViewModel;
 using Sxh.Client.Util;
+using Sxh.Shared.Response;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -42,13 +39,19 @@ namespace Sxh.Client
 
         private async void btnSubmit_Click(object sender, EventArgs e)
         {
-            this.UiFreeze(false);
+            await SubmitClickedAsync();
+        }
 
-            await SubmitAsync();
+        private async void txtVerifyCode_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                await SubmitClickedAsync();
+        }
 
-            this.UiFreeze(true);
-
-            Close();
+        private async void txtCopy_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                await SubmitClickedAsync();
         }
 
         private void Acquisition_FormClosed(object sender, FormClosedEventArgs e)
@@ -117,22 +120,30 @@ namespace Sxh.Client
         {
             var proxy = new ProxyAcquisition();
             var verifyCode = await proxy.GetVerifyCodeAsync(account);
-            using (var ms = new MemoryStream(verifyCode))
+            if (verifyCode.IsSuccess)
             {
-                picVerifyCode.Image = Image.FromStream(ms);
+                using (var ms = new MemoryStream(verifyCode.Data as byte[]))
+                {
+                    picVerifyCode.Image = Image.FromStream(ms);
+                }
+                return true;
             }
-            return true;
+            else
+            {
+                return false;
+            }
         }
 
-        private async Task<bool> SubmitAsync()
+        private async Task<SxhResult> SubmitAsync()
         {
             if (Project != null && Account != null)
             {
                 var para = new VmAcquire()
                 {
-                    AcquisitionPrice = 96,//TypeParser.GetDoubleValue(Project.minTransferingPrice, 0),
+                    AcquisitionPrice = TypeParser.GetDoubleValue(Project.minTransferingPrice, 0),
                     Copies = TypeParser.GetInt32Value(txtCopy.Text),
                     ProjectId = Project.projectId,
+                    ProjectName = Project.projectTitle,
                     ShowPrice = TypeParser.GetDoubleValue(Project.advicePrice),
                     TockenKey = txtToken.Text,
                     TokenAcquire = txtTokenAcquire.Text,
@@ -145,7 +156,31 @@ namespace Sxh.Client
                 return await proxy.SubmitAsync(para);
             }
 
-            return false;
+            return new SxhResult();
+        }
+
+        private async Task SubmitClickedAsync()
+        {
+            this.UiFreeze(false);
+
+            var ret = await SubmitAsync();
+            await BusinessCache.UserAccounts.UpdateCashAsync(Account.UserName);
+
+            this.UiFreeze(true);
+
+            if (ret.IsSuccess)
+            {
+                Close();
+            }
+            else
+            {
+                await GetVerifyCodeAsync(Account);
+                Account = BusinessCache.UserAccounts.GetAccount(Account.UserName);
+                if (Account != null) txtAccount.Text = $"{Account.Cash}";
+            }
+
+            if (!string.IsNullOrEmpty(ret.Message))
+                LogManager.Instance.Message(ret.Message);
         }
 
         #endregion

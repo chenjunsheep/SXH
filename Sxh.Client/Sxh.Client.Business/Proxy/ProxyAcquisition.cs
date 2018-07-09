@@ -1,6 +1,7 @@
 ﻿using Shared.Util.Extension;
 using Sxh.Client.Business.Model;
 using Sxh.Client.Business.ViewModel;
+using Sxh.Shared.Response;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -55,10 +56,11 @@ namespace Sxh.Client.Business.Proxy
                         }
 
                         var response = await client.GetAsync(Uri);
-                        response.EnsureSuccessStatusCode();
-
-                        var html = await response.Content.ReadAsStringAsync();
-                        RetrieveToken(html, tokenInfo);
+                        if (response.IsSuccessStatusCode)
+                        {
+                            var html = await response.Content.ReadAsStringAsync();
+                            RetrieveToken(html, tokenInfo);
+                        }
                     }
                 }
             }
@@ -66,7 +68,7 @@ namespace Sxh.Client.Business.Proxy
             return tokenInfo;
         }
 
-        public async Task<byte[]> GetVerifyCodeAsync(UserAccount account)
+        public async Task<SxhResult> GetVerifyCodeAsync(UserAccount account)
         {
             if (account != null && account.HasValue)
             {
@@ -87,17 +89,23 @@ namespace Sxh.Client.Business.Proxy
                         }
 
                         var response = await client.GetAsync(Uri);
-                        response.EnsureSuccessStatusCode();
-
-                        var bytes = await response.Content.ReadAsByteArrayAsync();
-                        return bytes;
+                        if (response.IsSuccessStatusCode)
+                        {
+                            var bytes = await response.Content.ReadAsByteArrayAsync();
+                            return new SxhResult(true, bytes);
+                        }
+                        else
+                        {
+                            return new SxhResult(false, response.StatusCode);
+                        }
                     }
                 }
             }
-            return new byte[0];
+
+            return new SxhResult(false);
         }
 
-        public async Task<bool> SubmitAsync(VmAcquire para)
+        public async Task<SxhResult> SubmitAsync(VmAcquire para)
         {
             if (para != null)
             {
@@ -135,15 +143,22 @@ namespace Sxh.Client.Business.Proxy
                         }
 
                         var response = await client.PostAsync(uri, formData);
-                        response.EnsureSuccessStatusCode();
+                        if (response.IsSuccessStatusCode)
+                        {
+                            await response.Content.ReadAsStringAsync();
+                            return new SxhResult(true, $"{para.Copies}份 {para.ProjectName}已成功提交");
+                        }
+                        else
+                        {
+                            return new SxhResult(false, response.StatusCode);
+                        }
 
-                        var ret = await response.Content.ReadAsStringAsync();
-                        return true;
+                        
                     }
                 }
             }
 
-            return false;
+            return new SxhResult(false);
         }
 
         #endregion

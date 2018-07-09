@@ -17,6 +17,20 @@ namespace Sxh.Client.Business.Model
             LoadFromFile();
         }
 
+        public UserAccount GetAccount(string userName)
+        {
+            if (!string.IsNullOrEmpty(userName))
+            {
+                var target = this.FirstOrDefault(u => u.UserName == userName);
+                if (target != null)
+                {
+                    return target;
+                }
+            }
+
+            return null;
+        }
+
         public UserAccount GetRandomAccount()
         {
             var rd = new Random(DateTime.Now.Second);
@@ -33,16 +47,36 @@ namespace Sxh.Client.Business.Model
         {
             if (!string.IsNullOrEmpty(userName))
             {
-                var target = this.FirstOrDefault(u => u.UserName == userName);
+                var target = GetAccount(userName);
                 if (target != null)
                 {
                     target.TokenOffical = token;
-                    target.Cash = await GetCashAsync(target);
                     target.Enabled = target.Cash > 0;
+
+                    await UpdateCashAsync(userName);
                 }
             }
 
             return true;
+        }
+
+        public async Task<double> UpdateCashAsync(string userName)
+        {
+            if (!string.IsNullOrEmpty(userName))
+            {
+                var target = GetAccount(userName);
+                if (target != null)
+                {
+                    var proxy = new ProxyUserAccount();
+                    var cash = await proxy.GetCashAsync(target);
+                    target.Cash = cash;
+                    target.Enabled = target.Cash > 0;
+
+                    return cash;
+                }
+            }
+
+            return 0;
         }
 
         private void LoadFromFile()
@@ -67,17 +101,6 @@ namespace Sxh.Client.Business.Model
                     }
                 }
             }
-        }
-
-        private async Task<double> GetCashAsync(UserAccount account)
-        {
-            if (account != null)
-            {
-                var proxy = new ProxyUserAccount();
-                return await proxy.GetCashAsync(account);
-            }
-
-            return 0;
         }
 
         public class Namespace

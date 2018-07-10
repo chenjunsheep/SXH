@@ -38,11 +38,13 @@
             this.tabProxy = new System.Windows.Forms.TabPage();
             this.ucSettingProxy = new Sxh.Client.Controls.UcSettingProxy();
             this.tabAcount = new System.Windows.Forms.TabPage();
+            this.ucSettingAccount = new Sxh.Client.Controls.UcSettingAccount();
             this.pnlMain.SuspendLayout();
             this.flowButtonGroup.SuspendLayout();
             this.tabSettings.SuspendLayout();
             this.tabBasic.SuspendLayout();
             this.tabProxy.SuspendLayout();
+            this.tabAcount.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlMain
@@ -127,7 +129,7 @@
             this.tabProxy.Padding = new System.Windows.Forms.Padding(3);
             this.tabProxy.Size = new System.Drawing.Size(570, 390);
             this.tabProxy.TabIndex = 1;
-            this.tabProxy.Text = "代理设置";
+            this.tabProxy.Text = "多代理设置";
             this.tabProxy.UseVisualStyleBackColor = true;
             // 
             // ucSettingProxy
@@ -135,19 +137,29 @@
             this.ucSettingProxy.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucSettingProxy.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ucSettingProxy.Location = new System.Drawing.Point(3, 3);
-            this.ucSettingProxy.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ucSettingProxy.Name = "ucSettingProxy";
             this.ucSettingProxy.Size = new System.Drawing.Size(564, 384);
             this.ucSettingProxy.TabIndex = 0;
             // 
             // tabAcount
             // 
+            this.tabAcount.Controls.Add(this.ucSettingAccount);
             this.tabAcount.Location = new System.Drawing.Point(4, 26);
             this.tabAcount.Name = "tabAcount";
+            this.tabAcount.Padding = new System.Windows.Forms.Padding(3);
             this.tabAcount.Size = new System.Drawing.Size(570, 390);
             this.tabAcount.TabIndex = 2;
-            this.tabAcount.Text = "账号设置";
+            this.tabAcount.Text = "多账号设置";
             this.tabAcount.UseVisualStyleBackColor = true;
+            // 
+            // ucSettingAccount
+            // 
+            this.ucSettingAccount.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucSettingAccount.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ucSettingAccount.Location = new System.Drawing.Point(3, 3);
+            this.ucSettingAccount.Name = "ucSettingAccount";
+            this.ucSettingAccount.Size = new System.Drawing.Size(564, 384);
+            this.ucSettingAccount.TabIndex = 0;
             // 
             // Settings
             // 
@@ -171,6 +183,7 @@
             this.tabSettings.ResumeLayout(false);
             this.tabBasic.ResumeLayout(false);
             this.tabProxy.ResumeLayout(false);
+            this.tabAcount.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -186,5 +199,6 @@
         private System.Windows.Forms.TabPage tabAcount;
         private Controls.UcSettingBasic ucSettingBasic;
         private Controls.UcSettingProxy ucSettingProxy;
+        private Controls.UcSettingAccount ucSettingAccount;
     }
 }

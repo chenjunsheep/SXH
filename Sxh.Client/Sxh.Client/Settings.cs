@@ -1,5 +1,4 @@
-﻿using Sxh.Client.Business;
-using Sxh.Client.Util;
+﻿using Sxh.Client.Util;
 using System;
 using System.Windows.Forms;
 
@@ -46,9 +45,20 @@ namespace Sxh.Client
             this.UiFreeze(true);
         }
 
+        private void UcSettingAccount_OnProcessBegin(object sender, EventArgs e)
+        {
+            this.UiFreeze(false);
+        }
+
+        private void UcSettingAccount_OnProcessEnd(object sender, EventArgs e)
+        {
+            this.UiFreeze(true);
+        }
+
         private void Settings_FormClosing(object sender, FormClosingEventArgs e)
         {
             ucSettingProxy.CancelAllTask();
+            ucSettingAccount.CancelAllTask();
         }
 
         #endregion
@@ -63,8 +73,12 @@ namespace Sxh.Client
             ucSettingProxy.OnProcessBegin += UcSettingProxy_OnProcessBegin;
             ucSettingProxy.OnProcessEnd -= UcSettingProxy_OnProcessEnd;
             ucSettingProxy.OnProcessEnd += UcSettingProxy_OnProcessEnd;
-        }
 
+            ucSettingAccount.OnProcessBegin -= UcSettingAccount_OnProcessBegin;
+            ucSettingAccount.OnProcessBegin += UcSettingAccount_OnProcessBegin;
+            ucSettingAccount.OnProcessEnd -= UcSettingAccount_OnProcessEnd;
+            ucSettingAccount.OnProcessEnd += UcSettingAccount_OnProcessEnd;
+        }
 
         #endregion
     }

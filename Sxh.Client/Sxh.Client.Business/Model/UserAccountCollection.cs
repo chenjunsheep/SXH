@@ -43,6 +43,17 @@ namespace Sxh.Client.Business.Model
             return null;
         }
 
+        public UserAccount SetEnable(string userName, bool enable)
+        {
+            var target = this.FirstOrDefault(u => u.UserName == userName);
+            if (target != null)
+            {
+                target.Enabled = enable;
+                return target;
+            }
+            return null;
+        }
+
         public async Task<bool> UpdateTokenOfficalAsync(string userName, CookieCollection token)
         {
             if (!string.IsNullOrEmpty(userName))

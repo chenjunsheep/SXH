@@ -95,6 +95,18 @@
     <Compile Include="Controls\UcPoolTranser.Designer.cs">
       <DependentUpon>UcPoolTranser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\UcSettingAccount.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UcSettingAccount.Designer.cs">
+      <DependentUpon>UcSettingAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UcSettingAccountItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UcSettingAccountItem.Designer.cs">
+      <DependentUpon>UcSettingAccountItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\UcSettingBasic.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -142,6 +154,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\UcPoolTranser.resx">
       <DependentUpon>UcPoolTranser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UcSettingAccount.resx">
+      <DependentUpon>UcSettingAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UcSettingAccountItem.resx">
+      <DependentUpon>UcSettingAccountItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\UcSettingBasic.resx">
       <DependentUpon>UcSettingBasic.cs</DependentUpon>

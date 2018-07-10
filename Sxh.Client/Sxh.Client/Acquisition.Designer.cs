@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Acquisition));
             this.pnlMain = new System.Windows.Forms.TableLayoutPanel();
             this.lblVerifyCode = new System.Windows.Forms.Label();
             this.txtToken = new System.Windows.Forms.TextBox();
@@ -268,6 +269,7 @@
             this.ClientSize = new System.Drawing.Size(434, 286);
             this.Controls.Add(this.pnlMain);
             this.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Acquisition";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

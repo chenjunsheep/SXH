@@ -97,6 +97,7 @@ namespace Sxh.Client
             if (Account != null)
             {
                 txtAccount.Text = Account.UserName;
+                Account.Cash = await BusinessCache.UserAccounts.UpdateCashAsync(Account.UserName);
                 txtCash.Text = $"{Account.Cash}";
                 LoadProjectInformation();
                 if (Project != null)

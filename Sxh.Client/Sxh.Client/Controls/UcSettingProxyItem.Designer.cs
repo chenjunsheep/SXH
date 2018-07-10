@@ -31,22 +31,20 @@
             this.pnlMain = new System.Windows.Forms.TableLayoutPanel();
             this.chkEnabled = new System.Windows.Forms.CheckBox();
             this.txtUserName = new System.Windows.Forms.TextBox();
-            this.txtPsw = new System.Windows.Forms.TextBox();
             this.txtToken = new System.Windows.Forms.TextBox();
             this.pnlMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlMain
             // 
-            this.pnlMain.ColumnCount = 4;
+            this.pnlMain.ColumnCount = 3;
             this.pnlMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.pnlMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.pnlMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.pnlMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.pnlMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
+            this.pnlMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.pnlMain.Controls.Add(this.chkEnabled, 0, 0);
             this.pnlMain.Controls.Add(this.txtUserName, 1, 0);
-            this.pnlMain.Controls.Add(this.txtPsw, 2, 0);
-            this.pnlMain.Controls.Add(this.txtToken, 3, 0);
+            this.pnlMain.Controls.Add(this.txtToken, 2, 0);
             this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMain.Location = new System.Drawing.Point(0, 0);
             this.pnlMain.Margin = new System.Windows.Forms.Padding(0);
@@ -79,25 +77,14 @@
             this.txtUserName.Size = new System.Drawing.Size(32, 23);
             this.txtUserName.TabIndex = 1;
             // 
-            // txtPsw
-            // 
-            this.txtPsw.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtPsw.Location = new System.Drawing.Point(52, 0);
-            this.txtPsw.Margin = new System.Windows.Forms.Padding(0);
-            this.txtPsw.Name = "txtPsw";
-            this.txtPsw.ReadOnly = true;
-            this.txtPsw.Size = new System.Drawing.Size(32, 23);
-            this.txtPsw.TabIndex = 2;
-            this.txtPsw.UseSystemPasswordChar = true;
-            // 
             // txtToken
             // 
             this.txtToken.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtToken.Location = new System.Drawing.Point(84, 0);
+            this.txtToken.Location = new System.Drawing.Point(52, 0);
             this.txtToken.Margin = new System.Windows.Forms.Padding(0);
             this.txtToken.Name = "txtToken";
             this.txtToken.ReadOnly = true;
-            this.txtToken.Size = new System.Drawing.Size(66, 23);
+            this.txtToken.Size = new System.Drawing.Size(98, 23);
             this.txtToken.TabIndex = 3;
             // 
             // UcSettingProxyItem
@@ -120,7 +107,6 @@
         private System.Windows.Forms.TableLayoutPanel pnlMain;
         private System.Windows.Forms.CheckBox chkEnabled;
         private System.Windows.Forms.TextBox txtUserName;
-        private System.Windows.Forms.TextBox txtPsw;
         private System.Windows.Forms.TextBox txtToken;
     }
 }

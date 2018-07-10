@@ -61,7 +61,6 @@ namespace Sxh.Client.Controls
             if (proxy != null)
             {
                 txtUserName.Text = proxy.UserName;
-                txtPsw.Text = proxy.Password;
                 BindToken(proxy);
                 Enable(proxy.HasValue);
             }

@@ -31,20 +31,22 @@
             this.pnlMain = new System.Windows.Forms.TableLayoutPanel();
             this.chkEnabled = new System.Windows.Forms.CheckBox();
             this.txtUserName = new System.Windows.Forms.TextBox();
-            this.txtToken = new System.Windows.Forms.TextBox();
+            this.txtWeight = new System.Windows.Forms.TextBox();
+            this.lblWeight = new System.Windows.Forms.Label();
             this.pnlMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlMain
             // 
-            this.pnlMain.ColumnCount = 3;
+            this.pnlMain.ColumnCount = 4;
             this.pnlMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.pnlMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.pnlMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
-            this.pnlMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.pnlMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.pnlMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
+            this.pnlMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.pnlMain.Controls.Add(this.chkEnabled, 0, 0);
             this.pnlMain.Controls.Add(this.txtUserName, 1, 0);
-            this.pnlMain.Controls.Add(this.txtToken, 2, 0);
+            this.pnlMain.Controls.Add(this.txtWeight, 3, 0);
+            this.pnlMain.Controls.Add(this.lblWeight, 2, 0);
             this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMain.Location = new System.Drawing.Point(0, 0);
             this.pnlMain.Margin = new System.Windows.Forms.Padding(0);
@@ -74,18 +76,29 @@
             this.txtUserName.Margin = new System.Windows.Forms.Padding(0);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.ReadOnly = true;
-            this.txtUserName.Size = new System.Drawing.Size(32, 23);
+            this.txtUserName.Size = new System.Drawing.Size(30, 23);
             this.txtUserName.TabIndex = 1;
             // 
-            // txtToken
+            // txtWeight
             // 
-            this.txtToken.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtToken.Location = new System.Drawing.Point(52, 0);
-            this.txtToken.Margin = new System.Windows.Forms.Padding(0);
-            this.txtToken.Name = "txtToken";
-            this.txtToken.ReadOnly = true;
-            this.txtToken.Size = new System.Drawing.Size(98, 23);
-            this.txtToken.TabIndex = 3;
+            this.txtWeight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtWeight.Location = new System.Drawing.Point(120, 0);
+            this.txtWeight.Margin = new System.Windows.Forms.Padding(0);
+            this.txtWeight.Name = "txtWeight";
+            this.txtWeight.ReadOnly = true;
+            this.txtWeight.Size = new System.Drawing.Size(30, 23);
+            this.txtWeight.TabIndex = 3;
+            // 
+            // lblWeight
+            // 
+            this.lblWeight.AutoSize = true;
+            this.lblWeight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblWeight.Location = new System.Drawing.Point(53, 0);
+            this.lblWeight.Name = "lblWeight";
+            this.lblWeight.Size = new System.Drawing.Size(64, 23);
+            this.lblWeight.TabIndex = 4;
+            this.lblWeight.Text = "搜索次数";
+            this.lblWeight.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // UcSettingProxyItem
             // 
@@ -107,6 +120,7 @@
         private System.Windows.Forms.TableLayoutPanel pnlMain;
         private System.Windows.Forms.CheckBox chkEnabled;
         private System.Windows.Forms.TextBox txtUserName;
-        private System.Windows.Forms.TextBox txtToken;
+        private System.Windows.Forms.TextBox txtWeight;
+        private System.Windows.Forms.Label lblWeight;
     }
 }

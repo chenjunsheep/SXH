@@ -61,7 +61,7 @@ namespace Sxh.Client.Controls
             if (proxy != null)
             {
                 txtUserName.Text = proxy.UserName;
-                BindToken(proxy);
+                BindWeight(proxy);
                 Enable(proxy.HasValue);
             }
         }
@@ -82,7 +82,7 @@ namespace Sxh.Client.Controls
             if (isChecked)
             {
                 var proxyLogin = await ProxyUserProxy.LoginAsync(userProxy);
-                BindToken(proxyLogin);
+                BindWeight(proxyLogin);
                 enable = proxyLogin != null;
             }
 
@@ -99,18 +99,9 @@ namespace Sxh.Client.Controls
             BusinessCache.UserProxies.SetEnable(UserName, enable);
         }
 
-        private void BindToken(UserProxy proxy)
+        private void BindWeight(UserProxy proxy)
         {
-            var strToken = string.Empty;
-            if (proxy == null)
-            {
-                strToken = "登陆失败";
-            }
-            else
-            {
-                strToken = proxy.DisplayTokenOffical;
-            }
-            txtToken.Text = strToken;
+            txtWeight.Text = $"{proxy.Weight}";
         }
 
         #endregion

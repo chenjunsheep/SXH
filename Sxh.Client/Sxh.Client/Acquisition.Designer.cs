@@ -42,7 +42,6 @@
             this.txtCash = new System.Windows.Forms.TextBox();
             this.lblCash = new System.Windows.Forms.Label();
             this.lblAccount = new System.Windows.Forms.Label();
-            this.txtAccount = new System.Windows.Forms.TextBox();
             this.picVerifyCode = new System.Windows.Forms.PictureBox();
             this.txtVerifyCode = new System.Windows.Forms.TextBox();
             this.flowButtonGroup = new System.Windows.Forms.FlowLayoutPanel();
@@ -58,28 +57,26 @@
             this.pnlMain.ColumnCount = 2;
             this.pnlMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.pnlMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.pnlMain.Controls.Add(this.lblVerifyCode, 0, 6);
-            this.pnlMain.Controls.Add(this.txtToken, 1, 5);
-            this.pnlMain.Controls.Add(this.lblToken, 0, 5);
-            this.pnlMain.Controls.Add(this.txtTokenAcquire, 1, 4);
-            this.pnlMain.Controls.Add(this.lblTokenAcquire, 0, 4);
-            this.pnlMain.Controls.Add(this.txtCopy, 1, 8);
-            this.pnlMain.Controls.Add(this.lblCopy, 0, 8);
-            this.pnlMain.Controls.Add(this.txtProject, 1, 3);
-            this.pnlMain.Controls.Add(this.lblProject, 0, 3);
-            this.pnlMain.Controls.Add(this.txtCash, 1, 2);
-            this.pnlMain.Controls.Add(this.lblCash, 0, 2);
-            this.pnlMain.Controls.Add(this.lblAccount, 0, 1);
-            this.pnlMain.Controls.Add(this.txtAccount, 1, 1);
-            this.pnlMain.Controls.Add(this.picVerifyCode, 1, 6);
-            this.pnlMain.Controls.Add(this.txtVerifyCode, 1, 7);
-            this.pnlMain.Controls.Add(this.flowButtonGroup, 1, 9);
+            this.pnlMain.Controls.Add(this.lblVerifyCode, 0, 5);
+            this.pnlMain.Controls.Add(this.txtToken, 1, 4);
+            this.pnlMain.Controls.Add(this.lblToken, 0, 4);
+            this.pnlMain.Controls.Add(this.txtTokenAcquire, 1, 3);
+            this.pnlMain.Controls.Add(this.lblTokenAcquire, 0, 3);
+            this.pnlMain.Controls.Add(this.txtCopy, 1, 7);
+            this.pnlMain.Controls.Add(this.lblCopy, 0, 7);
+            this.pnlMain.Controls.Add(this.txtProject, 1, 2);
+            this.pnlMain.Controls.Add(this.lblProject, 0, 2);
+            this.pnlMain.Controls.Add(this.txtCash, 1, 1);
+            this.pnlMain.Controls.Add(this.lblCash, 0, 1);
+            this.pnlMain.Controls.Add(this.lblAccount, 0, 0);
+            this.pnlMain.Controls.Add(this.picVerifyCode, 1, 5);
+            this.pnlMain.Controls.Add(this.txtVerifyCode, 1, 6);
+            this.pnlMain.Controls.Add(this.flowButtonGroup, 1, 8);
             this.pnlMain.Controls.Add(this.cbAccount, 1, 0);
             this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMain.Location = new System.Drawing.Point(0, 0);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.RowCount = 10;
-            this.pnlMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            this.pnlMain.RowCount = 9;
             this.pnlMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.pnlMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.pnlMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
@@ -89,6 +86,7 @@
             this.pnlMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.pnlMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.pnlMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.pnlMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.pnlMain.Size = new System.Drawing.Size(434, 321);
             this.pnlMain.TabIndex = 0;
             // 
@@ -96,7 +94,7 @@
             // 
             this.lblVerifyCode.AutoSize = true;
             this.lblVerifyCode.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblVerifyCode.Location = new System.Drawing.Point(3, 168);
+            this.lblVerifyCode.Location = new System.Drawing.Point(3, 140);
             this.lblVerifyCode.Name = "lblVerifyCode";
             this.lblVerifyCode.Size = new System.Drawing.Size(94, 56);
             this.lblVerifyCode.TabIndex = 12;
@@ -106,7 +104,7 @@
             // txtToken
             // 
             this.txtToken.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtToken.Location = new System.Drawing.Point(103, 143);
+            this.txtToken.Location = new System.Drawing.Point(103, 115);
             this.txtToken.Name = "txtToken";
             this.txtToken.ReadOnly = true;
             this.txtToken.Size = new System.Drawing.Size(328, 23);
@@ -116,7 +114,7 @@
             // 
             this.lblToken.AutoSize = true;
             this.lblToken.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblToken.Location = new System.Drawing.Point(3, 140);
+            this.lblToken.Location = new System.Drawing.Point(3, 112);
             this.lblToken.Name = "lblToken";
             this.lblToken.Size = new System.Drawing.Size(94, 28);
             this.lblToken.TabIndex = 10;
@@ -126,7 +124,7 @@
             // txtTokenAcquire
             // 
             this.txtTokenAcquire.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtTokenAcquire.Location = new System.Drawing.Point(103, 115);
+            this.txtTokenAcquire.Location = new System.Drawing.Point(103, 87);
             this.txtTokenAcquire.Name = "txtTokenAcquire";
             this.txtTokenAcquire.ReadOnly = true;
             this.txtTokenAcquire.Size = new System.Drawing.Size(328, 23);
@@ -136,7 +134,7 @@
             // 
             this.lblTokenAcquire.AutoSize = true;
             this.lblTokenAcquire.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblTokenAcquire.Location = new System.Drawing.Point(3, 112);
+            this.lblTokenAcquire.Location = new System.Drawing.Point(3, 84);
             this.lblTokenAcquire.Name = "lblTokenAcquire";
             this.lblTokenAcquire.Size = new System.Drawing.Size(94, 28);
             this.lblTokenAcquire.TabIndex = 8;
@@ -147,7 +145,7 @@
             // 
             this.txtCopy.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtCopy.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.txtCopy.Location = new System.Drawing.Point(103, 255);
+            this.txtCopy.Location = new System.Drawing.Point(103, 227);
             this.txtCopy.Name = "txtCopy";
             this.txtCopy.Size = new System.Drawing.Size(328, 23);
             this.txtCopy.TabIndex = 2;
@@ -157,7 +155,7 @@
             // 
             this.lblCopy.AutoSize = true;
             this.lblCopy.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblCopy.Location = new System.Drawing.Point(3, 252);
+            this.lblCopy.Location = new System.Drawing.Point(3, 224);
             this.lblCopy.Name = "lblCopy";
             this.lblCopy.Size = new System.Drawing.Size(94, 28);
             this.lblCopy.TabIndex = 6;
@@ -167,7 +165,7 @@
             // txtProject
             // 
             this.txtProject.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtProject.Location = new System.Drawing.Point(103, 87);
+            this.txtProject.Location = new System.Drawing.Point(103, 59);
             this.txtProject.Name = "txtProject";
             this.txtProject.ReadOnly = true;
             this.txtProject.Size = new System.Drawing.Size(328, 23);
@@ -177,7 +175,7 @@
             // 
             this.lblProject.AutoSize = true;
             this.lblProject.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblProject.Location = new System.Drawing.Point(3, 84);
+            this.lblProject.Location = new System.Drawing.Point(3, 56);
             this.lblProject.Name = "lblProject";
             this.lblProject.Size = new System.Drawing.Size(94, 28);
             this.lblProject.TabIndex = 4;
@@ -187,7 +185,7 @@
             // txtCash
             // 
             this.txtCash.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtCash.Location = new System.Drawing.Point(103, 59);
+            this.txtCash.Location = new System.Drawing.Point(103, 31);
             this.txtCash.Name = "txtCash";
             this.txtCash.ReadOnly = true;
             this.txtCash.Size = new System.Drawing.Size(328, 23);
@@ -197,7 +195,7 @@
             // 
             this.lblCash.AutoSize = true;
             this.lblCash.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblCash.Location = new System.Drawing.Point(3, 56);
+            this.lblCash.Location = new System.Drawing.Point(3, 28);
             this.lblCash.Name = "lblCash";
             this.lblCash.Size = new System.Drawing.Size(94, 28);
             this.lblCash.TabIndex = 2;
@@ -208,26 +206,17 @@
             // 
             this.lblAccount.AutoSize = true;
             this.lblAccount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblAccount.Location = new System.Drawing.Point(3, 28);
+            this.lblAccount.Location = new System.Drawing.Point(3, 0);
             this.lblAccount.Name = "lblAccount";
             this.lblAccount.Size = new System.Drawing.Size(94, 28);
             this.lblAccount.TabIndex = 0;
             this.lblAccount.Text = "收购账号";
             this.lblAccount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // txtAccount
-            // 
-            this.txtAccount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtAccount.Location = new System.Drawing.Point(103, 31);
-            this.txtAccount.Name = "txtAccount";
-            this.txtAccount.ReadOnly = true;
-            this.txtAccount.Size = new System.Drawing.Size(328, 23);
-            this.txtAccount.TabIndex = 0;
-            // 
             // picVerifyCode
             // 
             this.picVerifyCode.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picVerifyCode.Location = new System.Drawing.Point(103, 171);
+            this.picVerifyCode.Location = new System.Drawing.Point(103, 143);
             this.picVerifyCode.Name = "picVerifyCode";
             this.picVerifyCode.Size = new System.Drawing.Size(328, 50);
             this.picVerifyCode.TabIndex = 13;
@@ -237,7 +226,7 @@
             // 
             this.txtVerifyCode.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtVerifyCode.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.txtVerifyCode.Location = new System.Drawing.Point(103, 227);
+            this.txtVerifyCode.Location = new System.Drawing.Point(103, 199);
             this.txtVerifyCode.Name = "txtVerifyCode";
             this.txtVerifyCode.Size = new System.Drawing.Size(328, 23);
             this.txtVerifyCode.TabIndex = 1;
@@ -248,9 +237,9 @@
             this.flowButtonGroup.Controls.Add(this.btnSubmit);
             this.flowButtonGroup.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowButtonGroup.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowButtonGroup.Location = new System.Drawing.Point(103, 283);
+            this.flowButtonGroup.Location = new System.Drawing.Point(103, 255);
             this.flowButtonGroup.Name = "flowButtonGroup";
-            this.flowButtonGroup.Size = new System.Drawing.Size(328, 35);
+            this.flowButtonGroup.Size = new System.Drawing.Size(328, 63);
             this.flowButtonGroup.TabIndex = 15;
             // 
             // btnSubmit
@@ -301,7 +290,6 @@
 
         private System.Windows.Forms.TableLayoutPanel pnlMain;
         private System.Windows.Forms.Label lblAccount;
-        private System.Windows.Forms.TextBox txtAccount;
         private System.Windows.Forms.Label lblCash;
         private System.Windows.Forms.TextBox txtCash;
         private System.Windows.Forms.Label lblProject;

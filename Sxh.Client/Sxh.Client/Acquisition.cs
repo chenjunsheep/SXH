@@ -34,7 +34,8 @@ namespace Sxh.Client
 
         private async void Acquisition_Load(object sender, EventArgs e)
         {
-            await Initialize();
+            Initialize();
+            await BindValuesAsync();
             
             if (BusinessCache.Settings.AutoAcquire)
             {
@@ -67,6 +68,14 @@ namespace Sxh.Client
             }
         }
 
+        private async void cbAccount_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.UiFreeze(false);
+            Account = BusinessCache.UserAccounts.GetAccount($"{cbAccount.SelectedValue}");
+            await BindValuesAsync();
+            this.UiFreeze(true);
+        }
+
         #endregion
 
         #region Public Method
@@ -90,13 +99,12 @@ namespace Sxh.Client
 
         #region Private Method
 
-        private async Task<bool> Initialize()
+        private async Task<bool> BindValuesAsync()
         {
             this.UiFreeze(false);
 
             if (Account != null)
             {
-                txtAccount.Text = Account.UserName;
                 Account.Cash = await BusinessCache.UserAccounts.UpdateCashAsync(Account.UserName);
                 txtCash.Text = $"{Account.Cash}";
                 LoadProjectInformation();
@@ -112,6 +120,14 @@ namespace Sxh.Client
             }
             
             return true;
+        }
+
+        private void Initialize()
+        {
+            cbAccount.ValueMember = "UserName";
+            cbAccount.DisplayMember = "UserName";
+            cbAccount.DataSource = BusinessCache.UserAccounts;
+            cbAccount.SelectedValue = Account.UserName;
         }
 
         private void LoadProjectInformation()

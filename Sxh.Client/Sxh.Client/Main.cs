@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Shared.Util.Extension;
 using Sxh.Shared.Tasks;
+using Sxh.Client.Monitor;
 
 namespace Sxh.Client
 {
@@ -122,6 +123,13 @@ namespace Sxh.Client
                 ShowInTaskbar = false;
                 notify.Visible = true;
             }
+        }
+
+        private void btnMonitor_Click(object sender, EventArgs e)
+        {
+            var monitorTransfer = new MonitorTransfer();
+            monitorTransfer.StartPosition = FormStartPosition.CenterScreen;
+            monitorTransfer.Show();
         }
 
         #endregion

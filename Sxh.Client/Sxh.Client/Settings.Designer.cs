@@ -137,6 +137,7 @@
             this.ucSettingProxy.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucSettingProxy.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ucSettingProxy.Location = new System.Drawing.Point(3, 3);
+            this.ucSettingProxy.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ucSettingProxy.Name = "ucSettingProxy";
             this.ucSettingProxy.Size = new System.Drawing.Size(564, 384);
             this.ucSettingProxy.TabIndex = 0;
@@ -157,6 +158,7 @@
             this.ucSettingAccount.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucSettingAccount.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ucSettingAccount.Location = new System.Drawing.Point(3, 3);
+            this.ucSettingAccount.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ucSettingAccount.Name = "ucSettingAccount";
             this.ucSettingAccount.Size = new System.Drawing.Size(564, 384);
             this.ucSettingAccount.TabIndex = 0;

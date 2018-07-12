@@ -90,6 +90,21 @@ namespace Sxh.Client.Business.Model
             return 0;
         }
 
+        public void UpdateFromUserProxy(IEnumerable<UserProxy> proxies)
+        {
+            if (proxies != null)
+            {
+                foreach (var proxy in proxies)
+                {
+                    var target = this.FirstOrDefault(u => u.UserName == proxy.UserName);
+                    if (target != null && proxy.HasValue)
+                    {
+                        target.TokenOffical = proxy.TokenOffical;
+                    }
+                }
+            }
+        }
+
         private void LoadFromFile()
         {
             Clear();

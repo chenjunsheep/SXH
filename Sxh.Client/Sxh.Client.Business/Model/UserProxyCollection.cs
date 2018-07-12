@@ -59,22 +59,7 @@ namespace Sxh.Client.Business.Model
                     if (target != null && account.HasValue)
                     {
                         target.TokenOffical = account.TokenOffical;
-                        target.Enabled = true;
-                    }
-                }
-            }
-        }
-
-        public void UpdateFromUserProxy(IEnumerable<UserProxy> proxies)
-        {
-            if (proxies != null)
-            {
-                foreach (var proxy in proxies)
-                {
-                    var target = this.FirstOrDefault(u => u.UserName == proxy.UserName);
-                    if (target != null && proxy.HasValue)
-                    {
-                        target.TokenOffical = proxy.TokenOffical;
+                        //target.Enabled = true;
                     }
                 }
             }

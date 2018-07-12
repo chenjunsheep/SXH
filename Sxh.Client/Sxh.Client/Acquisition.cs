@@ -126,7 +126,7 @@ namespace Sxh.Client
         {
             cbAccount.ValueMember = "UserName";
             cbAccount.DisplayMember = "UserName";
-            cbAccount.DataSource = BusinessCache.UserAccounts;
+            cbAccount.DataSource = BusinessCache.UserAccounts.FindAll(u => u.Enabled && u.HasValue);
             cbAccount.SelectedValue = Account.UserName;
         }
 

@@ -18,6 +18,8 @@ namespace Sxh.Client.Controls
 
         #region Porperty
 
+        const string PROXY_INVALID = "--";
+
         public string UserName
         {
             get
@@ -101,7 +103,14 @@ namespace Sxh.Client.Controls
 
         private void BindWeight(UserProxy proxy)
         {
-            txtWeight.Text = $"{proxy.Weight}";
+            if (proxy != null && proxy.HasValue)
+            {
+                txtWeight.Text = $"{proxy.Weight}";
+            }
+            else
+            {
+                txtWeight.Text = PROXY_INVALID;
+            }
         }
 
         #endregion

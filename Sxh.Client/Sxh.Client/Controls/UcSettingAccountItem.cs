@@ -18,6 +18,8 @@ namespace Sxh.Client.Controls
 
         #region Porperty
 
+        const string CASH_INVALID = "--";
+
         public string UserName
         {
             get
@@ -68,8 +70,13 @@ namespace Sxh.Client.Controls
             if (account != null)
             {
                 txtUserName.Text = account.UserName;
-                txtCash.Text = $"{account.Cash}";
+                txtCash.Text = CASH_INVALID;
                 Enable(account.HasValue);
+
+                if (IsEnabled)
+                {
+                    txtCash.Text = $"{account.Cash}";
+                }               
             }
         }
 
@@ -103,7 +110,7 @@ namespace Sxh.Client.Controls
             chkEnabled.CheckedChanged -= chkEnabled_CheckedChanged;
             chkEnabled.Checked = enable;
             chkEnabled.CheckedChanged += chkEnabled_CheckedChanged;
-            BusinessCache.UserProxies.SetEnable(UserName, enable);
+            BusinessCache.UserAccounts.SetEnable(UserName, enable);
         }
 
         private async Task BindCashAsync(UserAccount account)
@@ -111,7 +118,7 @@ namespace Sxh.Client.Controls
             var strCash = string.Empty;
             if (account == null)
             {
-                strCash = "登陆失败";
+                strCash = CASH_INVALID;
             }
             else
             {

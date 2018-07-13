@@ -1,11 +1,10 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace Sxh.Db.Models
 {
     public partial class SxhContext : DbContext
     {
+        public virtual DbSet<Logs> Logs { get; set; }
         public virtual DbSet<PayType> PayType { get; set; }
         public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<ProductPayment> ProductPayment { get; set; }
@@ -16,6 +15,11 @@ namespace Sxh.Db.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Logs>(entity =>
+            {
+                entity.Property(e => e.Date).HasColumnType("datetime");
+            });
+
             modelBuilder.Entity<PayType>(entity =>
             {
                 entity.Property(e => e.Id).ValueGeneratedNever();

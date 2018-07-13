@@ -55,7 +55,6 @@
             this.lblMessage.BackColor = System.Drawing.Color.Transparent;
             this.lblMessage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblMessage.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblMessage.Image = global::Sxh.Client.Properties.Resources.bg_transfer;
             this.lblMessage.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblMessage.Location = new System.Drawing.Point(3, 0);
             this.lblMessage.Name = "lblMessage";

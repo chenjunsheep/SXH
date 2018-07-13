@@ -41,12 +41,12 @@
             this.btnSettings = new System.Windows.Forms.Button();
             this.flowLeft = new System.Windows.Forms.FlowLayoutPanel();
             this.btnLogs = new System.Windows.Forms.Button();
+            this.btnMonitor = new System.Windows.Forms.Button();
             this.ucLogs = new Sxh.Client.Controls.UcLogs();
             this.flowMessageGroups = new System.Windows.Forms.FlowLayoutPanel();
             this.lblMessage = new System.Windows.Forms.Label();
             this.lblHighlight = new System.Windows.Forms.Label();
             this.notify = new System.Windows.Forms.NotifyIcon(this.components);
-            this.btnMonitor = new System.Windows.Forms.Button();
             this.pnlMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitMain)).BeginInit();
             this.splitMain.Panel1.SuspendLayout();
@@ -197,6 +197,17 @@
             this.btnLogs.UseVisualStyleBackColor = true;
             this.btnLogs.Click += new System.EventHandler(this.btnLogs_Click);
             // 
+            // btnMonitor
+            // 
+            this.btnMonitor.Location = new System.Drawing.Point(84, 3);
+            this.btnMonitor.Name = "btnMonitor";
+            this.btnMonitor.Size = new System.Drawing.Size(75, 23);
+            this.btnMonitor.TabIndex = 1;
+            this.btnMonitor.Text = "小蜜蜂";
+            this.btnMonitor.UseVisualStyleBackColor = true;
+            this.btnMonitor.Visible = false;
+            this.btnMonitor.Click += new System.EventHandler(this.btnMonitor_Click);
+            // 
             // ucLogs
             // 
             this.ucLogs.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -246,16 +257,6 @@
             this.notify.Icon = ((System.Drawing.Icon)(resources.GetObject("notify.Icon")));
             this.notify.Text = "SXH";
             this.notify.DoubleClick += new System.EventHandler(this.notify_DoubleClick);
-            // 
-            // btnMonitor
-            // 
-            this.btnMonitor.Location = new System.Drawing.Point(84, 3);
-            this.btnMonitor.Name = "btnMonitor";
-            this.btnMonitor.Size = new System.Drawing.Size(75, 23);
-            this.btnMonitor.TabIndex = 1;
-            this.btnMonitor.Text = "小蜜蜂";
-            this.btnMonitor.UseVisualStyleBackColor = true;
-            this.btnMonitor.Click += new System.EventHandler(this.btnMonitor_Click);
             // 
             // frmMain
             // 

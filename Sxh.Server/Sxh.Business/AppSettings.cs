@@ -29,11 +29,14 @@
 
         public class Schedule
         {
-            public Heartbeat Heartbeats { get; set; }
+            public string TargetServer { get; set; }
 
-            public class Heartbeat
+            public InnerModel Heartbeat { get; set; }
+
+            public InnerModel NextPayment { get; set; }
+
+            public class InnerModel
             {
-                public string TargetServer { get; set; }
                 public int Frequency { get; set; }
             }
         }

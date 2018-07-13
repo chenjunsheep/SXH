@@ -1,6 +1,7 @@
 ﻿using Shared.Api.Schedule.Instance;
+using Sxh.Business.Models;
 
-namespace Startp.Server.Services
+namespace Sxh.Server.Services
 {
     public class TaskHeartbeats : TaskHeartbeat
     {
@@ -13,7 +14,7 @@ namespace Startp.Server.Services
 
         public override void Log()
         {
-            LogProvider.Log($"Heart Beats");
+            LogProvider.Log(Schedule, LogType.Schedule);
         }
     }
 }

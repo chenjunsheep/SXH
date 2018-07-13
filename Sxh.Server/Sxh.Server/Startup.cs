@@ -12,7 +12,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.PlatformAbstractions;
 using Shared.Api.Schedule;
 using Shared.Api.Swagger;
-using Startp.Server.Services;
 using Sxh.Server.Settings;
 using Swashbuckle.AspNetCore.Swagger;
 using Sxh.Db.Models;
@@ -20,6 +19,8 @@ using Microsoft.EntityFrameworkCore;
 using Sxh.Business.Repository.Interface;
 using Sxh.Business.Repository;
 using Sxh.Business;
+using Sxh.Business.Models;
+using Sxh.Server.Services;
 
 namespace Sxh.Server
 {
@@ -157,17 +158,18 @@ namespace Sxh.Server
 
         private void BuildSechdules(IServiceCollection services)
         {
-            services.AddSingleton<IScheduledTask>(new TaskHeartbeats(AppSetting.Instance.Schedules.Heartbeats.TargetServer, AppSetting.Instance.Schedules.Heartbeats.Frequency));
+            services.AddSingleton<IScheduledTask>(new TaskHeartbeats(AppSetting.Instance.Schedules.TargetServer, AppSetting.Instance.Schedules.Heartbeat.Frequency));
+            services.AddSingleton<IScheduledTask>(new TaskNextPayment(AppSetting.Instance.Schedules.TargetServer, AppSetting.Instance.Schedules.NextPayment.Frequency));
             services.AddScheduler((sender, args) =>
             {
                 try
                 {
                     //handle exceptions for all schedules
-                    LogProvider.Log($"schedule exception: [{args.Exception.Message}]");
+                    LogProvider.Log($"schedule exception: [{args.Exception.Message}]", LogType.Schedule);
                 }
                 catch (Exception ex)
                 {
-                    LogProvider.Log($"schedule inner exception: [{ex.Message}]");
+                    LogProvider.Log($"schedule inner exception: [{ex.Message}]", LogType.Error);
                 }
                 finally
                 {

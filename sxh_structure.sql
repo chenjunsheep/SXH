@@ -1,6 +1,11 @@
 USE [Sxh]
 GO
 
+IF EXISTS (SELECT * FROM sys.tables WHERE object_id = OBJECT_ID('Logs'))
+	DROP TABLE Logs
+GO
+
+
 IF EXISTS (SELECT * FROM sys.tables WHERE object_id = OBJECT_ID('ProductPayment'))
 	DROP TABLE ProductPayment
 GO
@@ -19,6 +24,18 @@ GO
 
 IF EXISTS (SELECT * FROM sys.tables WHERE object_id = OBJECT_ID('StatusType'))
 	DROP TABLE StatusType
+GO
+
+CREATE TABLE [dbo].[Logs](
+	[Id] [bigint] IDENTITY(1,1) NOT NULL,
+	[LogType] [int] NOT NULL,
+	[Memo] [nvarchar](max) NULL,
+	[Date] [datetime] NULL,
+ CONSTRAINT [PK_Logs] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
 
 CREATE TABLE [dbo].[PayType](

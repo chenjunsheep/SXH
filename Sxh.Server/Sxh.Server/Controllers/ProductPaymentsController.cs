@@ -32,10 +32,12 @@ namespace Sxh.Server.Controllers
                             orderby payment.NextPayment, product.Name
                             select new
                             {
+                                product.Id,
                                 product.Name,
                                 NextPayment = payment.NextPayment.ToString("yyyy/MM/dd"),
                                 Freq = $"{payment.FreqCurrent}/{payment.FreqTotal}",
-                                Funds = $"{product.TotalFunds}/{project.TotalFunds}",
+                                Fund = product.TotalFunds,
+                                FundTotal = project.TotalFunds,
                                 project.Rate,
                                 payment.LastUpdate,
                             };

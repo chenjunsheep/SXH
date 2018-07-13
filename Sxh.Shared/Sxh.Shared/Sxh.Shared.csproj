@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Response\Model\PaymentItem.cs" />
+    <Compile Include="Response\Model\PaymentList.cs" />
     <Compile Include="Response\SxhResult.cs" />
     <Compile Include="Response\Model\CapitalFlowItem.cs" />
     <Compile Include="Response\Model\CapitalFlowList.cs" />

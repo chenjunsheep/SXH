@@ -1,12 +1,14 @@
 ﻿using Shared.Util;
 using Sxh.Client.Business;
 using Sxh.Client.Business.Logs;
+using Sxh.Client.Business.Proxy;
 using Sxh.Client.Business.Repository;
 using Sxh.Client.Business.ViewModel;
 using Sxh.Client.Util;
 using System;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Sxh.Client
@@ -42,6 +44,9 @@ namespace Sxh.Client
             var msg = await taskLogin;
             if (string.IsNullOrEmpty(msg))
             {
+                Text = "同步服务器数据...";
+                await SyncServerDataAsync();
+
                 var mainForm = new frmMain();
                 mainForm.OnWindowClosed -= MainForm_OnWindowClosed;
                 mainForm.Show();
@@ -79,6 +84,13 @@ namespace Sxh.Client
                 txtPassword.Text = def.Password;
                 txtPasswordTran.Text = def.PasswordTran;
             }
+        }
+
+        private async Task SyncServerDataAsync()
+        {
+            var proxy = new ProxyServer();
+            var dataPayments = await proxy.SyncData();
+            BusinessCache.ProjectPayments = dataPayments;
         }
 
         #endregion

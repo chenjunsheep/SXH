@@ -186,6 +186,7 @@ namespace Sxh.Client
                             try
                             {
                                 BusinessCache.PoolTranser = proxySearch.SearchAsync(searchProxy.TokenOffical, ProxySearch.Parameter.Create(settingInfo.Keywords)).Result;
+                                BusinessCache.PoolTranser.UpdateFromPayment(BusinessCache.ProjectPayments);
                             }
                             catch (Exception ex)
                             {

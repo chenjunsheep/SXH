@@ -42,5 +42,16 @@ namespace Sxh.Client.Business.Model
         {
             IsLocked = false;
         }
+
+        public void UpdateFromPayment(IEnumerable<ClientPaymentItem> payments)
+        {
+            if (Count > 0 && payments != null && payments.Count() > 0)
+            {
+                var list = (from tran in rowSet
+                            join payment in payments on tran.projectId equals payment.Id
+                            select ClientPortionTransferItem.Create(tran, payment)).ToList();
+                rowSet = list;
+            }
+        }
     }
 }

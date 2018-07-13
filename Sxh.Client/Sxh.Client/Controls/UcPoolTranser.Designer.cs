@@ -32,9 +32,11 @@
             this.projectId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.minTransferingRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Yijia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NextRemainDay = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.projectTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DisplayTransferingRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DisplayYijia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DisplayNextRemainDay = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.transferingCopies = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.minTransferingPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.advicePrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,9 +54,11 @@
             this.projectId,
             this.minTransferingRate,
             this.Yijia,
+            this.NextRemainDay,
             this.projectTitle,
             this.DisplayTransferingRate,
             this.DisplayYijia,
+            this.DisplayNextRemainDay,
             this.transferingCopies,
             this.minTransferingPrice,
             this.advicePrice});
@@ -97,6 +101,15 @@
             this.Yijia.Visible = false;
             this.Yijia.Width = 84;
             // 
+            // NextRemainDay
+            // 
+            this.NextRemainDay.DataPropertyName = "NextRemainDay";
+            this.NextRemainDay.HeaderText = "下次付息Val";
+            this.NextRemainDay.Name = "NextRemainDay";
+            this.NextRemainDay.ReadOnly = true;
+            this.NextRemainDay.Visible = false;
+            this.NextRemainDay.Width = 96;
+            // 
             // projectTitle
             // 
             this.projectTitle.DataPropertyName = "projectTitle";
@@ -121,6 +134,14 @@
             this.DisplayYijia.Name = "DisplayYijia";
             this.DisplayYijia.ReadOnly = true;
             this.DisplayYijia.Width = 66;
+            // 
+            // DisplayNextRemainDay
+            // 
+            this.DisplayNextRemainDay.DataPropertyName = "DisplayNextRemainDay";
+            this.DisplayNextRemainDay.HeaderText = "下次付息";
+            this.DisplayNextRemainDay.Name = "DisplayNextRemainDay";
+            this.DisplayNextRemainDay.ReadOnly = true;
+            this.DisplayNextRemainDay.Width = 78;
             // 
             // transferingCopies
             // 
@@ -164,9 +185,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn projectId;
         private System.Windows.Forms.DataGridViewTextBoxColumn minTransferingRate;
         private System.Windows.Forms.DataGridViewTextBoxColumn Yijia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NextRemainDay;
         private System.Windows.Forms.DataGridViewTextBoxColumn projectTitle;
         private System.Windows.Forms.DataGridViewTextBoxColumn DisplayTransferingRate;
         private System.Windows.Forms.DataGridViewTextBoxColumn DisplayYijia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DisplayNextRemainDay;
         private System.Windows.Forms.DataGridViewTextBoxColumn transferingCopies;
         private System.Windows.Forms.DataGridViewTextBoxColumn minTransferingPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn advicePrice;

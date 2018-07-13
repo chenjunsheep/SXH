@@ -44,5 +44,44 @@ namespace Sxh.Client.Business.Model
             }
             return 0;
         }
+
+        public double NextRemainDay { get; set; }
+        public string DisplayNextRemainDay
+        {
+            get
+            {
+                return NextRemainDay >= 0 ? $"{(int)NextRemainDay}天" : "-";
+            }
+        }
+
+        public static ClientPortionTransferItem Create(ClientPortionTransferItem trans, ClientPaymentItem payment)
+        {
+            var item = new ClientPortionTransferItem();
+
+            if (trans != null)
+            {
+                item.acquisitionCopies = trans.acquisitionCopies;
+                item.advicePrice = trans.advicePrice;
+                item.annualizedReturnRate = trans.annualizedReturnRate;
+                item.latestRate = trans.latestRate;
+                item.latestReturnRate = trans.latestReturnRate;
+                item.latestTransPrice = trans.latestTransPrice;
+                item.maxAcquisitionPrice = trans.maxAcquisitionPrice;
+                item.maxAcquisitionRate = trans.maxAcquisitionRate;
+                item.minTransferingPrice = trans.minTransferingPrice;
+                item.minTransferingRate = trans.minTransferingRate;
+                item.projectId = trans.projectId;
+                item.projectTitle = trans.projectTitle;
+                item.remainingDays = trans.remainingDays;
+                item.transferingCopies = trans.transferingCopies;
+            }
+
+            if (payment != null)
+            {
+                item.NextRemainDay = payment.NextRemainDay;
+            }
+
+            return item;
+        }
     }
 }

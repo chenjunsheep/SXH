@@ -54,6 +54,8 @@
     <Compile Include="Logs\LogType.cs" />
     <Compile Include="Model\ClientCapitalFlowItem.cs" />
     <Compile Include="Model\ClientCapitalFlowList.cs" />
+    <Compile Include="Model\ClientPaymentItem.cs" />
+    <Compile Include="Model\ClientPaymentList.cs" />
     <Compile Include="Model\ClientPortionTransferItem.cs" />
     <Compile Include="Model\ClientPortionTransferList.cs" />
     <Compile Include="Model\User.cs" />
@@ -68,6 +70,7 @@
     <Compile Include="Proxy\ProxyDecoder.cs" />
     <Compile Include="Proxy\ProxyLogin.cs" />
     <Compile Include="Proxy\ProxySearch.cs" />
+    <Compile Include="Proxy\ProxyServer.cs" />
     <Compile Include="Proxy\ProxyUserAccount.cs" />
     <Compile Include="Proxy\ProxyUserProxy.cs" />
     <Compile Include="Repository\BaseRepository.cs" />

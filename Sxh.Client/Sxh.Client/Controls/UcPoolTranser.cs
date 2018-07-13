@@ -204,6 +204,8 @@ namespace Sxh.Client.Controls
             public const string GridColRateDisplay = "DisplayTransferingRate";
             public const string GridColYijia = "Yijia";
             public const string GridColYijiaDisplay = "DisplayYijia";
+            public const string GridColNextRemainDay = "NextRemainDay";
+            public const string GridColNextRemainDayDisplay = "DisplayNextRemainDay";
         }
     }
 }

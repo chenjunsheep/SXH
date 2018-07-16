@@ -58,6 +58,7 @@
     <Compile Include="Model\ClientPaymentList.cs" />
     <Compile Include="Model\ClientPortionTransferItem.cs" />
     <Compile Include="Model\ClientPortionTransferList.cs" />
+    <Compile Include="Model\ReportType.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\UserAccount.cs" />
     <Compile Include="Model\UserAccountCollection.cs" />

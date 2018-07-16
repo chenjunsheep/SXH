@@ -5,21 +5,25 @@ namespace Sxh.Client.Business.Model
 {
     public class ClientPortionTransferItem : PortionTransferItem
     {
-        public int NexPaymentDayRemain { get; set; }
+        #region Property
 
-        public string DisplayTransferingRate
-        {
-            get
-            {
-                return minTransferingRate.HasValue ? $"{Math.Round(minTransferingRate.Value, 2)}%" : string.Empty;
-            }
-        }
+        public double ProjectRate { get; set; }
+
+        public string PayType { get; set; }
 
         public double Yijia
         {
             get
             {
                 return minTransferingPrice.HasValue && advicePrice.HasValue ? 100 * Math.Round((minTransferingPrice.Value - advicePrice.Value) / advicePrice.Value, 4) : 0;
+            }
+        }
+
+        public string DisplayTransferingRate
+        {
+            get
+            {
+                return minTransferingRate.HasValue ? $"{Math.Round(minTransferingRate.Value, 2)}%" : string.Empty;
             }
         }
 
@@ -30,6 +34,22 @@ namespace Sxh.Client.Business.Model
                 return $"{Yijia}%";
             }
         }
+
+        public string DisplayNextRemainDay { get; set; }
+
+        public string DisplayProjectTitle
+        {
+            get
+            {
+                var prefix = ProjectRate > 0 ? $"{ProjectRate}% " : string.Empty;
+                prefix += !string.IsNullOrEmpty(PayType) ? $"{PayType} " : string.Empty;
+                return $"{prefix}{projectTitle}";
+            }
+        }
+
+        #endregion
+
+        #region Public Method
 
         public string GetProjectInformation()
         {
@@ -43,27 +63,6 @@ namespace Sxh.Client.Business.Model
                 return Math.Min(Math.Floor(availableCash / minTransferingPrice.Value / 100) * 100, transferingCopies.Value);
             }
             return 0;
-        }
-
-        public double NextRemainDay { get; set; }
-        public string DisplayNextRemainDay
-        {
-            get
-            {
-                return NextRemainDay >= 0 ? $"{(int)NextRemainDay}天" : "-";
-            }
-        }
-
-        public double ProjectRate { get; set; }
-        public string PayType { get; set; }
-        public string DisplayProjectTitle
-        {
-            get
-            {
-                var prefix = ProjectRate > 0 ? $"{ProjectRate}% " : string.Empty;
-                prefix += !string.IsNullOrEmpty(PayType) ? $"{PayType} " : string.Empty;
-                return $"{prefix}{projectTitle}";
-            }
         }
 
         public static ClientPortionTransferItem Create(ClientPortionTransferItem trans, ClientPaymentItem payment)
@@ -90,12 +89,14 @@ namespace Sxh.Client.Business.Model
 
             if (payment != null)
             {
-                item.NextRemainDay = payment.NextRemainDay;
+                item.DisplayNextRemainDay = payment.DisplayNextRemainDay;
                 item.ProjectRate = payment.Rate;
                 item.PayType = payment.PayType;
             }
 
             return item;
         }
+
+        #endregion
     }
 }

@@ -42,6 +42,7 @@
             this.flowLeft = new System.Windows.Forms.FlowLayoutPanel();
             this.btnLogs = new System.Windows.Forms.Button();
             this.btnMonitor = new System.Windows.Forms.Button();
+            this.cbReport = new System.Windows.Forms.ComboBox();
             this.ucLogs = new Sxh.Client.Controls.UcLogs();
             this.flowMessageGroups = new System.Windows.Forms.FlowLayoutPanel();
             this.lblMessage = new System.Windows.Forms.Label();
@@ -105,7 +106,7 @@
             this.pnlDashboard.Name = "pnlDashboard";
             this.pnlDashboard.RowCount = 2;
             this.pnlDashboard.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.pnlDashboard.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
+            this.pnlDashboard.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.pnlDashboard.Size = new System.Drawing.Size(628, 335);
             this.pnlDashboard.TabIndex = 0;
             // 
@@ -114,23 +115,23 @@
             this.ucPoolTranser.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucPoolTranser.Location = new System.Drawing.Point(3, 3);
             this.ucPoolTranser.Name = "ucPoolTranser";
-            this.ucPoolTranser.Size = new System.Drawing.Size(622, 300);
+            this.ucPoolTranser.Size = new System.Drawing.Size(622, 299);
             this.ucPoolTranser.TabIndex = 4;
             // 
             // pnlButtonGroup
             // 
             this.pnlButtonGroup.ColumnCount = 2;
-            this.pnlButtonGroup.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 180F));
+            this.pnlButtonGroup.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 300F));
             this.pnlButtonGroup.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.pnlButtonGroup.Controls.Add(this.flowRight, 1, 0);
             this.pnlButtonGroup.Controls.Add(this.flowLeft, 0, 0);
             this.pnlButtonGroup.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlButtonGroup.Location = new System.Drawing.Point(0, 306);
+            this.pnlButtonGroup.Location = new System.Drawing.Point(0, 305);
             this.pnlButtonGroup.Margin = new System.Windows.Forms.Padding(0);
             this.pnlButtonGroup.Name = "pnlButtonGroup";
             this.pnlButtonGroup.RowCount = 1;
             this.pnlButtonGroup.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.pnlButtonGroup.Size = new System.Drawing.Size(628, 29);
+            this.pnlButtonGroup.Size = new System.Drawing.Size(628, 30);
             this.pnlButtonGroup.TabIndex = 5;
             // 
             // flowRight
@@ -140,15 +141,15 @@
             this.flowRight.Controls.Add(this.btnSettings);
             this.flowRight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowRight.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowRight.Location = new System.Drawing.Point(180, 0);
+            this.flowRight.Location = new System.Drawing.Point(300, 0);
             this.flowRight.Margin = new System.Windows.Forms.Padding(0);
             this.flowRight.Name = "flowRight";
-            this.flowRight.Size = new System.Drawing.Size(448, 29);
+            this.flowRight.Size = new System.Drawing.Size(328, 30);
             this.flowRight.TabIndex = 6;
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(370, 3);
+            this.btnStart.Location = new System.Drawing.Point(250, 3);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(75, 23);
             this.btnStart.TabIndex = 0;
@@ -158,7 +159,7 @@
             // 
             // btnStop
             // 
-            this.btnStop.Location = new System.Drawing.Point(289, 3);
+            this.btnStop.Location = new System.Drawing.Point(169, 3);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(75, 23);
             this.btnStop.TabIndex = 1;
@@ -168,7 +169,7 @@
             // 
             // btnSettings
             // 
-            this.btnSettings.Location = new System.Drawing.Point(208, 3);
+            this.btnSettings.Location = new System.Drawing.Point(88, 3);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(75, 23);
             this.btnSettings.TabIndex = 2;
@@ -178,18 +179,19 @@
             // 
             // flowLeft
             // 
+            this.flowLeft.Controls.Add(this.cbReport);
             this.flowLeft.Controls.Add(this.btnLogs);
             this.flowLeft.Controls.Add(this.btnMonitor);
             this.flowLeft.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLeft.Location = new System.Drawing.Point(0, 0);
             this.flowLeft.Margin = new System.Windows.Forms.Padding(0);
             this.flowLeft.Name = "flowLeft";
-            this.flowLeft.Size = new System.Drawing.Size(180, 29);
+            this.flowLeft.Size = new System.Drawing.Size(300, 30);
             this.flowLeft.TabIndex = 0;
             // 
             // btnLogs
             // 
-            this.btnLogs.Location = new System.Drawing.Point(3, 3);
+            this.btnLogs.Location = new System.Drawing.Point(84, 3);
             this.btnLogs.Name = "btnLogs";
             this.btnLogs.Size = new System.Drawing.Size(75, 23);
             this.btnLogs.TabIndex = 0;
@@ -199,7 +201,7 @@
             // 
             // btnMonitor
             // 
-            this.btnMonitor.Location = new System.Drawing.Point(84, 3);
+            this.btnMonitor.Location = new System.Drawing.Point(165, 3);
             this.btnMonitor.Name = "btnMonitor";
             this.btnMonitor.Size = new System.Drawing.Size(75, 23);
             this.btnMonitor.TabIndex = 1;
@@ -207,6 +209,15 @@
             this.btnMonitor.UseVisualStyleBackColor = true;
             this.btnMonitor.Visible = false;
             this.btnMonitor.Click += new System.EventHandler(this.btnMonitor_Click);
+            // 
+            // cbReport
+            // 
+            this.cbReport.FormattingEnabled = true;
+            this.cbReport.Location = new System.Drawing.Point(3, 3);
+            this.cbReport.Name = "cbReport";
+            this.cbReport.Size = new System.Drawing.Size(75, 25);
+            this.cbReport.TabIndex = 2;
+            this.cbReport.SelectedIndexChanged += new System.EventHandler(this.cbReport_SelectedIndexChanged);
             // 
             // ucLogs
             // 
@@ -308,5 +319,6 @@
         private System.Windows.Forms.Label lblHighlight;
         private System.Windows.Forms.Label lblMessage;
         private System.Windows.Forms.Button btnMonitor;
+        private System.Windows.Forms.ComboBox cbReport;
     }
 }

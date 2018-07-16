@@ -27,5 +27,15 @@ namespace Sxh.Client.Business.Model
         {
             get { return (NextPaymentDate - DateTime.Now).TotalDays; }
         }
+
+        public string DisplayNextRemainDay
+        {
+            get { return NextRemainDay >= 0 ? $"{Math.Ceiling(NextRemainDay)}天" : "-"; }
+        }
+
+        public string DisplayFunds
+        {
+            get { return $"{Fund}/{FundTotal}"; }
+        }
     }
 }

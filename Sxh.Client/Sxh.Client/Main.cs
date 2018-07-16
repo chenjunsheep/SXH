@@ -8,6 +8,9 @@ using System.Windows.Forms;
 using Shared.Util.Extension;
 using Sxh.Shared.Tasks;
 using Sxh.Client.Monitor;
+using Shared.Util;
+using Sxh.Client.Business.Model;
+using Sxh.Client.Report;
 
 namespace Sxh.Client
 {
@@ -125,6 +128,24 @@ namespace Sxh.Client
             }
         }
 
+        private void cbReport_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var reportId = TypeParser.GetInt32Value(cbReport.SelectedValue);
+            switch (reportId)
+            {
+                case (int)ReportType.NextPayment:
+                    {
+                        var rpt = new RptNextPayment();
+                        rpt.ShowDialog();
+                    }
+                    break;
+                case (int)ReportType.None:
+                    return;
+            }
+
+            cbReport.SelectedValue = (int)ReportType.None;
+        }
+
         private void btnMonitor_Click(object sender, EventArgs e)
         {
             var monitorTransfer = new MonitorTransfer();
@@ -154,6 +175,7 @@ namespace Sxh.Client
 
             Text = $"欢迎你，{BusinessCache.UserLogin.UserName}";
             BindText();
+            InitializeReport();
 
             ucPoolTranser.OnTargeted -= UcPoolTranser_OnTargeted;
             ucPoolTranser.OnTargeted += UcPoolTranser_OnTargeted;
@@ -270,6 +292,22 @@ namespace Sxh.Client
             }
 
             ButtonGroupFreeze(false);
+        }
+
+        private void InitializeReport()
+        {
+            cbReport.Items.Clear();
+            cbReport.DisplayMember = "Name";
+            cbReport.ValueMember = "Id";
+
+            var items = new[] 
+            {
+                new { Id = (int)ReportType.None, Name = "选择报表" },
+                new { Id = (int)ReportType.NextPayment, Name = "下次付息" },
+            };
+
+            cbReport.DataSource = items;
+            cbReport.SelectedValue = (int)ReportType.None;
         }
 
         #endregion

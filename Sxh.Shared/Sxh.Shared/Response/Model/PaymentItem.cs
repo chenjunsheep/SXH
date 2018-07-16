@@ -13,5 +13,6 @@ namespace Sxh.Shared.Response.Model
         public double Rate { get; set; }
         public string PayType { get; set; }
         public DateTime LastUpdate { get; set; }
+        public int ProjectTypeId { get; set; }
     }
 }

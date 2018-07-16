@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Sxh.Db.Models
 {
@@ -64,6 +66,8 @@ namespace Sxh.Db.Models
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
                 entity.Property(e => e.Name).HasMaxLength(200);
+
+                entity.Property(e => e.ProjectTypeId).HasDefaultValueSql("((0))");
 
                 entity.HasOne(d => d.PayType)
                     .WithMany(p => p.Project)

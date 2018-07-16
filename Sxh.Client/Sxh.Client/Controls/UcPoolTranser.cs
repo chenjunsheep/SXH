@@ -72,6 +72,22 @@ namespace Sxh.Client.Controls
                 var isTargeted = false;
                 var settings = BusinessCache.Settings;
                 var colName = grid.Columns[e.ColumnIndex].Name;
+
+                //cell formatting
+                if (colName == Namespace.GridColProjectType)
+                {
+                    var typeId = TypeParser.GetInt32Value(grid.Rows[e.RowIndex].Cells[Namespace.GridColProjectTypeId].Value);
+                    if (typeId == (int)Business.Model.ProjectType.Binggou)
+                    {
+                        e.Value = Properties.Resources.ico_bing;
+                    }
+                    else
+                    {
+                        e.Value = Properties.Resources.ico_guan;
+                    }
+                }
+
+                //matching process
                 if (colName == Namespace.GridColRateDisplay)
                 {
                     var rate = TypeParser.GetDoubleValue(grid.Rows[e.RowIndex].Cells[Namespace.GridColRate].Value);
@@ -206,6 +222,8 @@ namespace Sxh.Client.Controls
             public const string GridColYijiaDisplay = "DisplayYijia";
             public const string GridColNextRemainDay = "NextRemainDay";
             public const string GridColNextRemainDayDisplay = "DisplayNextRemainDay";
+            public const string GridColProjectTypeId = "ProjectTypeId";
+            public const string GridColProjectType = "ProjectType";
         }
     }
 }

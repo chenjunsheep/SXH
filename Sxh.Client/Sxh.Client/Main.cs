@@ -11,6 +11,7 @@ using Sxh.Client.Monitor;
 using Shared.Util;
 using Sxh.Client.Business.Model;
 using Sxh.Client.Report;
+using System.Collections.Generic;
 
 namespace Sxh.Client
 {
@@ -207,14 +208,17 @@ namespace Sxh.Client
                         {
                             try
                             {
-                                BusinessCache.PoolTranser.Clear();
+                                var list = new List<ClientPortionTransferItem>();
                                 for (var i = 1; i <= settingInfo.TotalPage; i++)
                                 {
-                                    var list = proxySearch.SearchAsync(searchProxy.TokenOffical, ProxySearch.Parameter.Create(settingInfo.Keywords, i)).Result;
-                                    BusinessCache.PoolTranser.AddRange(list.rowSet);
-
+                                    var subList = proxySearch.SearchAsync(searchProxy.TokenOffical, ProxySearch.Parameter.Create(settingInfo.Keywords, i)).Result;
+                                    if (subList != null && subList.Count > 0)
+                                        list.AddRange(subList.rowSet);
                                     if(i < settingInfo.TotalPage) Task.Delay(1000);
                                 }
+
+                                BusinessCache.PoolTranser.Clear();
+                                BusinessCache.PoolTranser.AddRange(list);
                                 BusinessCache.PoolTranser.UpdateFromPayment(BusinessCache.ProjectPayments);
                             }
                             catch (Exception ex)

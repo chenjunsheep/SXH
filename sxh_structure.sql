@@ -68,6 +68,7 @@ CREATE TABLE [dbo].[Project](
 	[Deadline] [float] NOT NULL,
 	[TotalFunds] [float] NOT NULL,
 	[Rate] [float] NOT NULL,
+	[ProjectTypeId] [int] NOT NULL DEFAULT 0,
  CONSTRAINT [PK_Project] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC

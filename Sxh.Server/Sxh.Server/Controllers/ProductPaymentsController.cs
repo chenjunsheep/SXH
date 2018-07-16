@@ -35,6 +35,7 @@ namespace Sxh.Server.Controllers
                             {
                                 product.Id,
                                 product.Name,
+                                project.ProjectTypeId,
                                 NextPayment = payment.NextPayment.ToString("yyyy/MM/dd"),
                                 Freq = $"{payment.FreqCurrent}/{payment.FreqTotal}",
                                 Fund = product.TotalFunds,

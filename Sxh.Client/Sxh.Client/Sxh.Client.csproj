@@ -262,6 +262,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
+    <None Include="Resources\ico-guan.png" />
+    <None Include="Resources\ico-bing.png" />
     <None Include="Resources\pic-zhuanrang.png" />
     <None Include="Resources\pic-yuebiao.png" />
     <None Include="Resources\pic-rongzi.png" />

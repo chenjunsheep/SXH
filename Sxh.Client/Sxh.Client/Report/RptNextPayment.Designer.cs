@@ -33,6 +33,8 @@
             this.btnRefresh = new System.Windows.Forms.Button();
             this.gridNextPayment = new System.Windows.Forms.DataGridView();
             this.ProjectId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProjectTypeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProjectType = new System.Windows.Forms.DataGridViewImageColumn();
             this.ProjectName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Rate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PayType = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -87,6 +89,8 @@
             this.gridNextPayment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridNextPayment.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ProjectId,
+            this.ProjectTypeId,
+            this.ProjectType,
             this.ProjectName,
             this.Rate,
             this.PayType,
@@ -100,6 +104,7 @@
             this.gridNextPayment.RowTemplate.Height = 23;
             this.gridNextPayment.Size = new System.Drawing.Size(628, 427);
             this.gridNextPayment.TabIndex = 1;
+            this.gridNextPayment.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.gridNextPayment_CellFormatting);
             // 
             // ProjectId
             // 
@@ -108,6 +113,22 @@
             this.ProjectId.Name = "ProjectId";
             this.ProjectId.Visible = false;
             this.ProjectId.Width = 85;
+            // 
+            // ProjectTypeId
+            // 
+            this.ProjectTypeId.DataPropertyName = "ProjectTypeId";
+            this.ProjectTypeId.HeaderText = "类型Val";
+            this.ProjectTypeId.Name = "ProjectTypeId";
+            this.ProjectTypeId.Visible = false;
+            this.ProjectTypeId.Width = 75;
+            // 
+            // ProjectType
+            // 
+            this.ProjectType.HeaderText = "类型";
+            this.ProjectType.Name = "ProjectType";
+            this.ProjectType.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ProjectType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.ProjectType.Width = 57;
             // 
             // ProjectName
             // 
@@ -186,6 +207,8 @@
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.DataGridView gridNextPayment;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProjectId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProjectTypeId;
+        private System.Windows.Forms.DataGridViewImageColumn ProjectType;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProjectName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Rate;
         private System.Windows.Forms.DataGridViewTextBoxColumn PayType;

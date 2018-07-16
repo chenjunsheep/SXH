@@ -32,6 +32,8 @@
             this.projectId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.minTransferingRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Yijia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProjectTypeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProjectType = new System.Windows.Forms.DataGridViewImageColumn();
             this.projectTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DisplayTransferingRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DisplayYijia = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,6 +55,8 @@
             this.projectId,
             this.minTransferingRate,
             this.Yijia,
+            this.ProjectTypeId,
+            this.ProjectType,
             this.projectTitle,
             this.DisplayTransferingRate,
             this.DisplayYijia,
@@ -99,6 +103,24 @@
             this.Yijia.Visible = false;
             this.Yijia.Width = 84;
             // 
+            // ProjectTypeId
+            // 
+            this.ProjectTypeId.DataPropertyName = "ProjectTypeId";
+            this.ProjectTypeId.HeaderText = "ProjectTypeId";
+            this.ProjectTypeId.Name = "ProjectTypeId";
+            this.ProjectTypeId.ReadOnly = true;
+            this.ProjectTypeId.Visible = false;
+            this.ProjectTypeId.Width = 108;
+            // 
+            // ProjectType
+            // 
+            this.ProjectType.HeaderText = "类型";
+            this.ProjectType.Name = "ProjectType";
+            this.ProjectType.ReadOnly = true;
+            this.ProjectType.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ProjectType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.ProjectType.Width = 51;
+            // 
             // projectTitle
             // 
             this.projectTitle.DataPropertyName = "DisplayProjectTitle";
@@ -106,7 +128,7 @@
             this.projectTitle.Name = "projectTitle";
             this.projectTitle.ReadOnly = true;
             this.projectTitle.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.projectTitle.Width = 54;
+            this.projectTitle.Width = 51;
             // 
             // DisplayTransferingRate
             // 
@@ -114,7 +136,7 @@
             this.DisplayTransferingRate.HeaderText = "转让年化";
             this.DisplayTransferingRate.Name = "DisplayTransferingRate";
             this.DisplayTransferingRate.ReadOnly = true;
-            this.DisplayTransferingRate.Width = 78;
+            this.DisplayTransferingRate.Width = 61;
             // 
             // DisplayYijia
             // 
@@ -122,7 +144,7 @@
             this.DisplayYijia.HeaderText = "溢折率";
             this.DisplayYijia.Name = "DisplayYijia";
             this.DisplayYijia.ReadOnly = true;
-            this.DisplayYijia.Width = 66;
+            this.DisplayYijia.Width = 61;
             // 
             // DisplayNextRemainDay
             // 
@@ -130,7 +152,7 @@
             this.DisplayNextRemainDay.HeaderText = "下次付息";
             this.DisplayNextRemainDay.Name = "DisplayNextRemainDay";
             this.DisplayNextRemainDay.ReadOnly = true;
-            this.DisplayNextRemainDay.Width = 78;
+            this.DisplayNextRemainDay.Width = 61;
             // 
             // transferingCopies
             // 
@@ -138,7 +160,7 @@
             this.transferingCopies.HeaderText = "转让份数";
             this.transferingCopies.Name = "transferingCopies";
             this.transferingCopies.ReadOnly = true;
-            this.transferingCopies.Width = 78;
+            this.transferingCopies.Width = 61;
             // 
             // minTransferingPrice
             // 
@@ -146,7 +168,7 @@
             this.minTransferingPrice.HeaderText = "转让价";
             this.minTransferingPrice.Name = "minTransferingPrice";
             this.minTransferingPrice.ReadOnly = true;
-            this.minTransferingPrice.Width = 66;
+            this.minTransferingPrice.Width = 61;
             // 
             // advicePrice
             // 
@@ -154,7 +176,7 @@
             this.advicePrice.HeaderText = "建议价";
             this.advicePrice.Name = "advicePrice";
             this.advicePrice.ReadOnly = true;
-            this.advicePrice.Width = 66;
+            this.advicePrice.Width = 61;
             // 
             // UcPoolTranser
             // 
@@ -174,6 +196,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn projectId;
         private System.Windows.Forms.DataGridViewTextBoxColumn minTransferingRate;
         private System.Windows.Forms.DataGridViewTextBoxColumn Yijia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProjectTypeId;
+        private System.Windows.Forms.DataGridViewImageColumn ProjectType;
         private System.Windows.Forms.DataGridViewTextBoxColumn projectTitle;
         private System.Windows.Forms.DataGridViewTextBoxColumn DisplayTransferingRate;
         private System.Windows.Forms.DataGridViewTextBoxColumn DisplayYijia;

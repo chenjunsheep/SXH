@@ -19,6 +19,8 @@ namespace Sxh.Client.Business.Model
             }
         }
 
+        public int ProjectTypeId { get; set; }
+
         public string DisplayTransferingRate
         {
             get
@@ -92,6 +94,7 @@ namespace Sxh.Client.Business.Model
                 item.DisplayNextRemainDay = payment.DisplayNextRemainDay;
                 item.ProjectRate = payment.Rate;
                 item.PayType = payment.PayType;
+                item.ProjectTypeId = payment.ProjectTypeId;
             }
 
             return item;

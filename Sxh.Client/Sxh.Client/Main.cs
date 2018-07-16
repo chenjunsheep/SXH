@@ -185,7 +185,14 @@ namespace Sxh.Client
                         {
                             try
                             {
-                                BusinessCache.PoolTranser = proxySearch.SearchAsync(searchProxy.TokenOffical, ProxySearch.Parameter.Create(settingInfo.Keywords)).Result;
+                                BusinessCache.PoolTranser.Clear();
+                                for (var i = 1; i <= settingInfo.TotalPage; i++)
+                                {
+                                    var list = proxySearch.SearchAsync(searchProxy.TokenOffical, ProxySearch.Parameter.Create(settingInfo.Keywords, i)).Result;
+                                    BusinessCache.PoolTranser.AddRange(list.rowSet);
+
+                                    if(i < settingInfo.TotalPage) Task.Delay(1000);
+                                }
                                 BusinessCache.PoolTranser.UpdateFromPayment(BusinessCache.ProjectPayments);
                             }
                             catch (Exception ex)

@@ -112,7 +112,7 @@
             // 
             // projectTitle
             // 
-            this.projectTitle.DataPropertyName = "projectTitle";
+            this.projectTitle.DataPropertyName = "DisplayProjectTitle";
             this.projectTitle.HeaderText = "名称";
             this.projectTitle.Name = "projectTitle";
             this.projectTitle.ReadOnly = true;

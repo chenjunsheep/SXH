@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Shared.Api.Response;
+using Shared.Util.Extension;
+using Sxh.Business.Models;
 using Sxh.Db.Models;
 
 namespace Sxh.Server.Controllers
@@ -29,6 +29,7 @@ namespace Sxh.Server.Controllers
                 var query = from payment in _context.ProductPayment
                             join product in _context.Product on payment.ProductId equals product.Id
                             join project in _context.Project on product.ProjectId equals project.Id
+                            join payType in _context.PayType on project.PayTypeId equals payType.Id
                             orderby payment.NextPayment, product.Name
                             select new
                             {
@@ -39,6 +40,7 @@ namespace Sxh.Server.Controllers
                                 Fund = product.TotalFunds,
                                 FundTotal = project.TotalFunds,
                                 project.Rate,
+                                PayType = payType.Name,
                                 payment.LastUpdate,
                             };
                 var ret = await query.ToListAsync();

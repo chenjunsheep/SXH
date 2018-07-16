@@ -54,6 +54,18 @@ namespace Sxh.Client.Business.Model
             }
         }
 
+        public double ProjectRate { get; set; }
+        public string PayType { get; set; }
+        public string DisplayProjectTitle
+        {
+            get
+            {
+                var prefix = ProjectRate > 0 ? $"{ProjectRate}% " : string.Empty;
+                prefix += !string.IsNullOrEmpty(PayType) ? $"{PayType} " : string.Empty;
+                return $"{prefix}{projectTitle}";
+            }
+        }
+
         public static ClientPortionTransferItem Create(ClientPortionTransferItem trans, ClientPaymentItem payment)
         {
             var item = new ClientPortionTransferItem();
@@ -79,6 +91,8 @@ namespace Sxh.Client.Business.Model
             if (payment != null)
             {
                 item.NextRemainDay = payment.NextRemainDay;
+                item.ProjectRate = payment.Rate;
+                item.PayType = payment.PayType;
             }
 
             return item;

@@ -33,6 +33,23 @@ namespace Sxh.Client.Business.Model
             return null;
         }
 
+        public void Clear()
+        {
+            rowSet = new List<ClientPortionTransferItem>();
+        }
+
+        public void AddRange(List<ClientPortionTransferItem> source)
+        {
+            if (rowSet == null)
+            {
+                rowSet = new List<ClientPortionTransferItem>();
+            }
+            if (source != null)
+            {
+                rowSet.AddRange(source);
+            }
+        }
+
         public void Lock()
         {
             IsLocked = true;

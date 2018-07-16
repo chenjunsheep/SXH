@@ -26,7 +26,7 @@ namespace Sxh.Client.Business.Proxy
                     {
                         var formData = new FormUrlEncodedContent(new[] {
                             new KeyValuePair<string, string>("title", filter.Keyword),
-                            new KeyValuePair<string, string>("currentPage", "1"),
+                            new KeyValuePair<string, string>("currentPage", $"{filter.CurrentPage}"),
                             new KeyValuePair<string, string>("maxRowsPerPage", "15"),
                             new KeyValuePair<string, string>("projectType", string.Empty),
                             new KeyValuePair<string, string>("remainingCount", string.Empty),
@@ -66,10 +66,15 @@ namespace Sxh.Client.Business.Proxy
         public class Parameter
         {
             public string Keyword { get; set; }
+            public int CurrentPage { get; set; }
 
-            public static Parameter Create(string keywords)
+            public static Parameter Create(string keywords, int currentPage)
             {
-                return new Parameter() { Keyword = keywords };
+                return new Parameter()
+                {
+                    Keyword = keywords,
+                    CurrentPage = currentPage,
+                };
             }
         }
     }

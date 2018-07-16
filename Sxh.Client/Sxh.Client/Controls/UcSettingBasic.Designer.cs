@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.pnlMain = new System.Windows.Forms.TableLayoutPanel();
+            this.lblAuto = new System.Windows.Forms.Label();
             this.txtDelayTransfer = new System.Windows.Forms.TextBox();
             this.lblDelay = new System.Windows.Forms.Label();
             this.txtFreqTranser = new System.Windows.Forms.TextBox();
@@ -39,8 +40,9 @@
             this.lblYijia = new System.Windows.Forms.Label();
             this.lblKeyword = new System.Windows.Forms.Label();
             this.txtKeyword = new System.Windows.Forms.TextBox();
-            this.lblAuto = new System.Windows.Forms.Label();
             this.chkAutoAcquire = new System.Windows.Forms.CheckBox();
+            this.lblTotalPage = new System.Windows.Forms.Label();
+            this.txtTotalPage = new System.Windows.Forms.TextBox();
             this.pnlMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,7 +51,9 @@
             this.pnlMain.ColumnCount = 2;
             this.pnlMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.pnlMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.pnlMain.Controls.Add(this.lblAuto, 0, 5);
+            this.pnlMain.Controls.Add(this.txtTotalPage, 1, 5);
+            this.pnlMain.Controls.Add(this.lblTotalPage, 0, 5);
+            this.pnlMain.Controls.Add(this.lblAuto, 0, 6);
             this.pnlMain.Controls.Add(this.txtDelayTransfer, 1, 4);
             this.pnlMain.Controls.Add(this.lblDelay, 0, 4);
             this.pnlMain.Controls.Add(this.txtFreqTranser, 1, 3);
@@ -60,12 +64,13 @@
             this.pnlMain.Controls.Add(this.lblYijia, 0, 1);
             this.pnlMain.Controls.Add(this.lblKeyword, 0, 0);
             this.pnlMain.Controls.Add(this.txtKeyword, 1, 0);
-            this.pnlMain.Controls.Add(this.chkAutoAcquire, 1, 5);
+            this.pnlMain.Controls.Add(this.chkAutoAcquire, 1, 6);
             this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMain.Location = new System.Drawing.Point(0, 0);
             this.pnlMain.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.RowCount = 7;
+            this.pnlMain.RowCount = 8;
+            this.pnlMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.pnlMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.pnlMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.pnlMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
@@ -73,8 +78,19 @@
             this.pnlMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.pnlMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.pnlMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.pnlMain.Size = new System.Drawing.Size(240, 200);
+            this.pnlMain.Size = new System.Drawing.Size(240, 228);
             this.pnlMain.TabIndex = 0;
+            // 
+            // lblAuto
+            // 
+            this.lblAuto.AutoSize = true;
+            this.lblAuto.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblAuto.Location = new System.Drawing.Point(3, 168);
+            this.lblAuto.Name = "lblAuto";
+            this.lblAuto.Size = new System.Drawing.Size(94, 28);
+            this.lblAuto.TabIndex = 12;
+            this.lblAuto.Text = "自动收购";
+            this.lblAuto.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtDelayTransfer
             // 
@@ -176,26 +192,37 @@
             this.txtKeyword.Size = new System.Drawing.Size(134, 23);
             this.txtKeyword.TabIndex = 1;
             // 
-            // lblAuto
-            // 
-            this.lblAuto.AutoSize = true;
-            this.lblAuto.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblAuto.Location = new System.Drawing.Point(3, 140);
-            this.lblAuto.Name = "lblAuto";
-            this.lblAuto.Size = new System.Drawing.Size(94, 28);
-            this.lblAuto.TabIndex = 12;
-            this.lblAuto.Text = "自动收购";
-            this.lblAuto.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // chkAutoAcquire
             // 
             this.chkAutoAcquire.AutoSize = true;
             this.chkAutoAcquire.Dock = System.Windows.Forms.DockStyle.Left;
-            this.chkAutoAcquire.Location = new System.Drawing.Point(103, 143);
+            this.chkAutoAcquire.Location = new System.Drawing.Point(103, 171);
             this.chkAutoAcquire.Name = "chkAutoAcquire";
             this.chkAutoAcquire.Size = new System.Drawing.Size(15, 22);
             this.chkAutoAcquire.TabIndex = 13;
             this.chkAutoAcquire.UseVisualStyleBackColor = true;
+            // 
+            // lblTotalPage
+            // 
+            this.lblTotalPage.AutoSize = true;
+            this.lblTotalPage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTotalPage.Location = new System.Drawing.Point(3, 140);
+            this.lblTotalPage.Name = "lblTotalPage";
+            this.lblTotalPage.Size = new System.Drawing.Size(94, 28);
+            this.lblTotalPage.TabIndex = 14;
+            this.lblTotalPage.Text = "总页数";
+            this.lblTotalPage.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtTotalPage
+            // 
+            this.txtTotalPage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtTotalPage.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.txtTotalPage.Location = new System.Drawing.Point(103, 146);
+            this.txtTotalPage.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
+            this.txtTotalPage.Name = "txtTotalPage";
+            this.txtTotalPage.Size = new System.Drawing.Size(134, 23);
+            this.txtTotalPage.TabIndex = 15;
+            this.txtTotalPage.Text = "1";
             // 
             // UcSettingBasic
             // 
@@ -205,7 +232,7 @@
             this.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "UcSettingBasic";
-            this.Size = new System.Drawing.Size(240, 200);
+            this.Size = new System.Drawing.Size(240, 228);
             this.pnlMain.ResumeLayout(false);
             this.pnlMain.PerformLayout();
             this.ResumeLayout(false);
@@ -227,5 +254,7 @@
         private System.Windows.Forms.TextBox txtDelayTransfer;
         private System.Windows.Forms.Label lblAuto;
         private System.Windows.Forms.CheckBox chkAutoAcquire;
+        private System.Windows.Forms.Label lblTotalPage;
+        private System.Windows.Forms.TextBox txtTotalPage;
     }
 }

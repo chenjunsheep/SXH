@@ -26,6 +26,7 @@ namespace Sxh.Client.Controls
             txtRate.Text = $"{BusinessCache.Settings.Rate}";
             txtFreqTranser.Text = $"{BusinessCache.Settings.FreqTransfer}";
             txtDelayTransfer.Text = $"{BusinessCache.Settings.DelayTransfer}";
+            txtTotalPage.Text = $"{BusinessCache.Settings.TotalPage}";
             chkAutoAcquire.Checked = BusinessCache.Settings.AutoAcquire;
         }
 
@@ -36,6 +37,7 @@ namespace Sxh.Client.Controls
             BusinessCache.Settings.Rate = TypeParser.GetDouble(txtRate.Text);
             BusinessCache.Settings.FreqTransfer = TypeParser.GetInt32Value(txtFreqTranser.Text, 60);
             BusinessCache.Settings.DelayTransfer = TypeParser.GetInt32Value(txtDelayTransfer.Text);
+            BusinessCache.Settings.TotalPage = TypeParser.GetInt32Value(txtTotalPage.Text);
             BusinessCache.Settings.AutoAcquire = chkAutoAcquire.Checked;
             BusinessCache.Settings.TrySaveToConfig();
             return true;

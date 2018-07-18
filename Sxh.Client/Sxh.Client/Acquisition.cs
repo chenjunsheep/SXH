@@ -212,17 +212,6 @@ namespace Sxh.Client
             this.UiFreeze(true);
             Close();
 
-            //if (ret.IsSuccess)
-            //{
-            //    Close();
-            //}
-            //else
-            //{
-            //    await GetVerifyCodeAsync(Account);
-            //    Account = BusinessCache.UserAccounts.GetAccount(Account.UserName);
-            //    if (Account != null) txtAccount.Text = $"{Account.Cash}";
-            //}
-
             if (!string.IsNullOrEmpty(ret.Message))
                 LogManager.Instance.Message(ret.Message);
         }

@@ -203,7 +203,7 @@ namespace Sxh.Client
                     {
                         var delay = (rd.Next(0, settingInfo.DelayTransfer));
 
-                        var searchProxy = BusinessCache.UserProxies.GetRandomProxy();
+                        var searchProxy = BusinessCache.UserProxies.GetRandomProxy(settingInfo.TotalPage);
                         if (searchProxy != null)
                         {
                             try

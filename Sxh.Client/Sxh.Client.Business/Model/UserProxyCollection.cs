@@ -14,14 +14,14 @@ namespace Sxh.Client.Business.Model
             LoadFromFile();
         }
 
-        public UserProxy GetRandomProxy()
+        public UserProxy GetRandomProxy(int weight)
         {
             var rd = new Random(DateTime.Now.Second);
             var proxies = FindAll(p => p.Enabled).OrderBy(p => rd.Next()).OrderBy(p => p.Weight).ToList();
             if (proxies != null && proxies.Count > 0)
             {
                 var targetProxy = proxies[0];
-                SetWeight(targetProxy.UserName);
+                SetWeight(targetProxy.UserName, weight);
                 return targetProxy;
             }
             return null;
@@ -38,12 +38,12 @@ namespace Sxh.Client.Business.Model
             return null;
         }
 
-        public UserProxy SetWeight(string userName)
+        public UserProxy SetWeight(string userName, int weight)
         {
             var target = this.FirstOrDefault(u => u.UserName == userName);
             if (target != null)
             {
-                target.Weight++;
+                target.Weight += weight;
                 return target;
             }
             return null;

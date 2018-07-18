@@ -55,7 +55,7 @@ namespace Sxh.Client.Business.Model
 
         public string GetProjectInformation()
         {
-            return $"{DisplayTransferingRate}/{DisplayYijia} {transferingCopies} {projectTitle}";
+            return $"{DisplayProjectTitle} {DisplayTransferingRate}/{DisplayYijia} {transferingCopies}份";
         }
 
         public double GetAvailableCopies(double availableCash)

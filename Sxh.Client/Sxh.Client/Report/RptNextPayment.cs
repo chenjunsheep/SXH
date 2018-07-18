@@ -4,6 +4,7 @@ using Sxh.Client.Business.Proxy;
 using Sxh.Client.Util;
 using System;
 using System.Drawing;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -48,7 +49,7 @@ namespace Sxh.Client.Report
         {
             this.UiFreeze(false);
             await SyncServerDataAsync();
-            BindData();
+            BindData(txtKeword.Text);
             this.UiFreeze(true);
         }
 
@@ -62,9 +63,14 @@ namespace Sxh.Client.Report
             BindData();
         }
 
-        private void BindData()
+        private void BindData(string keyword = null)
         {
-            gridNextPayment.DataSource = BusinessCache.ProjectPayments;
+            var ds = BusinessCache.ProjectPayments.ToList();
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                ds = ds.FindAll(p => p.Name.Contains(keyword));
+            }
+            gridNextPayment.DataSource = ds;
         }
 
         private async Task SyncServerDataAsync()

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RptNextPayment));
             this.pnlMain = new System.Windows.Forms.TableLayoutPanel();
             this.flowButtonGroup = new System.Windows.Forms.FlowLayoutPanel();
             this.btnRefresh = new System.Windows.Forms.Button();
@@ -42,6 +43,7 @@
             this.NextPaymentRemain = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Freq = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fund = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtKeword = new System.Windows.Forms.TextBox();
             this.pnlMain.SuspendLayout();
             this.flowButtonGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridNextPayment)).BeginInit();
@@ -65,6 +67,7 @@
             // 
             // flowButtonGroup
             // 
+            this.flowButtonGroup.Controls.Add(this.txtKeword);
             this.flowButtonGroup.Controls.Add(this.btnRefresh);
             this.flowButtonGroup.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowButtonGroup.Location = new System.Drawing.Point(0, 0);
@@ -75,7 +78,7 @@
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(3, 3);
+            this.btnRefresh.Location = new System.Drawing.Point(109, 3);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(75, 23);
             this.btnRefresh.TabIndex = 0;
@@ -179,6 +182,13 @@
             this.Fund.Name = "Fund";
             this.Fund.Width = 57;
             // 
+            // txtKeword
+            // 
+            this.txtKeword.Location = new System.Drawing.Point(3, 3);
+            this.txtKeword.Name = "txtKeword";
+            this.txtKeword.Size = new System.Drawing.Size(100, 23);
+            this.txtKeword.TabIndex = 1;
+            // 
             // RptNextPayment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -187,14 +197,16 @@
             this.ClientSize = new System.Drawing.Size(634, 461);
             this.Controls.Add(this.pnlMain);
             this.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "RptNextPayment";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "下次付息项目列表";
+            this.Text = "下次付息项目报表";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.RptNextPayment_Load);
             this.pnlMain.ResumeLayout(false);
             this.flowButtonGroup.ResumeLayout(false);
+            this.flowButtonGroup.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridNextPayment)).EndInit();
             this.ResumeLayout(false);
 
@@ -216,5 +228,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn NextPaymentRemain;
         private System.Windows.Forms.DataGridViewTextBoxColumn Freq;
         private System.Windows.Forms.DataGridViewTextBoxColumn Fund;
+        private System.Windows.Forms.TextBox txtKeword;
     }
 }

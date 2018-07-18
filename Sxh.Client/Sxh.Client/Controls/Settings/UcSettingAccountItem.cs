@@ -7,7 +7,7 @@ using Sxh.Client.Business;
 using Sxh.Client.Business.Proxy;
 using Sxh.Client.Util;
 
-namespace Sxh.Client.Controls
+namespace Sxh.Client.Controls.Settings
 {
     public partial class UcSettingAccountItem : UserControl
     {

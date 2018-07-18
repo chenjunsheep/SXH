@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Shared.Util.Model;
 using Sxh.Client.Business.Model;
 using System;
 using System.Net;

@@ -95,34 +95,34 @@
     <Compile Include="Controls\UcPoolTranser.Designer.cs">
       <DependentUpon>UcPoolTranser.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\UcSettingAccount.cs">
+    <Compile Include="Controls\Settings\UcSettingAccount.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\UcSettingAccount.Designer.cs">
+    <Compile Include="Controls\Settings\UcSettingAccount.Designer.cs">
       <DependentUpon>UcSettingAccount.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\UcSettingAccountItem.cs">
+    <Compile Include="Controls\Settings\UcSettingAccountItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\UcSettingAccountItem.Designer.cs">
+    <Compile Include="Controls\Settings\UcSettingAccountItem.Designer.cs">
       <DependentUpon>UcSettingAccountItem.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\UcSettingBasic.cs">
+    <Compile Include="Controls\Settings\UcSettingBasic.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\UcSettingBasic.Designer.cs">
+    <Compile Include="Controls\Settings\UcSettingBasic.Designer.cs">
       <DependentUpon>UcSettingBasic.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\UcSettingProxy.cs">
+    <Compile Include="Controls\Settings\UcSettingProxy.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\UcSettingProxy.Designer.cs">
+    <Compile Include="Controls\Settings\UcSettingProxy.Designer.cs">
       <DependentUpon>UcSettingProxy.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\UcSettingProxyItem.cs">
+    <Compile Include="Controls\Settings\UcSettingProxyItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\UcSettingProxyItem.Designer.cs">
+    <Compile Include="Controls\Settings\UcSettingProxyItem.Designer.cs">
       <DependentUpon>UcSettingProxyItem.cs</DependentUpon>
     </Compile>
     <Compile Include="Login.cs">
@@ -137,11 +137,11 @@
     <Compile Include="Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
-    <Compile Include="Monitor\MonitorTransfer.cs">
+    <Compile Include="Monitor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Monitor\MonitorTransfer.Designer.cs">
-      <DependentUpon>MonitorTransfer.cs</DependentUpon>
+    <Compile Include="Monitor.Designer.cs">
+      <DependentUpon>Monitor.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -167,19 +167,19 @@
     <EmbeddedResource Include="Controls\UcPoolTranser.resx">
       <DependentUpon>UcPoolTranser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\UcSettingAccount.resx">
+    <EmbeddedResource Include="Controls\Settings\UcSettingAccount.resx">
       <DependentUpon>UcSettingAccount.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\UcSettingAccountItem.resx">
+    <EmbeddedResource Include="Controls\Settings\UcSettingAccountItem.resx">
       <DependentUpon>UcSettingAccountItem.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\UcSettingBasic.resx">
+    <EmbeddedResource Include="Controls\Settings\UcSettingBasic.resx">
       <DependentUpon>UcSettingBasic.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\UcSettingProxy.resx">
+    <EmbeddedResource Include="Controls\Settings\UcSettingProxy.resx">
       <DependentUpon>UcSettingProxy.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\UcSettingProxyItem.resx">
+    <EmbeddedResource Include="Controls\Settings\UcSettingProxyItem.resx">
       <DependentUpon>UcSettingProxyItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
@@ -188,8 +188,8 @@
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Monitor\MonitorTransfer.resx">
-      <DependentUpon>MonitorTransfer.cs</DependentUpon>
+    <EmbeddedResource Include="Monitor.resx">
+      <DependentUpon>Monitor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -267,6 +267,9 @@
     <None Include="Resources\pic-zhuanrang.png" />
     <None Include="Resources\pic-yuebiao.png" />
     <None Include="Resources\pic-rongzi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controls\Monitor\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

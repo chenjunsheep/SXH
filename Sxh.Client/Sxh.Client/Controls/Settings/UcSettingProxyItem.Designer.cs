@@ -1,4 +1,4 @@
-﻿namespace Sxh.Client.Controls
+﻿namespace Sxh.Client.Controls.Settings
 {
     partial class UcSettingProxyItem
     {

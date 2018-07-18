@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Net.Http.Headers;
 using Shared.Util.Extension;
+using Shared.Util.Model;
 
 namespace Sxh.Client.Business.Proxy
 {
@@ -30,31 +31,21 @@ namespace Sxh.Client.Business.Proxy
             return client;
         }
 
-        /// <summary>
-        /// build URL of offical site
-        /// </summary>
-        /// <param name="path"></param>
-        /// <returns>Uri of offical site</returns>
         public static Uri CreateUri(string path)
         {
             return CreateUri(path, AppSetting.Instance.Host);
         }
 
-        /// <summary>
-        /// build customized URL
-        /// </summary>
-        /// <param name="path">path</param>
-        /// <param name="domain">domain</param>
-        /// <returns>customized Uri</returns>
         public static Uri CreateUri(string path, string domain)
         {
-            var uri = new Uri($"http://{domain}").AddPath(path);
+            var uri = CreateUri(path, domain, HttpSchema.HTTP);
             return uri;
         }
-    }
 
-    public class MediaType
-    {
-        public const string JSON = "application/json";
+        public static Uri CreateUri(string path, string domain, string httpSchema)
+        {
+            var uri = new Uri($"{httpSchema}{domain}").AddPath(path);
+            return uri;
+        }
     }
 }

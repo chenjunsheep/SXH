@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Shared.Util.Extension;
 using Sxh.Shared.Tasks;
-using Sxh.Client.Monitor;
 using Shared.Util;
 using Sxh.Client.Business.Model;
 using Sxh.Client.Report;
@@ -149,7 +148,7 @@ namespace Sxh.Client
 
         private void btnMonitor_Click(object sender, EventArgs e)
         {
-            var monitorTransfer = new MonitorTransfer();
+            var monitorTransfer = new Monitor();
             monitorTransfer.StartPosition = FormStartPosition.CenterScreen;
             monitorTransfer.Show();
         }

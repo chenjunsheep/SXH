@@ -4,7 +4,7 @@ using Sxh.Client.Business;
 using Shared.Util;
 using Sxh.Client.Util;
 
-namespace Sxh.Client.Controls
+namespace Sxh.Client.Controls.Settings
 {
     public partial class UcSettingBasic : UserControl
     {

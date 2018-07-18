@@ -15,19 +15,9 @@ namespace Sxh.Client.Business.Proxy
     {
         #region Property
 
-        //private User Account { get; set; }
-        //private ClientPortionTransferItem Project { get; set; }
-        //private TokenAcquisition TokenInfo { get; set; }
-
         #endregion
 
         #region Constructor
-
-        //public ProxyAcquisition()
-        //{
-        //    Account = account;
-        //    Project = project;
-        //}
 
         #endregion
 

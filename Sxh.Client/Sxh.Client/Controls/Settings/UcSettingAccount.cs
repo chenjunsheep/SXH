@@ -7,7 +7,7 @@ using System.Windows.Forms;
 using Sxh.Shared.Tasks;
 using Sxh.Client.Business;
 
-namespace Sxh.Client.Controls
+namespace Sxh.Client.Controls.Settings
 {
     public partial class UcSettingAccount : UserControl
     {

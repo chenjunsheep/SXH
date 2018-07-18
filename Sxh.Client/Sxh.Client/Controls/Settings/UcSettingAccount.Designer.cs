@@ -1,6 +1,6 @@
-﻿namespace Sxh.Client.Controls
+﻿namespace Sxh.Client.Controls.Settings
 {
-    partial class UcSettingProxy
+    partial class UcSettingAccount
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.pnlMain = new System.Windows.Forms.TableLayoutPanel();
-            this.flowProxy = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowAccount = new System.Windows.Forms.FlowLayoutPanel();
             this.flowButtonGroup = new System.Windows.Forms.FlowLayoutPanel();
             this.btnLoginBulk = new System.Windows.Forms.Button();
             this.chkLoginProtect = new System.Windows.Forms.CheckBox();
@@ -41,7 +41,7 @@
             // 
             this.pnlMain.ColumnCount = 1;
             this.pnlMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.pnlMain.Controls.Add(this.flowProxy, 0, 1);
+            this.pnlMain.Controls.Add(this.flowAccount, 0, 1);
             this.pnlMain.Controls.Add(this.flowButtonGroup, 0, 0);
             this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMain.Location = new System.Drawing.Point(0, 0);
@@ -50,18 +50,18 @@
             this.pnlMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.pnlMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.pnlMain.Size = new System.Drawing.Size(300, 200);
-            this.pnlMain.TabIndex = 0;
+            this.pnlMain.TabIndex = 1;
             // 
-            // flowProxy
+            // flowAccount
             // 
-            this.flowProxy.AutoScroll = true;
-            this.flowProxy.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowProxy.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowProxy.Location = new System.Drawing.Point(3, 32);
-            this.flowProxy.Name = "flowProxy";
-            this.flowProxy.Size = new System.Drawing.Size(294, 165);
-            this.flowProxy.TabIndex = 1;
-            this.flowProxy.WrapContents = false;
+            this.flowAccount.AutoScroll = true;
+            this.flowAccount.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowAccount.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowAccount.Location = new System.Drawing.Point(3, 32);
+            this.flowAccount.Name = "flowAccount";
+            this.flowAccount.Size = new System.Drawing.Size(294, 165);
+            this.flowAccount.TabIndex = 1;
+            this.flowAccount.WrapContents = false;
             // 
             // flowButtonGroup
             // 
@@ -96,16 +96,16 @@
             this.chkLoginProtect.Text = "登陆保护";
             this.chkLoginProtect.UseVisualStyleBackColor = true;
             // 
-            // UcSettingProxy
+            // UcSettingAccount
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pnlMain);
             this.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "UcSettingProxy";
+            this.Name = "UcSettingAccount";
             this.Size = new System.Drawing.Size(300, 200);
-            this.Load += new System.EventHandler(this.UcSettingProxy_Load);
+            this.Load += new System.EventHandler(this.UcSettingAccount_Load);
             this.pnlMain.ResumeLayout(false);
             this.flowButtonGroup.ResumeLayout(false);
             this.flowButtonGroup.PerformLayout();
@@ -116,7 +116,7 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel pnlMain;
-        private System.Windows.Forms.FlowLayoutPanel flowProxy;
+        private System.Windows.Forms.FlowLayoutPanel flowAccount;
         private System.Windows.Forms.FlowLayoutPanel flowButtonGroup;
         private System.Windows.Forms.Button btnLoginBulk;
         private System.Windows.Forms.CheckBox chkLoginProtect;

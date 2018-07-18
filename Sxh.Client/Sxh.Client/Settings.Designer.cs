@@ -34,11 +34,11 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.tabSettings = new System.Windows.Forms.TabControl();
             this.tabBasic = new System.Windows.Forms.TabPage();
-            this.ucSettingBasic = new Sxh.Client.Controls.UcSettingBasic();
+            this.ucSettingBasic = new Sxh.Client.Controls.Settings.UcSettingBasic();
             this.tabProxy = new System.Windows.Forms.TabPage();
-            this.ucSettingProxy = new Sxh.Client.Controls.UcSettingProxy();
+            this.ucSettingProxy = new Sxh.Client.Controls.Settings.UcSettingProxy();
             this.tabAcount = new System.Windows.Forms.TabPage();
-            this.ucSettingAccount = new Sxh.Client.Controls.UcSettingAccount();
+            this.ucSettingAccount = new Sxh.Client.Controls.Settings.UcSettingAccount();
             this.pnlMain.SuspendLayout();
             this.flowButtonGroup.SuspendLayout();
             this.tabSettings.SuspendLayout();
@@ -199,8 +199,8 @@
         private System.Windows.Forms.TabPage tabBasic;
         private System.Windows.Forms.TabPage tabProxy;
         private System.Windows.Forms.TabPage tabAcount;
-        private Controls.UcSettingBasic ucSettingBasic;
-        private Controls.UcSettingProxy ucSettingProxy;
-        private Controls.UcSettingAccount ucSettingAccount;
+        private Controls.Settings.UcSettingBasic ucSettingBasic;
+        private Controls.Settings.UcSettingProxy ucSettingProxy;
+        private Controls.Settings.UcSettingAccount ucSettingAccount;
     }
 }

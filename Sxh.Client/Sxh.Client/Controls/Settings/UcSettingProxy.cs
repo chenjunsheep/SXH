@@ -6,7 +6,7 @@ using System.Windows.Forms;
 using Sxh.Client.Business;
 using Sxh.Shared.Tasks;
 
-namespace Sxh.Client.Controls
+namespace Sxh.Client.Controls.Settings
 {
     public partial class UcSettingProxy : UserControl
     {

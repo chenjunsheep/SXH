@@ -214,7 +214,7 @@
             this.btnMonitor.Name = "btnMonitor";
             this.btnMonitor.Size = new System.Drawing.Size(75, 23);
             this.btnMonitor.TabIndex = 1;
-            this.btnMonitor.Text = "小蜜蜂";
+            this.btnMonitor.Text = "监视器";
             this.btnMonitor.UseVisualStyleBackColor = true;
             this.btnMonitor.Visible = false;
             this.btnMonitor.Click += new System.EventHandler(this.btnMonitor_Click);

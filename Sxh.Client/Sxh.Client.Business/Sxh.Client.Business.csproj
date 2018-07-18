@@ -58,6 +58,9 @@
     <Compile Include="Model\ClientPaymentList.cs" />
     <Compile Include="Model\ClientPortionTransferItem.cs" />
     <Compile Include="Model\ClientPortionTransferList.cs" />
+    <Compile Include="Model\ClientProjectInvestmentItem.cs" />
+    <Compile Include="Model\ClientProjectInvestmentList.cs" />
+    <Compile Include="Model\PeriodType.cs" />
     <Compile Include="Model\ProjectType.cs" />
     <Compile Include="Model\ReportType.cs" />
     <Compile Include="Model\User.cs" />
@@ -71,12 +74,14 @@
     <Compile Include="Proxy\ProxyBase.cs" />
     <Compile Include="Proxy\ProxyDecoder.cs" />
     <Compile Include="Proxy\ProxyLogin.cs" />
+    <Compile Include="Proxy\ProxyProjectInvestment.cs" />
     <Compile Include="Proxy\ProxySearch.cs" />
     <Compile Include="Proxy\ProxyServer.cs" />
     <Compile Include="Proxy\ProxyUserAccount.cs" />
     <Compile Include="Proxy\ProxyUserProxy.cs" />
     <Compile Include="Repository\BaseRepository.cs" />
     <Compile Include="Repository\LoginRepository.cs" />
+    <Compile Include="Util\LogicExtension.cs" />
     <Compile Include="ViewModel\VmAcquire.cs" />
     <Compile Include="ViewModel\VmLogin.cs" />
     <Compile Include="YdmWrapper.cs" />

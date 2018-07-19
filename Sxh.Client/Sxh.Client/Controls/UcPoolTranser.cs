@@ -218,7 +218,7 @@ namespace Sxh.Client.Controls
             }
             else
             {
-                var target = TypeParser.GetInt32Value(grid.Rows[rowIndex].Cells[Namespace.GridColNextRemainDay].Value);
+                var target = Math.Ceiling(TypeParser.GetDoubleValue(grid.Rows[rowIndex].Cells[Namespace.GridColNextRemainDay].Value));
                 if (target > 0 && target <= settings.NextPayment.Value)
                 {
                     status = MatchNextPaymentStatus.Match;

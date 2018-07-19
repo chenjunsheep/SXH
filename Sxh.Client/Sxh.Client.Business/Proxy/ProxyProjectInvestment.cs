@@ -3,12 +3,8 @@ using Shared.Util.Extension;
 using Shared.Util.Model;
 using Sxh.Client.Business.Model;
 using Sxh.Client.Business.Util;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Sxh.Client.Business.Proxy
@@ -26,6 +22,7 @@ namespace Sxh.Client.Business.Proxy
                 {
                     CookieContainer = cookieJar,
                     UseCookies = true,
+                    AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
                 })
                 {
                     using (var client = CreateHttpClient(AppSetting.Instance.HostTzb, handler))

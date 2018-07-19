@@ -4,7 +4,7 @@
     {
         public int id { get; set; }
         public string memberName { get; set; }
-        public int period { get; set; }
+        public string period { get; set; }
         public string periodUnit { get; set; }
         public double projectSchedule { get; set; }
         public int ratePart1 { get; set; }

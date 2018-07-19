@@ -1,4 +1,5 @@
 ﻿using Shared.Util.Extension;
+using Shared.Util.Model;
 using Sxh.Client.Business.ViewModel;
 using System.Collections.Generic;
 using System.Net;

@@ -1,5 +1,6 @@
 ﻿using Sxh.Client.Business;
 using Sxh.Client.Business.Proxy;
+using Sxh.Client.Business.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,8 +24,42 @@ namespace Sxh.Client
         {
             var para = new ProxyProjectInvestment.Parameter() { PeriodType = Business.Model.PeriodType.Month1 };
             var proxy = new ProxyProjectInvestment();
-            var ret = await proxy.SearchAsync(BusinessCache.UserProxies.GetRandomProxy(0).TokenOffical, para);
-            var aaa = ret;
+            var user = BusinessCache.UserProxies.GetRandomProxy(0);
+            if (user != null)
+            {
+                if (!user.AvailableInTzb)
+                {
+                    try
+                    {
+                        var proxyLogin = new ProxyUserProxy();
+                        var cookieTzb = await proxyLogin.LoginTzbAsync(
+                            new VmLogin()
+                            {
+                                UserName = user.UserName,
+                                Password = user.Password,
+                                PasswordTran = user.PasswordTran,
+                            });
+                        user.SetTokenTzb(cookieTzb);
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                }
+                if (user.AvailableInTzb)
+                {
+                    try
+                    {
+                        var ret = await proxy.SearchAsync(user.TokenTzb, para);
+                        var aaa = ret;
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                }
+            }
+            
         }
     }
 }

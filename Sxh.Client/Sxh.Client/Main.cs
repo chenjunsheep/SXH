@@ -262,11 +262,15 @@ namespace Sxh.Client
             msg += $"关键字: [{keyword}]";
             if (settingInfo.Yijia.HasValue)
             {
-                msg += $"; 溢价: [{settingInfo.Yijia.Value}%]";
+                msg += $"; 溢价: [≤{settingInfo.Yijia.Value}%]";
             }
             if (settingInfo.Rate.HasValue)
             {
-                msg += $"; 年化: [{settingInfo.Rate.Value}%]";
+                msg += $"; 年化: [≥{settingInfo.Rate.Value}%]";
+            }
+            if (settingInfo.NextPayment.HasValue)
+            {
+                msg += $"; 下次付息: [≤{settingInfo.NextPayment.Value}天]";
             }
             lblMessage.Text = msg;
         }

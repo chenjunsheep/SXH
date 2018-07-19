@@ -35,6 +35,7 @@ namespace Sxh.Client.Util
             setting.Keywords = TypeParser.GetStringValue(ConfigurationManager.AppSettings[UserSettings.Namespance.Keyword]);
             setting.Yijia = TypeParser.GetDouble(ConfigurationManager.AppSettings[UserSettings.Namespance.Yijia]);
             setting.Rate = TypeParser.GetDouble(ConfigurationManager.AppSettings[UserSettings.Namespance.Rate]);
+            setting.NextPayment = TypeParser.GetInt(ConfigurationManager.AppSettings[UserSettings.Namespance.NextPayment]);
             setting.FreqTransfer = TypeParser.GetInt32Value(ConfigurationManager.AppSettings[UserSettings.Namespance.FreqTransfer], 60);
             setting.DelayTransfer = TypeParser.GetInt32Value(ConfigurationManager.AppSettings[UserSettings.Namespance.DelayTransfer]);
             setting.TotalPage = TypeParser.GetInt32Value(ConfigurationManager.AppSettings[UserSettings.Namespance.TotalPage]);
@@ -49,6 +50,7 @@ namespace Sxh.Client.Util
                 config.AppSettings.Settings[UserSettings.Namespance.Keyword].Value = setting.Keywords;
                 config.AppSettings.Settings[UserSettings.Namespance.Yijia].Value = TypeParser.GetStringValue(setting.Yijia);
                 config.AppSettings.Settings[UserSettings.Namespance.Rate].Value = TypeParser.GetStringValue(setting.Rate);
+                config.AppSettings.Settings[UserSettings.Namespance.NextPayment].Value = TypeParser.GetStringValue(setting.NextPayment);
                 config.AppSettings.Settings[UserSettings.Namespance.FreqTransfer].Value = TypeParser.GetStringValue(setting.FreqTransfer);
                 config.AppSettings.Settings[UserSettings.Namespance.DelayTransfer].Value = TypeParser.GetStringValue(setting.DelayTransfer);
                 config.AppSettings.Settings[UserSettings.Namespance.TotalPage].Value = TypeParser.GetStringValue(setting.TotalPage);

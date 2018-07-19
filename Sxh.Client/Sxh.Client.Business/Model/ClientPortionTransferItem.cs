@@ -19,6 +19,8 @@ namespace Sxh.Client.Business.Model
             }
         }
 
+        public double NextRemainDay { get; set; }
+
         public int ProjectTypeId { get; set; }
 
         public string DisplayTransferingRate
@@ -55,7 +57,7 @@ namespace Sxh.Client.Business.Model
 
         public string GetProjectInformation()
         {
-            return $"{DisplayProjectTitle} {DisplayTransferingRate}/{DisplayYijia} {transferingCopies}份";
+            return $"{DisplayProjectTitle} {DisplayTransferingRate}/{DisplayYijia} {transferingCopies}份 {DisplayNextRemainDay}";
         }
 
         public double GetAvailableCopies(double availableCash)
@@ -91,6 +93,7 @@ namespace Sxh.Client.Business.Model
 
             if (payment != null)
             {
+                item.NextRemainDay = payment.NextRemainDay;
                 item.DisplayNextRemainDay = payment.DisplayNextRemainDay;
                 item.ProjectRate = payment.Rate;
                 item.PayType = payment.PayType;

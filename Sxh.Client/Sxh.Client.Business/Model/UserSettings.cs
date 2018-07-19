@@ -8,6 +8,7 @@ namespace Sxh.Client.Business.Model
         public string Keywords { get; set; }
         public double? Yijia { get; set; }
         public double? Rate { get; set; }
+        public int? NextPayment { get; set; }
         public int FreqTransfer { get; set; }
         public int DelayTransfer { get; set; }
         public bool AutoAcquire { get; set; }
@@ -34,6 +35,7 @@ namespace Sxh.Client.Business.Model
             public const string Keyword = "Keyword";
             public const string Yijia = "Yijia";
             public const string Rate = "Rate";
+            public const string NextPayment = "NextPayment";
             public const string FreqTransfer = "FreqTransfer";
             public const string DelayTransfer = "DelayTransfer";
             public const string TotalPage = "TotalPage";

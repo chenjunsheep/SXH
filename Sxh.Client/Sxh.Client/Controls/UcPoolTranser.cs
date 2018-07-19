@@ -21,6 +21,9 @@ namespace Sxh.Client.Controls
 
         #region Property
 
+        private Color COLOR_NORMAL = Color.Black;
+        private Color COLOR_HIGHLIGHT = Color.Red;
+
         private CancellationManager _cmPoolReader;
         private CancellationManager CmPoolReader
         {
@@ -73,44 +76,39 @@ namespace Sxh.Client.Controls
                 var settings = BusinessCache.Settings;
                 var colName = grid.Columns[e.ColumnIndex].Name;
 
-                //cell formatting
-                if (colName == Namespace.GridColProjectType)
+                switch (colName)
                 {
-                    var typeId = TypeParser.GetInt32Value(grid.Rows[e.RowIndex].Cells[Namespace.GridColProjectTypeId].Value);
-                    if (typeId == (int)Business.Model.ProjectType.Binggou)
-                    {
-                        e.Value = Properties.Resources.ico_bing;
-                    }
-                    else
-                    {
-                        e.Value = Properties.Resources.ico_guan;
-                    }
+                    case Namespace.GridColProjectType:
+                        //cell formatting
+                        var typeId = TypeParser.GetInt32Value(grid.Rows[e.RowIndex].Cells[Namespace.GridColProjectTypeId].Value);
+                        if (typeId == (int)Business.Model.ProjectType.Binggou)
+                        {
+                            e.Value = Properties.Resources.ico_bing;
+                        }
+                        else
+                        {
+                            e.Value = Properties.Resources.ico_guan;
+                        }
+                        break;
+                    case Namespace.GridColRateDisplay:
+                        //rate
+                        var isMatchedRate = IsMatchRate(grid, e.RowIndex, settings);
+                        isTargeted = IsMatchNextPaymentRemain(grid, e.RowIndex, settings, isMatchedRate);
+                        break;
+                    case Namespace.GridColYijiaDisplay:
+                        //yijia
+                        var isMatchedYijia = IsMatchYijia(grid, e.RowIndex, settings);
+                        isTargeted = IsMatchNextPaymentRemain(grid, e.RowIndex, settings, isMatchedYijia);
+                        break;
+                    default:
+                        break;
                 }
 
-                //matching process
-                if (colName == Namespace.GridColRateDisplay)
-                {
-                    var rate = TypeParser.GetDoubleValue(grid.Rows[e.RowIndex].Cells[Namespace.GridColRate].Value);
-                    if (settings.Rate.HasValue && rate >= settings.Rate.Value)
-                    {
-                        isTargeted = true;
-                    }
-                }
-
-                if (colName == Namespace.GridColYijiaDisplay)
-                {
-                    var yijia = TypeParser.GetDoubleValue(grid.Rows[e.RowIndex].Cells[Namespace.GridColYijia].Value);
-                    if (settings.Yijia.HasValue && yijia <= settings.Yijia.Value)
-                    {
-                        isTargeted = true;
-                    }
-                }
-
-                e.CellStyle.ForeColor = Color.Black;
+                //e.CellStyle.ForeColor = COLOR_NORMAL;
 
                 if (isTargeted)
                 {
-                    e.CellStyle.ForeColor = Color.Red;
+                    e.CellStyle.ForeColor = COLOR_HIGHLIGHT;
 
                     if (!BusinessCache.PoolTranser.IsLocked)
                     {
@@ -210,6 +208,66 @@ namespace Sxh.Client.Controls
             return true;
         }
 
+        private bool IsMatchNextPaymentRemain(DataGridView grid, int rowIndex, UserSettings settings, bool seed)
+        {
+            var status = MatchNextPaymentStatus.UnMatch;
+
+            if (grid == null || settings == null || !settings.NextPayment.HasValue || settings.NextPayment.Value <= 0)
+            {
+                status = MatchNextPaymentStatus.Invalid;
+            }
+            else
+            {
+                var target = TypeParser.GetInt32Value(grid.Rows[rowIndex].Cells[Namespace.GridColNextRemainDay].Value);
+                if (target > 0 && target <= settings.NextPayment.Value)
+                {
+                    status = MatchNextPaymentStatus.Match;
+                }
+            }
+
+            switch (status)
+            {
+                case MatchNextPaymentStatus.Invalid:
+                    break;
+                case MatchNextPaymentStatus.Match:
+                    seed = seed && true;
+                    if (seed)
+                        grid.Rows[rowIndex].Cells[Namespace.GridColNextRemainDayDisplay].Style.ForeColor = COLOR_HIGHLIGHT;
+                    break;
+                case MatchNextPaymentStatus.UnMatch:
+                    seed = false;
+                    break;
+            }
+
+            return seed;
+        }
+
+        private bool IsMatchRate(DataGridView grid, int rowIndex, UserSettings settings)
+        {
+            if (grid != null && settings != null && settings.Rate.HasValue)
+            {
+                var target = TypeParser.GetDoubleValue(grid.Rows[rowIndex].Cells[Namespace.GridColRate].Value);
+                if (target >= settings.Rate.Value)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private bool IsMatchYijia(DataGridView grid, int rowIndex, UserSettings settings)
+        {
+            if (grid != null && settings != null && settings.Yijia.HasValue)
+            {
+                var target = TypeParser.GetDoubleValue(grid.Rows[rowIndex].Cells[Namespace.GridColYijia].Value);
+                if (target <= settings.Yijia.Value)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         #endregion
 
         private class Namespace
@@ -224,6 +282,13 @@ namespace Sxh.Client.Controls
             public const string GridColNextRemainDayDisplay = "DisplayNextRemainDay";
             public const string GridColProjectTypeId = "ProjectTypeId";
             public const string GridColProjectType = "ProjectType";
+        }
+
+        private enum MatchNextPaymentStatus
+        {
+            Invalid,
+            Match,
+            UnMatch,
         }
     }
 }

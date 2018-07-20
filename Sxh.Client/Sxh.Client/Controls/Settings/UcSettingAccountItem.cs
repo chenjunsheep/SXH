@@ -71,7 +71,7 @@ namespace Sxh.Client.Controls.Settings
             {
                 txtUserName.Text = account.UserName;
                 txtCash.Text = CASH_INVALID;
-                Enable(account.HasValue);
+                Enable(account.Enabled);
 
                 if (IsEnabled)
                 {

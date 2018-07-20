@@ -60,6 +60,7 @@
     <Compile Include="Model\ClientPortionTransferList.cs" />
     <Compile Include="Model\ClientProjectInvestmentItem.cs" />
     <Compile Include="Model\ClientProjectInvestmentList.cs" />
+    <Compile Include="Model\MonitorInfo.cs" />
     <Compile Include="Model\PeriodType.cs" />
     <Compile Include="Model\ProjectType.cs" />
     <Compile Include="Model\ReportType.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="Proxy\ProxyUserProxy.cs" />
     <Compile Include="Repository\BaseRepository.cs" />
     <Compile Include="Repository\LoginRepository.cs" />
+    <Compile Include="Repository\MonitorRepository.cs" />
     <Compile Include="Util\LogicExtension.cs" />
     <Compile Include="ViewModel\VmAcquire.cs" />
     <Compile Include="ViewModel\VmLogin.cs" />

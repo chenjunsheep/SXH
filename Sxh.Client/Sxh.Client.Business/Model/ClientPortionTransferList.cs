@@ -5,6 +5,8 @@ namespace Sxh.Client.Business.Model
 {
     public class ClientPortionTransferList
     {
+        #region Property
+
         public List<ClientPortionTransferItem> rowSet { get; set; }
 
         public int Count
@@ -18,20 +20,14 @@ namespace Sxh.Client.Business.Model
         {
             get
             {
-                if (rowSet == null || rowSet.Count == 0) return new ClientPortionTransferItem();
+                if (Count <= 0) return new ClientPortionTransferItem();
                 return rowSet[0];
             }
         }
 
-        public ClientPortionTransferItem GetProjectById(int projectId)
-        {
-            if (Count > 0)
-            {
-                var target = rowSet.FirstOrDefault(p => p.projectId == projectId);
-                return target;
-            }
-            return null;
-        }
+        #endregion
+
+        #region Public Method
 
         public void Clear()
         {
@@ -60,6 +56,16 @@ namespace Sxh.Client.Business.Model
             IsLocked = false;
         }
 
+        public ClientPortionTransferItem GetProjectById(int projectId)
+        {
+            if (Count > 0)
+            {
+                var target = rowSet.FirstOrDefault(p => p.projectId == projectId);
+                return target;
+            }
+            return null;
+        }
+
         public void UpdateFromPayment(IEnumerable<ClientPaymentItem> payments)
         {
             if (Count > 0 && payments != null && payments.Count() > 0)
@@ -70,5 +76,7 @@ namespace Sxh.Client.Business.Model
                 rowSet = list;
             }
         }
+
+        #endregion
     }
 }

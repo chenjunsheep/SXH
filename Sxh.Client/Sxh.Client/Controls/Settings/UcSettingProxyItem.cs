@@ -64,7 +64,7 @@ namespace Sxh.Client.Controls.Settings
             {
                 txtUserName.Text = proxy.UserName;
                 BindWeight(proxy);
-                Enable(proxy.HasValue);
+                Enable(proxy.Enabled);
             }
         }
 

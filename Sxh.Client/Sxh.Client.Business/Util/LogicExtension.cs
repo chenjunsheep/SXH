@@ -8,9 +8,9 @@ namespace Sxh.Client.Business.Util
         {
             switch (periodType)
             {
-                case PeriodType.Day30:
+                case PeriodType.Day:
                     return "IN_30_DAYS";
-                case PeriodType.Month1:
+                case PeriodType.Month:
                     return "IN_1_MONTHS";
                 default:
                     return "ALL";

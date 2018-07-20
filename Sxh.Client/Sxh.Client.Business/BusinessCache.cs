@@ -33,5 +33,12 @@ namespace Sxh.Client.Business
             get { return _projectPayments ?? (_projectPayments = new ClientPaymentList()); }
             set { _projectPayments = value; }
         }
+
+        private static MonitorInfo _monitorInfo;
+        public static MonitorInfo MonitorInfo
+        {
+            get { return _monitorInfo ?? (_monitorInfo = new MonitorInfo()); }
+            set { _monitorInfo = value; }
+        }
     }
 }

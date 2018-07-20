@@ -59,7 +59,7 @@ namespace Sxh.Client.Business.Model
                     if (target != null && account.HasValue)
                     {
                         target.TokenOffical = account.TokenOffical;
-                        //target.Enabled = true;
+                        target.Enabled = true;
                     }
                 }
             }

@@ -83,6 +83,12 @@
     <Compile Include="Acquisition.Designer.cs">
       <DependentUpon>Acquisition.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Monitor\UcProjectInvestmentMonth.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Monitor\UcProjectInvestmentMonth.Designer.cs">
+      <DependentUpon>UcProjectInvestmentMonth.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\UcLogs.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -160,6 +166,9 @@
     <Compile Include="Util\UiExtension.cs" />
     <EmbeddedResource Include="Acquisition.resx">
       <DependentUpon>Acquisition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Monitor\UcProjectInvestmentMonth.resx">
+      <DependentUpon>UcProjectInvestmentMonth.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\UcLogs.resx">
       <DependentUpon>UcLogs.cs</DependentUpon>
@@ -268,8 +277,6 @@
     <None Include="Resources\pic-yuebiao.png" />
     <None Include="Resources\pic-rongzi.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controls\Monitor\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

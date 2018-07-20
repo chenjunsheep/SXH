@@ -216,7 +216,6 @@
             this.btnMonitor.TabIndex = 1;
             this.btnMonitor.Text = "监视器";
             this.btnMonitor.UseVisualStyleBackColor = true;
-            this.btnMonitor.Visible = false;
             this.btnMonitor.Click += new System.EventHandler(this.btnMonitor_Click);
             // 
             // ucLogs

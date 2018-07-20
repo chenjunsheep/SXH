@@ -62,7 +62,7 @@ namespace Sxh.Client.Business.Model
                 if (target != null)
                 {
                     target.TokenOffical = token;
-                    target.Enabled = target.Cash > 0;
+                    target.Enabled = true;
 
                     await UpdateCashAsync(userName);
                 }
@@ -81,7 +81,6 @@ namespace Sxh.Client.Business.Model
                     var proxy = new ProxyUserAccount();
                     var cash = await proxy.GetCashAsync(target);
                     target.Cash = cash;
-                    //target.Enabled = target.Cash > 0;
 
                     return cash;
                 }

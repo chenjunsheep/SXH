@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using Sxh.Client.Business;
 using Sxh.Client.Business.Model;
 using Sxh.Client.Business.Proxy;
+using Sxh.Client.Business.ViewModel;
 
 namespace Sxh.Client.Controls.Settings
 {
@@ -65,6 +66,7 @@ namespace Sxh.Client.Controls.Settings
                 txtUserName.Text = proxy.UserName;
                 BindWeight(proxy);
                 Enable(proxy.Enabled);
+                chkTzb.Checked = proxy.AvailableInTzb;
             }
         }
 
@@ -86,6 +88,10 @@ namespace Sxh.Client.Controls.Settings
                 var proxyLogin = await ProxyUserProxy.LoginAsync(userProxy);
                 BindWeight(proxyLogin);
                 enable = proxyLogin != null;
+
+                //TZB process
+                await LoginTzbAsync(proxyLogin);
+                chkTzb.Checked = proxyLogin.AvailableInTzb;
             }
 
             Enable(enable);
@@ -110,6 +116,21 @@ namespace Sxh.Client.Controls.Settings
             else
             {
                 txtWeight.Text = PROXY_INVALID;
+            }
+        }
+
+        private async Task LoginTzbAsync(UserProxy proxy)
+        {
+            if (proxy != null && !proxy.AvailableInTzb)
+            {
+                var proxyLogin = new ProxyUserProxy();
+                var cookieTzb = await proxyLogin.LoginTzbAsync(
+                    new VmLogin()
+                    {
+                        UserName = proxy.UserName,
+                        Password = proxy.Password,
+                    });
+                proxy.SetTokenTzb(cookieTzb);
             }
         }
 

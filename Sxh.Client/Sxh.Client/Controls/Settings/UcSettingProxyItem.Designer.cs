@@ -33,27 +33,30 @@
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.txtWeight = new System.Windows.Forms.TextBox();
             this.lblWeight = new System.Windows.Forms.Label();
+            this.chkTzb = new System.Windows.Forms.CheckBox();
             this.pnlMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlMain
             // 
-            this.pnlMain.ColumnCount = 4;
+            this.pnlMain.ColumnCount = 5;
             this.pnlMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.pnlMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.pnlMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.pnlMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.pnlMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.pnlMain.Controls.Add(this.chkEnabled, 0, 0);
             this.pnlMain.Controls.Add(this.txtUserName, 1, 0);
             this.pnlMain.Controls.Add(this.txtWeight, 3, 0);
             this.pnlMain.Controls.Add(this.lblWeight, 2, 0);
+            this.pnlMain.Controls.Add(this.chkTzb, 4, 0);
             this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMain.Location = new System.Drawing.Point(0, 0);
             this.pnlMain.Margin = new System.Windows.Forms.Padding(0);
             this.pnlMain.Name = "pnlMain";
             this.pnlMain.RowCount = 1;
             this.pnlMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.pnlMain.Size = new System.Drawing.Size(150, 23);
+            this.pnlMain.Size = new System.Drawing.Size(200, 23);
             this.pnlMain.TabIndex = 0;
             // 
             // chkEnabled
@@ -76,29 +79,42 @@
             this.txtUserName.Margin = new System.Windows.Forms.Padding(0);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.ReadOnly = true;
-            this.txtUserName.Size = new System.Drawing.Size(30, 23);
+            this.txtUserName.Size = new System.Drawing.Size(20, 23);
             this.txtUserName.TabIndex = 1;
             // 
             // txtWeight
             // 
             this.txtWeight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtWeight.Location = new System.Drawing.Point(120, 0);
+            this.txtWeight.Location = new System.Drawing.Point(110, 0);
             this.txtWeight.Margin = new System.Windows.Forms.Padding(0);
             this.txtWeight.Name = "txtWeight";
             this.txtWeight.ReadOnly = true;
-            this.txtWeight.Size = new System.Drawing.Size(30, 23);
+            this.txtWeight.Size = new System.Drawing.Size(20, 23);
             this.txtWeight.TabIndex = 3;
             // 
             // lblWeight
             // 
             this.lblWeight.AutoSize = true;
             this.lblWeight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblWeight.Location = new System.Drawing.Point(53, 0);
+            this.lblWeight.Location = new System.Drawing.Point(43, 0);
             this.lblWeight.Name = "lblWeight";
             this.lblWeight.Size = new System.Drawing.Size(64, 23);
             this.lblWeight.TabIndex = 4;
             this.lblWeight.Text = "搜索次数";
             this.lblWeight.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // chkTzb
+            // 
+            this.chkTzb.AutoSize = true;
+            this.chkTzb.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chkTzb.Enabled = false;
+            this.chkTzb.Location = new System.Drawing.Point(135, 0);
+            this.chkTzb.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.chkTzb.Name = "chkTzb";
+            this.chkTzb.Size = new System.Drawing.Size(65, 23);
+            this.chkTzb.TabIndex = 5;
+            this.chkTzb.Text = "投资宝";
+            this.chkTzb.UseVisualStyleBackColor = true;
             // 
             // UcSettingProxyItem
             // 
@@ -108,7 +124,7 @@
             this.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "UcSettingProxyItem";
-            this.Size = new System.Drawing.Size(150, 23);
+            this.Size = new System.Drawing.Size(200, 23);
             this.pnlMain.ResumeLayout(false);
             this.pnlMain.PerformLayout();
             this.ResumeLayout(false);
@@ -122,5 +138,6 @@
         private System.Windows.Forms.TextBox txtUserName;
         private System.Windows.Forms.TextBox txtWeight;
         private System.Windows.Forms.Label lblWeight;
+        private System.Windows.Forms.CheckBox chkTzb;
     }
 }

@@ -60,6 +60,8 @@
     <Compile Include="Model\ClientPortionTransferList.cs" />
     <Compile Include="Model\ClientProjectInvestmentItem.cs" />
     <Compile Include="Model\ClientProjectInvestmentList.cs" />
+    <Compile Include="Model\ClientProjectReverseItem.cs" />
+    <Compile Include="Model\ClientProjectReverseList.cs" />
     <Compile Include="Model\MonitorInfo.cs" />
     <Compile Include="Model\PeriodType.cs" />
     <Compile Include="Model\ProjectType.cs" />
@@ -76,6 +78,7 @@
     <Compile Include="Proxy\ProxyDecoder.cs" />
     <Compile Include="Proxy\ProxyLogin.cs" />
     <Compile Include="Proxy\ProxyProjectInvestment.cs" />
+    <Compile Include="Proxy\ProxyProjectReverse.cs" />
     <Compile Include="Proxy\ProxySearch.cs" />
     <Compile Include="Proxy\ProxyServer.cs" />
     <Compile Include="Proxy\ProxyUserAccount.cs" />

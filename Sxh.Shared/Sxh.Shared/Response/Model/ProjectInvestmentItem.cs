@@ -11,11 +11,4 @@
         public string ratePart2 { get; set; }
         public Amount totalAmount { get; set; }
     }
-
-    public class Amount
-    {
-        public int fractionPart { get; set; }
-        public int intPart { get; set; }
-        public string unit { get; set; }
-    }
 }

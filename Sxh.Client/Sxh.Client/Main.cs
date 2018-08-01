@@ -152,7 +152,7 @@ namespace Sxh.Client
             BusinessCache.MonitorInfo.Lock();
             btnMonitor.Enabled = false;
             var monitorTransfer = new Monitor();
-            monitorTransfer.StartPosition = FormStartPosition.CenterScreen;
+            //monitorTransfer.StartPosition = FormStartPosition.CenterScreen;
             monitorTransfer.OnWindowClosed -= MonitorTransfer_OnWindowClosed;
             monitorTransfer.OnWindowClosed += MonitorTransfer_OnWindowClosed;
             monitorTransfer.Show();

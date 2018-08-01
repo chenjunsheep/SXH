@@ -89,6 +89,12 @@
     <Compile Include="Controls\Monitor\UcProjectInvestmentMonth.Designer.cs">
       <DependentUpon>UcProjectInvestmentMonth.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Monitor\UcProjectReverse.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Monitor\UcProjectReverse.Designer.cs">
+      <DependentUpon>UcProjectReverse.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Settings\UcSettingTzbProxy.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -181,6 +187,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Monitor\UcProjectInvestmentMonth.resx">
       <DependentUpon>UcProjectInvestmentMonth.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Monitor\UcProjectReverse.resx">
+      <DependentUpon>UcProjectReverse.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Settings\UcSettingTzbProxy.resx">
       <DependentUpon>UcSettingTzbProxy.cs</DependentUpon>

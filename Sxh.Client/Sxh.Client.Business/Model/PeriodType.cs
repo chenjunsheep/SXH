@@ -2,6 +2,7 @@
 {
     public enum PeriodType
     {
+        All,
         Day,
         Month,
     }

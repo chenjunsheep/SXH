@@ -22,13 +22,13 @@ namespace Sxh.Client.Business.Proxy
                 using (var client = CreateHttpClient(handler))
                 {
                     var formData = new FormUrlEncodedContent(new[] {
-                    new KeyValuePair<string, string>("logonUsername", para.UserName),
-                    new KeyValuePair<string, string>("password", para.Password.Md5Encrypt()),
-                    new KeyValuePair<string, string>("rememberType", "10080"),
-                    new KeyValuePair<string, string>("loginType", "user"),
-                    new KeyValuePair<string, string>("verificationCode", "请输入验证码"),
-                    new KeyValuePair<string, string>("timeStamp", TimeExtension.GetTimeStamp().ToString()),
-                });
+                        new KeyValuePair<string, string>("logonUsername", para.UserName),
+                        new KeyValuePair<string, string>("password", para.Password.Md5Encrypt()),
+                        new KeyValuePair<string, string>("rememberType", "10080"),
+                        new KeyValuePair<string, string>("loginType", "user"),
+                        new KeyValuePair<string, string>("verificationCode", "请输入验证码"),
+                        new KeyValuePair<string, string>("timeStamp", TimeExtension.GetTimeStamp().ToString()),
+                    });
 
                     var Uri = CreateUri("/auth/loginSubmit");
                     var response = await client.PostAsync(Uri, formData);
@@ -54,13 +54,13 @@ namespace Sxh.Client.Business.Proxy
                 using (var client = CreateHttpClient(AppSetting.Instance.HostTzb, handler))
                 {
                     var formData = new FormUrlEncodedContent(new[] {
-                    new KeyValuePair<string, string>("logonUsername", para.UserName),
-                    new KeyValuePair<string, string>("password", para.Password.Md5Encrypt()),
-                    new KeyValuePair<string, string>("rememberType", "10080"),
-                    new KeyValuePair<string, string>("loginType", "user"),
-                    new KeyValuePair<string, string>("verificationCode", string.Empty),
-                    new KeyValuePair<string, string>("timeStamp", TimeExtension.GetTimeStamp().ToString()),
-                });
+                        new KeyValuePair<string, string>("logonUsername", para.UserName),
+                        new KeyValuePair<string, string>("password", para.Password.Md5Encrypt()),
+                        new KeyValuePair<string, string>("rememberType", "10080"),
+                        new KeyValuePair<string, string>("loginType", "user"),
+                        new KeyValuePair<string, string>("verificationCode", string.Empty),
+                        new KeyValuePair<string, string>("timeStamp", TimeExtension.GetTimeStamp().ToString()),
+                    });
 
                     var Uri = CreateUri("/auth/loginSubmit", AppSetting.Instance.HostTzb, HttpSchema.HTTPS);
                     var response = await client.PostAsync(Uri, formData);

@@ -3,16 +3,16 @@ using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Sxh.Shared.Tasks;
-using Sxh.Client.Business.Repository;
 using Sxh.Client.Business;
 using Sxh.Client.Business.Model;
+using Sxh.Client.Business.Repository;
 using Sxh.Client.Business.Logs;
 
 namespace Sxh.Client.Controls.Monitor
 {
-    public partial class UcProjectInvestmentMonth : UserControl
+    public partial class UcProjectReverse : UserControl
     {
-        public UcProjectInvestmentMonth()
+        public UcProjectReverse()
         {
             InitializeComponent();
         }
@@ -33,15 +33,14 @@ namespace Sxh.Client.Controls.Monitor
         {
             get { return _cmRefresh ?? (_cmRefresh = new CancellationManager()); }
         }
-
-        private ClientProjectInvestmentItem Flag { get; set; }
-        private DateTime LastUpdate { get; set; } = DateTime.Now;
+        
+        private DateTime? LastUpdate { get; set; }
 
         #endregion
 
         #region Event
 
-        private async void UcProjectInvestmentMonth_Load(object sender, EventArgs e)
+        private async void UcProjectReverse_Load(object sender, EventArgs e)
         {
             CmRefresh.Activate();
             await RefreshAsync(CmRefresh);
@@ -52,8 +51,7 @@ namespace Sxh.Client.Controls.Monitor
             if (chkEnable.Checked)
             {
                 CmUpdate.Activate();
-                Flag = null;
-                await UpdateProjectInvestmentMonthAsync(CmUpdate);
+                await UpdateProjectReverseAsync(CmUpdate);
             }
             else
             {
@@ -77,57 +75,28 @@ namespace Sxh.Client.Controls.Monitor
 
         private void BindMessage()
         {
-            var current = BusinessCache.MonitorInfo.ProjectInvestmentMonth.TopItem;
-            if (current != null)
-            {
-                BuildMessage(current, BusinessCache.MonitorInfo.ProjectInvestmentMonth.rowSet.FindAll(i => i.Rate == current.Rate).Count);
-            }
+            var current = BusinessCache.MonitorInfo.ProjectReverse.BestItem;
+            BuildMessage(current);
         }
 
-        private void BuildMessage(ClientProjectInvestmentItem current, int total)
+        private void BuildMessage(ClientProjectReverseItem current)
         {
-            var strDuplicatedCnt = total > 1 ? $"[{total}] " : string.Empty;
-            if (Flag == null)
+            if (LastUpdate.HasValue)
             {
-                var strRate = $"{strDuplicatedCnt}{current.Rate:0.00} ({current.GetActualRate(PeriodType.Month):0.00})%";
-                var strMsg = $"进度：{current.projectSchedule:0.00}% {current.memberName} 上次更新：{LastUpdate.ToString("HH:mm:ss")}";
-                var color = lblRate.ForeColor;
-                lblRate.Text = strRate;
+                if (current != null)
+                {
+                    lblRate.Text = $"{current.rate:0.00} ({current.RateActual:0.00})% {current.amount} {current.period}{current.repaymentStrategy.periodUnit}";
+                }
+                else
+                {
+                    lblRate.Text = "无可用标的";
+                }
+                var strMsg = $"上次更新：{LastUpdate.Value.ToString("HH:mm:ss")}";
                 lblMessage.Text = strMsg;
-                lblRate.ForeColor = color;
-                lblMessage.ForeColor = color;
-
-                Flag = current;
-            }
-            else if (Flag.id == current.id)
-            {
-                var strMsg = $"进度：{current.projectSchedule:0.00}% {current.memberName} 上次更新：{LastUpdate.ToString("HH:mm:ss")}";
-                lblMessage.Text = strMsg;
-            }
-            else
-            {
-                var diffRate = current.Rate - Flag.Rate;
-                var mark = string.Empty;
-                if (diffRate > 0) mark = "+";
-                if (diffRate < 0) mark = "-";
-                var strDiffRate = $"{Math.Abs(diffRate):0.00}";
-                if (!string.IsNullOrEmpty(mark)) strDiffRate = $"{mark}{strDiffRate}";
-
-                var strRate = $"{strDuplicatedCnt}{current.Rate:0.00} ({current.GetActualRate(PeriodType.Month):0.00})% {strDiffRate}%";
-                var strMsg = $"进度：{current.projectSchedule:0.00}% {current.memberName} 上次更新：{LastUpdate.ToString("HH:mm:ss")}";
-                var color = lblRate.ForeColor;
-                if (diffRate > 0) color = Color.Red;
-                if (diffRate < 0) color = Color.Green;
-                lblRate.Text = strRate;
-                lblMessage.Text = strMsg;
-                lblRate.ForeColor = color;
-                lblMessage.ForeColor = color;
-
-                //Flag = current;
             }
         }
 
-        private async Task UpdateProjectInvestmentMonthAsync(CancellationManager cmSelf)
+        private async Task UpdateProjectReverseAsync(CancellationManager cmSelf)
         {
             try
             {
@@ -138,7 +107,7 @@ namespace Sxh.Client.Controls.Monitor
                     var proxy = new MonitorRepository();
                     try
                     {
-                        await proxy.UpdateProjectInvestmentAsync(PeriodType.Month);
+                        await proxy.UpdateProjectReverseAsync();
                     }
                     catch (Exception ex)
                     {

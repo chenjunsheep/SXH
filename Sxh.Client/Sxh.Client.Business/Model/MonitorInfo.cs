@@ -18,6 +18,13 @@
             set { _projectInvestmentDay = value; }
         }
 
+        private ClientProjectReverseList _projectReverse;
+        public ClientProjectReverseList ProjectReverse
+        {
+            get { return _projectReverse ?? (_projectReverse = new ClientProjectReverseList()); }
+            set { _projectReverse = value; }
+        }
+
         public void Lock()
         {
             IsLocked = true;

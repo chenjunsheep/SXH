@@ -28,5 +28,19 @@ namespace Sxh.Client.Business.Repository
                 }
             }
         }
+
+        public async Task UpdateProjectReverseAsync()
+        {
+            var proxy = new ProxyProjectReverse();
+            var user = BusinessCache.UserTzbProxies.GetRandomProxy(1);
+            if (user != null)
+            {
+                if (user.HasValue)
+                {
+                    var ret = await proxy.SearchAsync(user.TokenOffical);
+                    BusinessCache.MonitorInfo.ProjectReverse = ret;
+                }
+            }
+        }
     }
 }

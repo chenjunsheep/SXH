@@ -23,7 +23,7 @@ namespace Sxh.Client.Business.Model
 
         #endregion
 
-        #region Method
+        #region Public Method
 
         public double GetActualRate(PeriodType periodType)
         {

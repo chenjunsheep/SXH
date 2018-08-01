@@ -291,7 +291,6 @@
   <ItemGroup>
     <Content Include="account.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
     </Content>
     <Content Include="logo.ico" />
     <Content Include="proxySxh.xml">

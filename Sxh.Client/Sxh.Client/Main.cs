@@ -11,6 +11,7 @@ using Shared.Util;
 using Sxh.Client.Business.Model;
 using Sxh.Client.Report;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Sxh.Client
 {
@@ -74,7 +75,7 @@ namespace Sxh.Client
 
         private void FormSettings_OnWindowClosed(object sender, EventArgs e)
         {
-            BindText();
+            UpdateUi();
         }
 
         private void UcPoolTranser_OnTargeted(object sender, EventArgs e)
@@ -148,9 +149,19 @@ namespace Sxh.Client
 
         private void btnMonitor_Click(object sender, EventArgs e)
         {
+            BusinessCache.MonitorInfo.Lock();
+            btnMonitor.Enabled = false;
             var monitorTransfer = new Monitor();
             monitorTransfer.StartPosition = FormStartPosition.CenterScreen;
+            monitorTransfer.OnWindowClosed -= MonitorTransfer_OnWindowClosed;
+            monitorTransfer.OnWindowClosed += MonitorTransfer_OnWindowClosed;
             monitorTransfer.Show();
+        }
+
+        private void MonitorTransfer_OnWindowClosed(object sender, EventArgs e)
+        {
+            BusinessCache.MonitorInfo.UnLock();
+            UpdateMonitorButton();
         }
 
         #endregion
@@ -174,7 +185,7 @@ namespace Sxh.Client
             btnStop.Enabled = false;
 
             Text = $"欢迎你，{BusinessCache.UserLogin.UserName}";
-            BindText();
+            UpdateUi();
             InitializeReport();
 
             ucPoolTranser.OnTargeted -= UcPoolTranser_OnTargeted;
@@ -248,10 +259,16 @@ namespace Sxh.Client
             }, manager.Token);
         }
 
-        private void BindText()
+        private void UpdateUi()
         {
             BindTextMessage();
             BindTextHighlight();
+            UpdateMonitorButton();
+        }
+
+        private void UpdateMonitorButton()
+        {
+            btnMonitor.Enabled = BusinessCache.UserTzbProxies.Any(p => p.Enabled) && !BusinessCache.MonitorInfo.IsLocked;
         }
 
         private void BindTextMessage()

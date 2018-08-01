@@ -45,20 +45,11 @@ namespace Sxh.Client
             this.UiFreeze(true);
         }
 
-        private void UcSettingAccount_OnProcessBegin(object sender, EventArgs e)
-        {
-            this.UiFreeze(false);
-        }
-
-        private void UcSettingAccount_OnProcessEnd(object sender, EventArgs e)
-        {
-            this.UiFreeze(true);
-        }
-
         private void Settings_FormClosing(object sender, FormClosingEventArgs e)
         {
-            ucSettingProxy.CancelAllTask();
             ucSettingAccount.CancelAllTask();
+            ucSettingProxy.CancelAllTask();
+            ucSettingTzbProxy.CancelAllTask();
         }
 
         #endregion
@@ -69,15 +60,20 @@ namespace Sxh.Client
         {
             ucSettingBasic.Initialize();
 
+            ucSettingAccount.OnProcessBegin -= UcSettingProxy_OnProcessBegin;
+            ucSettingAccount.OnProcessBegin += UcSettingProxy_OnProcessBegin;
+            ucSettingAccount.OnProcessEnd -= UcSettingProxy_OnProcessEnd;
+            ucSettingAccount.OnProcessEnd += UcSettingProxy_OnProcessEnd;
+
             ucSettingProxy.OnProcessBegin -= UcSettingProxy_OnProcessBegin;
             ucSettingProxy.OnProcessBegin += UcSettingProxy_OnProcessBegin;
             ucSettingProxy.OnProcessEnd -= UcSettingProxy_OnProcessEnd;
             ucSettingProxy.OnProcessEnd += UcSettingProxy_OnProcessEnd;
 
-            ucSettingAccount.OnProcessBegin -= UcSettingAccount_OnProcessBegin;
-            ucSettingAccount.OnProcessBegin += UcSettingAccount_OnProcessBegin;
-            ucSettingAccount.OnProcessEnd -= UcSettingAccount_OnProcessEnd;
-            ucSettingAccount.OnProcessEnd += UcSettingAccount_OnProcessEnd;
+            ucSettingTzbProxy.OnProcessBegin -= UcSettingProxy_OnProcessBegin;
+            ucSettingTzbProxy.OnProcessBegin += UcSettingProxy_OnProcessBegin;
+            ucSettingTzbProxy.OnProcessEnd -= UcSettingProxy_OnProcessEnd;
+            ucSettingTzbProxy.OnProcessEnd += UcSettingProxy_OnProcessEnd;
         }
 
         #endregion

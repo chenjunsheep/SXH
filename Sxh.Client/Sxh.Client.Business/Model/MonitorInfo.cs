@@ -2,6 +2,8 @@
 {
     public class MonitorInfo
     {
+        public bool IsLocked { get; private set; }
+
         private ClientProjectInvestmentList _projectInvestmentMonth;
         public ClientProjectInvestmentList ProjectInvestmentMonth
         {
@@ -14,6 +16,16 @@
         {
             get { return _projectInvestmentDay ?? (_projectInvestmentDay = new ClientProjectInvestmentList()); }
             set { _projectInvestmentDay = value; }
+        }
+
+        public void Lock()
+        {
+            IsLocked = true;
+        }
+
+        public void UnLock()
+        {
+            IsLocked = false;
         }
     }
 }

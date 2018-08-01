@@ -89,6 +89,18 @@
     <Compile Include="Controls\Monitor\UcProjectInvestmentMonth.Designer.cs">
       <DependentUpon>UcProjectInvestmentMonth.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Settings\UcSettingTzbProxy.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Settings\UcSettingTzbProxy.Designer.cs">
+      <DependentUpon>UcSettingTzbProxy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Settings\UcSettingTzbProxyItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Settings\UcSettingTzbProxyItem.Designer.cs">
+      <DependentUpon>UcSettingTzbProxyItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\UcLogs.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -169,6 +181,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Monitor\UcProjectInvestmentMonth.resx">
       <DependentUpon>UcProjectInvestmentMonth.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Settings\UcSettingTzbProxy.resx">
+      <DependentUpon>UcSettingTzbProxy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Settings\UcSettingTzbProxyItem.resx">
+      <DependentUpon>UcSettingTzbProxyItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\UcLogs.resx">
       <DependentUpon>UcLogs.cs</DependentUpon>
@@ -267,9 +285,11 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="logo.ico" />
-    <Content Include="proxy.xml">
+    <Content Include="proxySxh.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="proxyTzb.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\ico-guan.png" />
     <None Include="Resources\ico-bing.png" />

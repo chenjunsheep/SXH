@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Sxh.Client.Business;
 using Sxh.Client.Business.Model;
+using Sxh.Client.Business;
 using Sxh.Client.Business.Proxy;
-using Sxh.Client.Business.ViewModel;
 
 namespace Sxh.Client.Controls.Settings
 {
-    public partial class UcSettingProxyItem : UserControl
+    public partial class UcSettingTzbProxyItem : UserControl
     {
-        public UcSettingProxyItem()
+        public UcSettingTzbProxyItem()
         {
             InitializeComponent();
         }
@@ -41,7 +39,7 @@ namespace Sxh.Client.Controls.Settings
         {
             get
             {
-                var target = BusinessCache.UserProxies.FirstOrDefault(p => p.UserName == UserName);
+                var target = BusinessCache.UserTzbProxies.FirstOrDefault(p => p.UserName == UserName);
                 return target;
             }
         }
@@ -84,7 +82,7 @@ namespace Sxh.Client.Controls.Settings
             var enable = false;
             if (isChecked)
             {
-                var proxyLogin = await ProxyUserProxy.LoginAsync(userProxy);
+                var proxyLogin = await ProxyUserProxy.LoginTzbAsync(userProxy);
                 BindWeight(proxyLogin);
                 enable = proxyLogin != null;
             }
@@ -99,7 +97,7 @@ namespace Sxh.Client.Controls.Settings
             chkEnabled.CheckedChanged -= chkEnabled_CheckedChanged;
             chkEnabled.Checked = enable;
             chkEnabled.CheckedChanged += chkEnabled_CheckedChanged;
-            BusinessCache.UserProxies.SetEnable(UserName, enable);
+            BusinessCache.UserTzbProxies.SetEnable(UserName, enable);
         }
 
         private void BindWeight(UserProxy proxy)

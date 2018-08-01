@@ -1,6 +1,7 @@
 ﻿using Shared.Util;
 using Sxh.Client.Business;
 using Sxh.Client.Business.Logs;
+using Sxh.Client.Business.Model;
 using Sxh.Client.Business.Proxy;
 using Sxh.Client.Business.Repository;
 using Sxh.Client.Business.ViewModel;
@@ -74,8 +75,9 @@ namespace Sxh.Client
 
         private void Initialize()
         {
-            BusinessCache.UserProxies.Load();
             BusinessCache.UserAccounts.Load();
+            BusinessCache.UserProxies.Load(UserProxyCollection.Namespace.FileNameProxySxh);
+            BusinessCache.UserTzbProxies.Load(UserProxyCollection.Namespace.FileNameProxyTzb);
 
             var def = BusinessCache.UserAccounts.FirstOrDefault();
             if (def != null)

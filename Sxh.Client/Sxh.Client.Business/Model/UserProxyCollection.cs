@@ -9,9 +9,9 @@ namespace Sxh.Client.Business.Model
 {
     public class UserProxyCollection : List<UserProxy>
     {
-        public void Load()
+        public void Load(string fileName)
         {
-            LoadFromFile();
+            LoadFromFile(fileName);
         }
 
         public UserProxy GetRandomProxy(int weight)
@@ -65,14 +65,14 @@ namespace Sxh.Client.Business.Model
             }
         }
 
-        private void LoadFromFile()
+        private void LoadFromFile(string fileName)
         {
             Clear();
 
-            if (File.Exists(Namespace.FileName))
+            if (File.Exists(fileName))
             {
                 var xmlDoc = new XmlDocument();
-                xmlDoc.Load(Namespace.FileName);
+                xmlDoc.Load(fileName);
 
                 var selectSingleNode = xmlDoc.SelectSingleNode(Namespace.Root);
                 if (selectSingleNode != null)
@@ -90,7 +90,8 @@ namespace Sxh.Client.Business.Model
 
         public class Namespace
         {
-            public const string FileName = "proxy.xml";
+            public const string FileNameProxySxh = "proxySxh.xml";
+            public const string FileNameProxyTzb = "proxyTzb.xml";
             public const string Root = "root";
             public const string Id = "id";
             public const string Password = "psw";

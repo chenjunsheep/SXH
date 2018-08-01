@@ -18,6 +18,12 @@ namespace Sxh.Client.Business
             get { return _userProxies ?? (_userProxies = new UserProxyCollection()); }
         }
 
+        private static UserProxyCollection _userTzbProxies;
+        public static UserProxyCollection UserTzbProxies
+        {
+            get { return _userTzbProxies ?? (_userTzbProxies = new UserProxyCollection()); }
+        }
+
         private static ClientPortionTransferList _poolTranser;
         public static ClientPortionTransferList PoolTranser
         {

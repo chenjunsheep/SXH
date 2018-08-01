@@ -1,14 +1,4 @@
-﻿using Sxh.Client.Business;
-using Sxh.Client.Business.Proxy;
-using Sxh.Client.Business.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Forms;
 
 namespace Sxh.Client
@@ -22,9 +12,19 @@ namespace Sxh.Client
 
         #region Event
 
+        public event EventHandler OnWindowClosed;
+
         private void Monitor_FormClosing(object sender, FormClosingEventArgs e)
         {
             ucProjectInvestmentMonth.Cancel();
+        }
+
+        private void Monitor_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (OnWindowClosed != null)
+            {
+                OnWindowClosed.Invoke(sender, e);
+            }
         }
 
         #endregion

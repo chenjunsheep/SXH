@@ -1,6 +1,5 @@
 ﻿using Sxh.Client.Business.Model;
 using Sxh.Client.Business.Proxy;
-using Sxh.Client.Business.ViewModel;
 using System.Threading.Tasks;
 
 namespace Sxh.Client.Business.Repository
@@ -11,12 +10,12 @@ namespace Sxh.Client.Business.Repository
         {
             var para = new ProxyProjectInvestment.Parameter() { PeriodType = periodType };
             var proxy = new ProxyProjectInvestment();
-            var user = BusinessCache.UserProxies.GetRandomProxy(0);
+            var user = BusinessCache.UserTzbProxies.GetRandomProxy(1);
             if (user != null)
             {
-                if (user.AvailableInTzb)
+                if (user.HasValue)
                 {
-                    var ret = await proxy.SearchAsync(user.TokenTzb, para);
+                    var ret = await proxy.SearchAsync(user.TokenOffical, para);
                     switch (periodType)
                     {
                         case PeriodType.Day:

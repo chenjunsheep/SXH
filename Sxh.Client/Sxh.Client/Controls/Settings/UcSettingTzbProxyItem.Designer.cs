@@ -1,6 +1,6 @@
 ﻿namespace Sxh.Client.Controls.Settings
 {
-    partial class UcSettingProxyItem
+    partial class UcSettingTzbProxyItem
     {
         /// <summary> 
         /// Required designer variable.
@@ -55,7 +55,7 @@
             this.pnlMain.RowCount = 1;
             this.pnlMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.pnlMain.Size = new System.Drawing.Size(200, 23);
-            this.pnlMain.TabIndex = 0;
+            this.pnlMain.TabIndex = 1;
             // 
             // chkEnabled
             // 
@@ -101,14 +101,14 @@
             this.lblWeight.Text = "搜索次数";
             this.lblWeight.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // UcSettingProxyItem
+            // UcSettingTzbProxyItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pnlMain);
             this.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(0);
-            this.Name = "UcSettingProxyItem";
+            this.Name = "UcSettingTzbProxyItem";
             this.Size = new System.Drawing.Size(200, 23);
             this.pnlMain.ResumeLayout(false);
             this.pnlMain.PerformLayout();

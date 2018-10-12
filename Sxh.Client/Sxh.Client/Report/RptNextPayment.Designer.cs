@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RptNextPayment));
             this.pnlMain = new System.Windows.Forms.TableLayoutPanel();
             this.flowButtonGroup = new System.Windows.Forms.FlowLayoutPanel();
+            this.txtKeword = new System.Windows.Forms.TextBox();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.gridNextPayment = new System.Windows.Forms.DataGridView();
             this.ProjectId = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,7 +44,7 @@
             this.NextPaymentRemain = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Freq = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fund = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtKeword = new System.Windows.Forms.TextBox();
+            this.Note = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlMain.SuspendLayout();
             this.flowButtonGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridNextPayment)).BeginInit();
@@ -76,6 +77,13 @@
             this.flowButtonGroup.Size = new System.Drawing.Size(634, 28);
             this.flowButtonGroup.TabIndex = 0;
             // 
+            // txtKeword
+            // 
+            this.txtKeword.Location = new System.Drawing.Point(3, 3);
+            this.txtKeword.Name = "txtKeword";
+            this.txtKeword.Size = new System.Drawing.Size(100, 23);
+            this.txtKeword.TabIndex = 1;
+            // 
             // btnRefresh
             // 
             this.btnRefresh.Location = new System.Drawing.Point(109, 3);
@@ -100,7 +108,8 @@
             this.NextPayment,
             this.NextPaymentRemain,
             this.Freq,
-            this.Fund});
+            this.Fund,
+            this.Note});
             this.gridNextPayment.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridNextPayment.Location = new System.Drawing.Point(3, 31);
             this.gridNextPayment.Name = "gridNextPayment";
@@ -182,12 +191,13 @@
             this.Fund.Name = "Fund";
             this.Fund.Width = 57;
             // 
-            // txtKeword
+            // Note
             // 
-            this.txtKeword.Location = new System.Drawing.Point(3, 3);
-            this.txtKeword.Name = "txtKeword";
-            this.txtKeword.Size = new System.Drawing.Size(100, 23);
-            this.txtKeword.TabIndex = 1;
+            this.Note.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Note.DataPropertyName = "Note";
+            this.Note.HeaderText = "备注";
+            this.Note.Name = "Note";
+            this.Note.ReadOnly = true;
             // 
             // RptNextPayment
             // 
@@ -218,6 +228,7 @@
         private System.Windows.Forms.FlowLayoutPanel flowButtonGroup;
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.DataGridView gridNextPayment;
+        private System.Windows.Forms.TextBox txtKeword;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProjectId;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProjectTypeId;
         private System.Windows.Forms.DataGridViewImageColumn ProjectType;
@@ -228,6 +239,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn NextPaymentRemain;
         private System.Windows.Forms.DataGridViewTextBoxColumn Freq;
         private System.Windows.Forms.DataGridViewTextBoxColumn Fund;
-        private System.Windows.Forms.TextBox txtKeword;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Note;
     }
 }

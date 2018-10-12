@@ -24,21 +24,27 @@ namespace Sxh.Server.Services
             Frequency = frequency;
         }
 
-        public Task ExecuteAsync(CancellationToken cancellationToken)
+        public async Task ExecuteAsync(CancellationToken cancellationToken)
         {
+            if (cancellationToken.IsCancellationRequested) cancellationToken.ThrowIfCancellationRequested();
+
             if (!string.IsNullOrEmpty(Domain))
             {
                 using (var client = new HttpClient())
                 {
                     var baseAddress = new Uri(Domain);
                     client.BaseAddress = baseAddress;
-                    var response = client.GetAsync(baseAddress.AddPath("/api/Calculate/GeneratePaymentPlan")).Result;
-                    LogProvider.Log(Schedule, LogType.Schedule);
-                    return Task.CompletedTask;
+                    var response = await client.GetAsync(baseAddress.AddPath("/api/Calculate/GeneratePaymentPlan"));
+                    if (response.IsSuccessStatusCode)
+                    {
+                        await LogProvider.LogAsync(Schedule, LogType.Schedule);
+                    }
+                    else
+                    {
+                        await LogProvider.LogAsync($"[{(int)response.StatusCode} {response.StatusCode}] {Schedule}", LogType.Error);
+                    }
                 }
             }
-
-            return Task.CompletedTask;
         }
     }
 }

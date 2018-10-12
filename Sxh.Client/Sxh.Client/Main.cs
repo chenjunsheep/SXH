@@ -326,8 +326,8 @@ namespace Sxh.Client
 
             var items = new[] 
             {
-                new { Id = (int)ReportType.None, Name = "选择报表" },
-                new { Id = (int)ReportType.NextPayment, Name = "下次付息" },
+                new { Id = (int)ReportType.None, Name = "选择报表..." },
+                new { Id = (int)ReportType.NextPayment, Name = "付息报表" },
             };
 
             cbReport.DataSource = items;

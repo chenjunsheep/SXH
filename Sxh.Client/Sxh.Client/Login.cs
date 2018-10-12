@@ -35,25 +35,35 @@ namespace Sxh.Client
             this.UiFreeze(false);
 
             var repo = new LoginRepository();
-            var taskLogin = repo.LoginAsync(new VmLogin()
+            var para = new VmLogin()
             {
                 UserName = txtUserName.Text,
                 Password = txtPassword.Text,
                 PasswordTran = txtPasswordTran.Text
-            });
+            };
 
-            var msg = await taskLogin;
+            var msg = await repo.LoginAsync(para);
             if (string.IsNullOrEmpty(msg))
             {
-                Text = "同步服务器数据...";
-                await SyncServerDataAsync();
+                Text = "服务器验证...";
+                var retToken = await repo.ServerLoginAsync(para);
+                if (retToken.Key)
+                {
+                    BusinessCache.UserLogin.TokenServer = retToken.Value;
+                    Text = "同步服务器数据...";
+                    BusinessCache.ProjectPayments = await repo.ServerSyncDataAsync(BusinessCache.UserLogin);
 
-                var mainForm = new frmMain();
-                mainForm.OnWindowClosed -= MainForm_OnWindowClosed;
-                mainForm.Show();
-                mainForm.OnWindowClosed += MainForm_OnWindowClosed;
+                    var mainForm = new frmMain();
+                    mainForm.OnWindowClosed -= MainForm_OnWindowClosed;
+                    mainForm.Show();
+                    mainForm.OnWindowClosed += MainForm_OnWindowClosed;
 
-                Hide();
+                    Hide();
+                }
+                else
+                {
+                    MessageBox.Show(retToken.Value, string.Empty, MessageBoxButtons.OK);
+                }
             }
             else
             {
@@ -88,12 +98,12 @@ namespace Sxh.Client
             }
         }
 
-        private async Task SyncServerDataAsync()
-        {
-            var proxy = new ProxyServer();
-            var dataPayments = await proxy.SyncData();
-            BusinessCache.ProjectPayments = dataPayments;
-        }
+        //private async Task SyncServerDataAsync()
+        //{
+        //    var proxy = new ProxyServer();
+        //    var dataPayments = await proxy.SyncData();
+        //    BusinessCache.ProjectPayments = dataPayments;
+        //}
 
         #endregion
     }

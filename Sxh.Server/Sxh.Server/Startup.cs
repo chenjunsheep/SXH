@@ -20,12 +20,18 @@ using Sxh.Business.Repository.Interface;
 using Sxh.Business.Repository;
 using Sxh.Business;
 using Sxh.Business.Models;
+using Sxh.Server.Middleware;
 using Sxh.Server.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Shared.Api.Auth.Jwt;
+using System.Threading.Tasks;
 
 namespace Sxh.Server
 {
     public class Startup
     {
+        const string DB_KEY_SXH = "SxhDbString";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -65,6 +71,7 @@ namespace Sxh.Server
 
             BuildSwaggerUI(app);
 
+            app.UseAuthentication();
             app.UseMvc();
         }
 
@@ -126,15 +133,23 @@ namespace Sxh.Server
             var setting = new AppSettings();
             Configuration.Bind(setting);
             AppSetting.Instance = setting.AppSetting;
+            AppSetting.Instance.DbConnection.SetDbConnectStringSxh(Configuration.GetConnectionString(DB_KEY_SXH));
         }
 
         private void BuildServices(IServiceCollection services)
         {
             //public SxhContext(DbContextOptions options) : base(options) { }
-            services.AddDbContext<SxhContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SxhDbString")));
+            services.AddDbContext<SxhContext>(options => options.UseSqlServer(Configuration.GetConnectionString(DB_KEY_SXH)));
             services.AddScoped<IBaseRepository, BaseRepository>();
             services.AddScoped<ICalculateRepository, CalculateRepository>();
             services.AddScoped<IProxyRepository, ProxyRepository>();
+
+            services
+                .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.UseJwtOptionsDefault(AppSetting.Instance.SecretKey).UseMiddleware();
+                });
         }
 
         private void BuildSwaggerSettings(IServiceCollection services)
@@ -160,16 +175,16 @@ namespace Sxh.Server
         {
             services.AddSingleton<IScheduledTask>(new TaskHeartbeats(AppSetting.Instance.Schedules.TargetServer, AppSetting.Instance.Schedules.Heartbeat.Frequency));
             services.AddSingleton<IScheduledTask>(new TaskNextPayment(AppSetting.Instance.Schedules.TargetServer, AppSetting.Instance.Schedules.NextPayment.Frequency));
-            services.AddScheduler((sender, args) =>
+            services.AddScheduler(async (sender, args) =>
             {
                 try
                 {
                     //handle exceptions for all schedules
-                    LogProvider.Log($"schedule exception: [{args.Exception.Message}]", LogType.Schedule);
+                    await LogProvider.LogAsync($"schedule exception: [{args.Exception.Message}]", LogType.Schedule);
                 }
                 catch (Exception ex)
                 {
-                    LogProvider.Log($"schedule inner exception: [{ex.Message}]", LogType.Error);
+                    await LogProvider.LogAsync($"schedule wrapper exception: [{ex.Message}]", LogType.Error);
                 }
                 finally
                 {

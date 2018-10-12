@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Sxh.Business.Repository.Interface;
 
 namespace Sxh.Server.Controllers
 {
+    [Authorize]
     [Produces("application/json")]
     [Route("api/Calculate")]
     public class CalculateController : BaseController
@@ -16,6 +18,7 @@ namespace Sxh.Server.Controllers
             _repoCalculate = repoCalculate;
         }
 
+        [AllowAnonymous]
         [HttpGet("GeneratePaymentPlan")]
         public async Task<IActionResult> GeneratePaymentPlan()
         {

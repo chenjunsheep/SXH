@@ -1,6 +1,7 @@
 ﻿using Shared.Util;
 using Sxh.Client.Business;
 using Sxh.Client.Business.Proxy;
+using Sxh.Client.Business.Repository;
 using Sxh.Client.Util;
 using System;
 using System.Drawing;
@@ -48,7 +49,8 @@ namespace Sxh.Client.Report
         private async void btnRefresh_Click(object sender, EventArgs e)
         {
             this.UiFreeze(false);
-            await SyncServerDataAsync();
+            var repo = new LoginRepository();
+            BusinessCache.ProjectPayments = await repo.ServerSyncDataAsync(BusinessCache.UserLogin);
             BindData(txtKeword.Text);
             this.UiFreeze(true);
         }
@@ -71,13 +73,6 @@ namespace Sxh.Client.Report
                 ds = ds.FindAll(p => p.Name.Contains(keyword));
             }
             gridNextPayment.DataSource = ds;
-        }
-
-        private async Task SyncServerDataAsync()
-        {
-            var proxy = new ProxyServer();
-            var dataPayments = await proxy.SyncData();
-            BusinessCache.ProjectPayments = dataPayments;
         }
 
         #endregion

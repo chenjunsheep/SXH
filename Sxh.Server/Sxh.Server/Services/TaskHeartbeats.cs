@@ -1,5 +1,8 @@
 ﻿using Shared.Api.Schedule.Instance;
+using Sxh.Business;
 using Sxh.Business.Models;
+using System;
+using System.Threading.Tasks;
 
 namespace Sxh.Server.Services
 {
@@ -12,9 +15,19 @@ namespace Sxh.Server.Services
         /// <param name="frequency">schedule excuting frequency in seconds</param>
         public TaskHeartbeats(string domain, int? frequency) : base(domain, frequency) { }
 
-        public override void Log()
+        public async override Task LogAsync(bool success, string msg)
         {
-            LogProvider.Log(Schedule, LogType.Schedule);
+            try
+            {
+                BusinessCache.Clear();
+                BusinessCache.Load();
+            }
+            catch (Exception)
+            {
+                //ignore
+            }
+
+            await LogProvider.LogAsync(msg, success ? LogType.Schedule : LogType.Error);
         }
     }
 }

@@ -1,6 +1,8 @@
-﻿using Sxh.Client.Business.Proxy;
+﻿using Sxh.Client.Business.Model;
+using Sxh.Client.Business.Proxy;
 using Sxh.Client.Business.ViewModel;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Sxh.Client.Business.Repository
@@ -31,6 +33,18 @@ namespace Sxh.Client.Business.Repository
             {
                 return ex.ToString();
             }
+        }
+
+        public async Task<KeyValuePair<bool, string>> ServerLoginAsync(VmLogin para)
+        {
+            var proxy = new ProxyServer();
+            return await proxy.GetToken(para);
+        }
+
+        public async Task<ClientPaymentList> ServerSyncDataAsync(User user)
+        {
+            var proxy = new ProxyServer();
+            return await proxy.SyncData(user);
         }
     }
 }

@@ -18,6 +18,7 @@ namespace Sxh.Db.Models
         public double TotalFunds { get; set; }
         public double Rate { get; set; }
         public int ProjectTypeId { get; set; }
+        public string Note { get; set; }
 
         public PayType PayType { get; set; }
         public StatusType Status { get; set; }

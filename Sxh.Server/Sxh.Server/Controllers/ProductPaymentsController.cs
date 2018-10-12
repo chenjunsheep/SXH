@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Shared.Util.Extension;
-using Sxh.Business.Models;
 using Sxh.Db.Models;
 
 namespace Sxh.Server.Controllers
 {
+    [Authorize]
     [Produces("application/json")]
     [Route("api/ProductPayments")]
     public class ProductPaymentsController : BaseController
@@ -43,6 +43,7 @@ namespace Sxh.Server.Controllers
                                 project.Rate,
                                 PayType = payType.Name,
                                 payment.LastUpdate,
+                                project.Note,
                             };
                 var ret = await query.ToListAsync();
                 return Ok(ret);

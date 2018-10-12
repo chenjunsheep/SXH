@@ -11,9 +11,31 @@ namespace Sxh.Db.Models
         public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<ProductPayment> ProductPayment { get; set; }
         public virtual DbSet<Project> Project { get; set; }
+        public virtual DbSet<Proxy> Proxy { get; set; }
+        public virtual DbSet<ProxyType> ProxyType { get; set; }
         public virtual DbSet<StatusType> StatusType { get; set; }
+        public virtual DbSet<User> User { get; set; }
 
-        public SxhContext(DbContextOptions options) : base(options) { }
+        #region Customized
+
+        public SxhContext(DbContextOptions<SxhContext> options) : base(options) { }
+
+        private string _connectString;
+        public SxhContext(string connectString) : base()
+        {
+            _connectString = connectString;
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!string.IsNullOrEmpty(_connectString))
+            {
+                optionsBuilder.UseSqlServer(_connectString);
+            }
+            base.OnConfiguring(optionsBuilder);
+        }
+
+        #endregion
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -82,11 +104,46 @@ namespace Sxh.Db.Models
                     .HasConstraintName("FK_Project_StatusType");
             });
 
+            modelBuilder.Entity<Proxy>(entity =>
+            {
+                entity.Property(e => e.Id)
+                    .HasMaxLength(100)
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.LastUpdate).HasColumnType("datetime");
+
+                entity.Property(e => e.Token).IsRequired();
+
+                entity.HasOne(d => d.Type)
+                    .WithMany(p => p.Proxy)
+                    .HasForeignKey(d => d.TypeId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Proxy_Proxy");
+            });
+
+            modelBuilder.Entity<ProxyType>(entity =>
+            {
+                entity.Property(e => e.Id).ValueGeneratedNever();
+
+                entity.Property(e => e.Name).HasMaxLength(100);
+            });
+
             modelBuilder.Entity<StatusType>(entity =>
             {
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
                 entity.Property(e => e.Name).HasMaxLength(100);
+            });
+
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.Property(e => e.Id)
+                    .HasMaxLength(100)
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Expired).HasColumnType("datetime");
+
+                entity.Property(e => e.Psw).HasMaxLength(100);
             });
         }
     }

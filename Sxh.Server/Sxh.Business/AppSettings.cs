@@ -7,8 +7,17 @@
 
     public class AppSetting
     {
+        public string SecretKey { get; set; }
+        public double TokenExpiredHour { get; set; }
         public Schedule Schedules { get; set; }
         public ProxyInfo Proxy { get; set; }
+
+        private DbConnect _dbConnect;
+        public DbConnect DbConnection
+        {
+            get { return _dbConnect ?? (_dbConnect = new DbConnect()); }
+            private set { _dbConnect = value; }
+        }
 
         private static AppSetting _instance;
         public static AppSetting Instance
@@ -45,6 +54,16 @@
         {
             public string TargetHost { get; set; }
             public string UserAgent { get; set; }
+        }
+
+        public class DbConnect
+        {
+            public string Sxh { get; private set; }
+
+            public void SetDbConnectStringSxh(string conn)
+            {
+                Sxh = conn;
+            }
         }
     }
 }

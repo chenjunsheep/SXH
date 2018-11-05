@@ -41,6 +41,14 @@ namespace Sxh.Client
             Initialize();
         }
 
+        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("确认关闭程序吗？", "你正在尝试关闭程序", MessageBoxButtons.OKCancel) != DialogResult.OK)
+            {
+                e.Cancel = true;
+            }
+        }
+
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (OnWindowClosed != null)

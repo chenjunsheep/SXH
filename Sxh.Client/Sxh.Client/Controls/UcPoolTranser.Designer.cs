@@ -34,8 +34,9 @@
             this.Yijia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NextRemainDay = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProjectTypeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProjectType = new System.Windows.Forms.DataGridViewImageColumn();
             this.projectTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProjectType = new System.Windows.Forms.DataGridViewImageColumn();
+            this.DisplayProjectTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DisplayTransferingRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DisplayYijia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DisplayNextRemainDay = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,8 +60,9 @@
             this.Yijia,
             this.NextRemainDay,
             this.ProjectTypeId,
-            this.ProjectType,
             this.projectTitle,
+            this.ProjectType,
+            this.DisplayProjectTitle,
             this.DisplayTransferingRate,
             this.DisplayYijia,
             this.DisplayNextRemainDay,
@@ -125,6 +127,15 @@
             this.ProjectTypeId.Visible = false;
             this.ProjectTypeId.Width = 108;
             // 
+            // projectTitle
+            // 
+            this.projectTitle.DataPropertyName = "projectTitle";
+            this.projectTitle.HeaderText = "名称Raw";
+            this.projectTitle.Name = "projectTitle";
+            this.projectTitle.ReadOnly = true;
+            this.projectTitle.Visible = false;
+            this.projectTitle.Width = 72;
+            // 
             // ProjectType
             // 
             this.ProjectType.HeaderText = "类型";
@@ -134,14 +145,14 @@
             this.ProjectType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.ProjectType.Width = 54;
             // 
-            // projectTitle
+            // DisplayProjectTitle
             // 
-            this.projectTitle.DataPropertyName = "DisplayProjectTitle";
-            this.projectTitle.HeaderText = "名称";
-            this.projectTitle.Name = "projectTitle";
-            this.projectTitle.ReadOnly = true;
-            this.projectTitle.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.projectTitle.Width = 54;
+            this.DisplayProjectTitle.DataPropertyName = "DisplayProjectTitle";
+            this.DisplayProjectTitle.HeaderText = "名称";
+            this.DisplayProjectTitle.Name = "DisplayProjectTitle";
+            this.DisplayProjectTitle.ReadOnly = true;
+            this.DisplayProjectTitle.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.DisplayProjectTitle.Width = 54;
             // 
             // DisplayTransferingRate
             // 
@@ -219,8 +230,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Yijia;
         private System.Windows.Forms.DataGridViewTextBoxColumn NextRemainDay;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProjectTypeId;
-        private System.Windows.Forms.DataGridViewImageColumn ProjectType;
         private System.Windows.Forms.DataGridViewTextBoxColumn projectTitle;
+        private System.Windows.Forms.DataGridViewImageColumn ProjectType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DisplayProjectTitle;
         private System.Windows.Forms.DataGridViewTextBoxColumn DisplayTransferingRate;
         private System.Windows.Forms.DataGridViewTextBoxColumn DisplayYijia;
         private System.Windows.Forms.DataGridViewTextBoxColumn DisplayNextRemainDay;

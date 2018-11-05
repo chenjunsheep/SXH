@@ -32,7 +32,8 @@ namespace Sxh.Client.Util
         public static void TryRetriveFromConfig(this UserSettings setting)
         {
             if (setting == null) setting = new UserSettings();
-            setting.Keywords = TypeParser.GetStringValue(ConfigurationManager.AppSettings[UserSettings.Namespance.Keyword]);
+            setting.SearchingKeywordsString = TypeParser.GetStringValue(ConfigurationManager.AppSettings[UserSettings.Namespance.SearchingKeyword]);
+            setting.MatchingKeywordsString = TypeParser.GetStringValue(ConfigurationManager.AppSettings[UserSettings.Namespance.MatchingKeyword]);
             setting.Yijia = TypeParser.GetDouble(ConfigurationManager.AppSettings[UserSettings.Namespance.Yijia]);
             setting.Rate = TypeParser.GetDouble(ConfigurationManager.AppSettings[UserSettings.Namespance.Rate]);
             setting.NextPayment = TypeParser.GetInt(ConfigurationManager.AppSettings[UserSettings.Namespance.NextPayment]);
@@ -47,7 +48,8 @@ namespace Sxh.Client.Util
             if (setting != null)
             {
                 var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                config.AppSettings.Settings[UserSettings.Namespance.Keyword].Value = setting.Keywords;
+                config.AppSettings.Settings[UserSettings.Namespance.SearchingKeyword].Value = setting.SearchingKeywordsString;
+                config.AppSettings.Settings[UserSettings.Namespance.MatchingKeyword].Value = setting.MatchingKeywordsString;
                 config.AppSettings.Settings[UserSettings.Namespance.Yijia].Value = TypeParser.GetStringValue(setting.Yijia);
                 config.AppSettings.Settings[UserSettings.Namespance.Rate].Value = TypeParser.GetStringValue(setting.Rate);
                 config.AppSettings.Settings[UserSettings.Namespance.NextPayment].Value = TypeParser.GetStringValue(setting.NextPayment);

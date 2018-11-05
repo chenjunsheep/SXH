@@ -16,11 +16,12 @@ namespace Sxh.Client.Controls.Settings
 
         #endregion
 
-        #region Private Method
+        #region Public Method
 
         public void Initialize()
         {
-            txtKeyword.Text = BusinessCache.Settings.Keywords;
+            txtSearchingKeyword.Text = BusinessCache.Settings.SearchingKeywordsString;
+            txtMatchKeyword.Text = BusinessCache.Settings.MatchingKeywordsString;
             txtYijia.Text = $"{BusinessCache.Settings.Yijia}";
             txtRate.Text = $"{BusinessCache.Settings.Rate}";
             txtNextPayment.Text = $"{BusinessCache.Settings.NextPayment}";
@@ -32,7 +33,8 @@ namespace Sxh.Client.Controls.Settings
 
         public bool Save()
         {
-            BusinessCache.Settings.Keywords = txtKeyword.Text;
+            BusinessCache.Settings.SearchingKeywordsString = txtSearchingKeyword.Text;
+            BusinessCache.Settings.MatchingKeywordsString = FormatMatchingKeywords(txtMatchKeyword.Text);
             BusinessCache.Settings.Yijia = TypeParser.GetDouble(txtYijia.Text);
             BusinessCache.Settings.Rate = TypeParser.GetDouble(txtRate.Text);
             BusinessCache.Settings.NextPayment = TypeParser.GetInt(txtNextPayment.Text);
@@ -42,6 +44,16 @@ namespace Sxh.Client.Controls.Settings
             BusinessCache.Settings.AutoAcquire = chkAutoAcquire.Checked;
             BusinessCache.Settings.TrySaveToConfig();
             return true;
+        }
+
+        #endregion
+
+        #region Private Method
+
+        private string FormatMatchingKeywords(string inputKeyword)
+        {
+            var outputKeyword = TypeParser.GetStringValue(inputKeyword).Trim().TrimStart(new char[] { ';' }).TrimEnd(new char[] { ';' });
+            return outputKeyword;
         }
 
         #endregion

@@ -221,7 +221,7 @@ namespace Sxh.Client
                                 var list = new List<ClientPortionTransferItem>();
                                 for (var i = 1; i <= settingInfo.TotalPage; i++)
                                 {
-                                    var subList = proxySearch.SearchAsync(searchProxy.TokenOffical, ProxySearch.Parameter.Create(settingInfo.Keywords, i)).Result;
+                                    var subList = proxySearch.SearchAsync(searchProxy.TokenOffical, ProxySearch.Parameter.Create(settingInfo.SearchingKeywordsString, i)).Result;
                                     if (subList != null && subList.Count > 0)
                                         list.AddRange(subList.rowSet);
                                     if(i < settingInfo.TotalPage) Task.Delay(1000);
@@ -275,20 +275,29 @@ namespace Sxh.Client
         {
             var settingInfo = BusinessCache.Settings;
             var msg = string.Empty;
-            var keyword = !string.IsNullOrEmpty(settingInfo.Keywords) ? settingInfo.Keywords : "全部";
-            msg += $"关键字: [{keyword}]";
+            var keyword = settingInfo.MatchingKeywords.Count <= 3 ? string.Join(";", settingInfo.MatchingKeywords) : $"{settingInfo.MatchingKeywords.Count}个项目";
+            keyword = string.IsNullOrEmpty(keyword) ? "全部" : keyword;
+            msg += $"匹配关键字[{keyword}]";
+            if (settingInfo.NextPayment.HasValue)
+            {
+                msg += $" AND 下次付息[≤{settingInfo.NextPayment.Value}天]";
+            }
+
+            var msgInner = string.Empty;
             if (settingInfo.Yijia.HasValue)
             {
-                msg += $"; 溢价: [≤{settingInfo.Yijia.Value}%]";
+                msgInner += $" OR 溢价[≤{settingInfo.Yijia.Value}%]";
             }
             if (settingInfo.Rate.HasValue)
             {
-                msg += $"; 年化: [≥{settingInfo.Rate.Value}%]";
+                msgInner += $" OR 年化[≥{settingInfo.Rate.Value}%]";
             }
-            if (settingInfo.NextPayment.HasValue)
+            if (!string.IsNullOrEmpty(msgInner))
             {
-                msg += $"; 下次付息: [≤{settingInfo.NextPayment.Value}天]";
+                msgInner = msgInner.Substring(4); //remove "OR"
+                msg += $" AND ({msgInner})";
             }
+            
             lblMessage.Text = msg;
         }
 

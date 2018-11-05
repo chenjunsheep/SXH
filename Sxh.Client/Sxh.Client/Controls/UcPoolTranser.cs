@@ -97,13 +97,15 @@ namespace Sxh.Client.Controls
                         break;
                     case Namespace.GridColRateDisplay:
                         //rate
-                        var isMatchedRate = IsMatchRate(grid, e.RowIndex, settings);
-                        isTargeted = IsMatchNextPaymentRemain(grid, e.RowIndex, settings, isMatchedRate);
+                        isTargeted = IsMatchRate(grid, e.RowIndex, settings);
+                        isTargeted = IsMatchNextPaymentRemain(grid, e.RowIndex, settings, isTargeted);
+                        isTargeted = IsMatchName(grid, e.RowIndex, settings, isTargeted);
                         break;
                     case Namespace.GridColYijiaDisplay:
                         //yijia
-                        var isMatchedYijia = IsMatchYijia(grid, e.RowIndex, settings);
-                        isTargeted = IsMatchNextPaymentRemain(grid, e.RowIndex, settings, isMatchedYijia);
+                        isTargeted = IsMatchYijia(grid, e.RowIndex, settings);
+                        isTargeted = IsMatchNextPaymentRemain(grid, e.RowIndex, settings, isTargeted);
+                        isTargeted = IsMatchName(grid, e.RowIndex, settings, isTargeted);
                         break;
                     default:
                         break;
@@ -195,9 +197,6 @@ namespace Sxh.Client.Controls
                     dynamic ds = new ExpandoObject();
                     if (BusinessCache.PoolTranser != null && BusinessCache.PoolTranser.Count > 0)
                     {
-                        //var data = new List<ClientPortionTransferItem>();
-                        //data = BusinessCache.PoolTranser.rowSet;
-
                         ds = (from transfer in BusinessCache.PoolTranser.rowSet
                                 join note in BusinessCache.ProjectPayments on transfer.projectId equals note.Id into temp
                                 from tt in temp.DefaultIfEmpty()
@@ -208,6 +207,7 @@ namespace Sxh.Client.Controls
                                     transfer.Yijia,
                                     transfer.NextRemainDay,
                                     transfer.ProjectTypeId,
+                                    transfer.projectTitle,
                                     transfer.DisplayProjectTitle,
                                     transfer.DisplayTransferingRate,
                                     transfer.DisplayYijia,
@@ -222,7 +222,7 @@ namespace Sxh.Client.Controls
                     await Task.Delay(1000);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //do nothing
             }
@@ -268,6 +268,33 @@ namespace Sxh.Client.Controls
             return seed;
         }
 
+        private bool IsMatchName(DataGridView grid, int rowIndex, UserSettings settings, bool seed)
+        {
+            if (grid != null && settings != null && settings.MatchingKeywords.Count > 0)
+            {
+                var isMatched = false;
+                var target = TypeParser.GetStringValue(grid.Rows[rowIndex].Cells[Namespace.GridColProjectTitleRaw].Value);
+                foreach (var keyword in settings.MatchingKeywords)
+                {
+                    if (target.Contains(keyword))
+                    {
+                        isMatched = true;
+                        break;
+                    }
+                }
+
+                if (isMatched)
+                {
+                    seed = seed & true;
+                }
+                else
+                {
+                    seed = false;
+                }
+            }
+            return seed;
+        }
+
         private bool IsMatchRate(DataGridView grid, int rowIndex, UserSettings settings)
         {
             if (grid != null && settings != null && settings.Rate.HasValue)
@@ -299,7 +326,8 @@ namespace Sxh.Client.Controls
         private class Namespace
         {
             public const string GridColProjectId = "projectId";
-            public const string GridColProjectName = "projectTitle";
+            public const string GridColProjectTitleRaw = "projectTitle";
+            public const string GridColProjectTitle = "DisplayProjectTitle";
             public const string GridColRate = "minTransferingRate";
             public const string GridColRateDisplay = "DisplayTransferingRate";
             public const string GridColYijia = "Yijia";

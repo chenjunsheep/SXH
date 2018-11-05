@@ -213,18 +213,18 @@ namespace Sxh.Client
                     {
                         var delay = (rd.Next(0, settingInfo.DelayTransfer));
 
-                        var searchProxy = BusinessCache.UserProxies.GetRandomProxy(settingInfo.TotalPage);
+                        var searchProxy = BusinessCache.UserProxies.GetRandomProxy(settingInfo.PageDiff);
                         if (searchProxy != null)
                         {
                             try
                             {
                                 var list = new List<ClientPortionTransferItem>();
-                                for (var i = 1; i <= settingInfo.TotalPage; i++)
+                                for (var i = settingInfo.PageFrom; i <= settingInfo.PageTo; i++)
                                 {
                                     var subList = proxySearch.SearchAsync(searchProxy.TokenOffical, ProxySearch.Parameter.Create(settingInfo.SearchingKeywordsString, i)).Result;
                                     if (subList != null && subList.Count > 0)
                                         list.AddRange(subList.rowSet);
-                                    if(i < settingInfo.TotalPage) Task.Delay(1000);
+                                    if(i < settingInfo.PageTo) Task.Delay(1000);
                                 }
 
                                 BusinessCache.PoolTranser.Clear();

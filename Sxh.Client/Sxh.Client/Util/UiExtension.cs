@@ -39,7 +39,8 @@ namespace Sxh.Client.Util
             setting.NextPayment = TypeParser.GetInt(ConfigurationManager.AppSettings[UserSettings.Namespance.NextPayment]);
             setting.FreqTransfer = TypeParser.GetInt32Value(ConfigurationManager.AppSettings[UserSettings.Namespance.FreqTransfer], 60);
             setting.DelayTransfer = TypeParser.GetInt32Value(ConfigurationManager.AppSettings[UserSettings.Namespance.DelayTransfer]);
-            setting.TotalPage = TypeParser.GetInt32Value(ConfigurationManager.AppSettings[UserSettings.Namespance.TotalPage]);
+            setting.PageFrom = TypeParser.GetInt32Value(ConfigurationManager.AppSettings[UserSettings.Namespance.PageFrom]);
+            setting.PageTo = TypeParser.GetInt32Value(ConfigurationManager.AppSettings[UserSettings.Namespance.PageTo]);
             setting.AutoAcquire = TypeParser.GetBoolValue(ConfigurationManager.AppSettings[UserSettings.Namespance.AutoAcquire]);
         }
 
@@ -55,7 +56,8 @@ namespace Sxh.Client.Util
                 config.AppSettings.Settings[UserSettings.Namespance.NextPayment].Value = TypeParser.GetStringValue(setting.NextPayment);
                 config.AppSettings.Settings[UserSettings.Namespance.FreqTransfer].Value = TypeParser.GetStringValue(setting.FreqTransfer);
                 config.AppSettings.Settings[UserSettings.Namespance.DelayTransfer].Value = TypeParser.GetStringValue(setting.DelayTransfer);
-                config.AppSettings.Settings[UserSettings.Namespance.TotalPage].Value = TypeParser.GetStringValue(setting.TotalPage);
+                config.AppSettings.Settings[UserSettings.Namespance.PageFrom].Value = TypeParser.GetStringValue(setting.PageFrom);
+                config.AppSettings.Settings[UserSettings.Namespance.PageTo].Value = TypeParser.GetStringValue(setting.PageTo);
                 config.AppSettings.Settings[UserSettings.Namespance.AutoAcquire].Value = TypeParser.GetStringValue(setting.AutoAcquire);
                 config.Save(ConfigurationSaveMode.Modified);
             }

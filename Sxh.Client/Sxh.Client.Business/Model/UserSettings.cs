@@ -49,21 +49,43 @@ namespace Sxh.Client.Business.Model
         public int DelayTransfer { get; set; }
         public bool AutoAcquire { get; set; }
 
-        private int? _totalPage;
-        public int TotalPage
+        private int? _pageFrom;
+        public int PageFrom
         {
             get
             {
-                if (!_totalPage.HasValue)
+                if (!_pageFrom.HasValue)
                 {
-                    _totalPage = 1;
+                    _pageFrom = 1;
                 }
-                return _totalPage.Value;
+                return _pageFrom.Value;
             }
             set
             {
-                _totalPage = Math.Max(TypeParser.GetInt32Value(value, 1), 1);
+                _pageFrom = Math.Max(TypeParser.GetInt32Value(value, 1), 1);
             }
+        }
+
+        private int? _pageTo;
+        public int PageTo
+        {
+            get
+            {
+                if (!_pageTo.HasValue)
+                {
+                    _pageTo = 1;
+                }
+                return _pageTo.Value;
+            }
+            set
+            {
+                _pageTo = Math.Max(TypeParser.GetInt32Value(value, 1), 1);
+            }
+        }
+
+        public int PageDiff
+        {
+            get { return Math.Abs(PageTo - PageFrom) + 1; }
         }
 
         public class Namespance
@@ -75,7 +97,8 @@ namespace Sxh.Client.Business.Model
             public const string NextPayment = "NextPayment";
             public const string FreqTransfer = "FreqTransfer";
             public const string DelayTransfer = "DelayTransfer";
-            public const string TotalPage = "TotalPage";
+            public const string PageFrom = "PageFrom";
+            public const string PageTo = "PageTo";
             public const string AutoAcquire = "AutoAcquire";
         }
     }

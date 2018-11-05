@@ -2,6 +2,7 @@
 using Sxh.Client.Business;
 using Shared.Util;
 using Sxh.Client.Util;
+using System;
 
 namespace Sxh.Client.Controls.Settings
 {
@@ -13,6 +14,28 @@ namespace Sxh.Client.Controls.Settings
         }
 
         #region Event
+
+        private void txtPageFrom_TextChanged(object sender, EventArgs e)
+        {
+            var from = Math.Max(1, TypeParser.GetInt32Value(txtPageFrom.Text));
+            var to = Math.Max(1, TypeParser.GetInt32Value(txtPageTo.Text));
+            txtPageFrom.Text = $"{from}";
+            if (to < from)
+            {
+                txtPageTo.Text = $"{from}";
+            }
+        }
+
+        private void txtPageTo_TextChanged(object sender, EventArgs e)
+        {
+            var from = Math.Max(1, TypeParser.GetInt32Value(txtPageFrom.Text));
+            var to = Math.Max(1, TypeParser.GetInt32Value(txtPageTo.Text));
+            txtPageTo.Text = $"{to}";
+            if (from > to)
+            {
+                txtPageFrom.Text = $"{to}";
+            }
+        }
 
         #endregion
 
@@ -27,7 +50,8 @@ namespace Sxh.Client.Controls.Settings
             txtNextPayment.Text = $"{BusinessCache.Settings.NextPayment}";
             txtFreqTranser.Text = $"{BusinessCache.Settings.FreqTransfer}";
             txtDelayTransfer.Text = $"{BusinessCache.Settings.DelayTransfer}";
-            txtTotalPage.Text = $"{BusinessCache.Settings.TotalPage}";
+            txtPageFrom.Text = $"{BusinessCache.Settings.PageFrom}";
+            txtPageTo.Text = $"{BusinessCache.Settings.PageTo}";
             chkAutoAcquire.Checked = BusinessCache.Settings.AutoAcquire;
         }
 
@@ -40,7 +64,8 @@ namespace Sxh.Client.Controls.Settings
             BusinessCache.Settings.NextPayment = TypeParser.GetInt(txtNextPayment.Text);
             BusinessCache.Settings.FreqTransfer = TypeParser.GetInt32Value(txtFreqTranser.Text, 60);
             BusinessCache.Settings.DelayTransfer = TypeParser.GetInt32Value(txtDelayTransfer.Text);
-            BusinessCache.Settings.TotalPage = TypeParser.GetInt32Value(txtTotalPage.Text);
+            BusinessCache.Settings.PageFrom = TypeParser.GetInt32Value(txtPageFrom.Text);
+            BusinessCache.Settings.PageTo = TypeParser.GetInt32Value(txtPageTo.Text);
             BusinessCache.Settings.AutoAcquire = chkAutoAcquire.Checked;
             BusinessCache.Settings.TrySaveToConfig();
             return true;

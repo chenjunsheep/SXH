@@ -29,10 +29,11 @@
         private void InitializeComponent()
         {
             this.pnlMain = new System.Windows.Forms.TableLayoutPanel();
+            this.txtMatchKeyword = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.txtNextPayment = new System.Windows.Forms.TextBox();
             this.lblNextPayment = new System.Windows.Forms.Label();
-            this.txtTotalPage = new System.Windows.Forms.TextBox();
-            this.lblTotalPage = new System.Windows.Forms.Label();
+            this.lblPageNumber = new System.Windows.Forms.Label();
             this.lblAuto = new System.Windows.Forms.Label();
             this.txtDelayTransfer = new System.Windows.Forms.TextBox();
             this.lblDelay = new System.Windows.Forms.Label();
@@ -45,9 +46,12 @@
             this.lblKeyword = new System.Windows.Forms.Label();
             this.txtSearchingKeyword = new System.Windows.Forms.TextBox();
             this.chkAutoAcquire = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtMatchKeyword = new System.Windows.Forms.TextBox();
+            this.pnlPageNumber = new System.Windows.Forms.TableLayoutPanel();
+            this.txtPageFrom = new System.Windows.Forms.TextBox();
+            this.txtPageTo = new System.Windows.Forms.TextBox();
+            this.lblPageLink = new System.Windows.Forms.Label();
             this.pnlMain.SuspendLayout();
+            this.pnlPageNumber.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlMain
@@ -59,8 +63,7 @@
             this.pnlMain.Controls.Add(this.label1, 0, 1);
             this.pnlMain.Controls.Add(this.txtNextPayment, 1, 4);
             this.pnlMain.Controls.Add(this.lblNextPayment, 0, 4);
-            this.pnlMain.Controls.Add(this.txtTotalPage, 1, 7);
-            this.pnlMain.Controls.Add(this.lblTotalPage, 0, 7);
+            this.pnlMain.Controls.Add(this.lblPageNumber, 0, 7);
             this.pnlMain.Controls.Add(this.lblAuto, 0, 8);
             this.pnlMain.Controls.Add(this.txtDelayTransfer, 1, 6);
             this.pnlMain.Controls.Add(this.lblDelay, 0, 6);
@@ -73,6 +76,7 @@
             this.pnlMain.Controls.Add(this.lblKeyword, 0, 0);
             this.pnlMain.Controls.Add(this.txtSearchingKeyword, 1, 0);
             this.pnlMain.Controls.Add(this.chkAutoAcquire, 1, 8);
+            this.pnlMain.Controls.Add(this.pnlPageNumber, 1, 7);
             this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMain.Location = new System.Drawing.Point(0, 0);
             this.pnlMain.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -169,6 +173,26 @@
             this.pnlMain.Size = new System.Drawing.Size(240, 284);
             this.pnlMain.TabIndex = 0;
             // 
+            // txtMatchKeyword
+            // 
+            this.txtMatchKeyword.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtMatchKeyword.Location = new System.Drawing.Point(103, 32);
+            this.txtMatchKeyword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtMatchKeyword.Name = "txtMatchKeyword";
+            this.txtMatchKeyword.Size = new System.Drawing.Size(134, 23);
+            this.txtMatchKeyword.TabIndex = 19;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Location = new System.Drawing.Point(3, 28);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(94, 28);
+            this.label1.TabIndex = 18;
+            this.label1.Text = "匹配关键字";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // txtNextPayment
             // 
             this.txtNextPayment.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -190,27 +214,16 @@
             this.lblNextPayment.Text = "付息剩余天数";
             this.lblNextPayment.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // txtTotalPage
+            // lblPageNumber
             // 
-            this.txtTotalPage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtTotalPage.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.txtTotalPage.Location = new System.Drawing.Point(103, 202);
-            this.txtTotalPage.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
-            this.txtTotalPage.Name = "txtTotalPage";
-            this.txtTotalPage.Size = new System.Drawing.Size(134, 23);
-            this.txtTotalPage.TabIndex = 15;
-            this.txtTotalPage.Text = "1";
-            // 
-            // lblTotalPage
-            // 
-            this.lblTotalPage.AutoSize = true;
-            this.lblTotalPage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblTotalPage.Location = new System.Drawing.Point(3, 196);
-            this.lblTotalPage.Name = "lblTotalPage";
-            this.lblTotalPage.Size = new System.Drawing.Size(94, 28);
-            this.lblTotalPage.TabIndex = 14;
-            this.lblTotalPage.Text = "总页数";
-            this.lblTotalPage.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblPageNumber.AutoSize = true;
+            this.lblPageNumber.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblPageNumber.Location = new System.Drawing.Point(3, 196);
+            this.lblPageNumber.Name = "lblPageNumber";
+            this.lblPageNumber.Size = new System.Drawing.Size(94, 28);
+            this.lblPageNumber.TabIndex = 14;
+            this.lblPageNumber.Text = "页码范围";
+            this.lblPageNumber.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblAuto
             // 
@@ -333,25 +346,52 @@
             this.chkAutoAcquire.TabIndex = 13;
             this.chkAutoAcquire.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // pnlPageNumber
             // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(3, 28);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(94, 28);
-            this.label1.TabIndex = 18;
-            this.label1.Text = "匹配关键字";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.pnlPageNumber.ColumnCount = 4;
+            this.pnlPageNumber.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.pnlPageNumber.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 15F));
+            this.pnlPageNumber.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.pnlPageNumber.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.pnlPageNumber.Controls.Add(this.txtPageFrom, 0, 0);
+            this.pnlPageNumber.Controls.Add(this.txtPageTo, 2, 0);
+            this.pnlPageNumber.Controls.Add(this.lblPageLink, 1, 0);
+            this.pnlPageNumber.Location = new System.Drawing.Point(100, 196);
+            this.pnlPageNumber.Margin = new System.Windows.Forms.Padding(0);
+            this.pnlPageNumber.Name = "pnlPageNumber";
+            this.pnlPageNumber.RowCount = 1;
+            this.pnlPageNumber.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.pnlPageNumber.Size = new System.Drawing.Size(140, 28);
+            this.pnlPageNumber.TabIndex = 20;
             // 
-            // txtMatchKeyword
+            // txtPageFrom
             // 
-            this.txtMatchKeyword.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtMatchKeyword.Location = new System.Drawing.Point(103, 32);
-            this.txtMatchKeyword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtMatchKeyword.Name = "txtMatchKeyword";
-            this.txtMatchKeyword.Size = new System.Drawing.Size(134, 23);
-            this.txtMatchKeyword.TabIndex = 19;
+            this.txtPageFrom.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtPageFrom.Location = new System.Drawing.Point(3, 3);
+            this.txtPageFrom.Name = "txtPageFrom";
+            this.txtPageFrom.Size = new System.Drawing.Size(24, 23);
+            this.txtPageFrom.TabIndex = 0;
+            this.txtPageFrom.TextChanged += new System.EventHandler(this.txtPageFrom_TextChanged);
+            // 
+            // txtPageTo
+            // 
+            this.txtPageTo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtPageTo.Location = new System.Drawing.Point(48, 3);
+            this.txtPageTo.Name = "txtPageTo";
+            this.txtPageTo.Size = new System.Drawing.Size(24, 23);
+            this.txtPageTo.TabIndex = 1;
+            this.txtPageTo.TextChanged += new System.EventHandler(this.txtPageTo_TextChanged);
+            // 
+            // lblPageLink
+            // 
+            this.lblPageLink.AutoSize = true;
+            this.lblPageLink.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblPageLink.Location = new System.Drawing.Point(33, 0);
+            this.lblPageLink.Name = "lblPageLink";
+            this.lblPageLink.Size = new System.Drawing.Size(9, 28);
+            this.lblPageLink.TabIndex = 2;
+            this.lblPageLink.Text = "-";
+            this.lblPageLink.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // UcSettingBasic
             // 
@@ -364,6 +404,8 @@
             this.Size = new System.Drawing.Size(240, 284);
             this.pnlMain.ResumeLayout(false);
             this.pnlMain.PerformLayout();
+            this.pnlPageNumber.ResumeLayout(false);
+            this.pnlPageNumber.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -383,11 +425,14 @@
         private System.Windows.Forms.TextBox txtDelayTransfer;
         private System.Windows.Forms.Label lblAuto;
         private System.Windows.Forms.CheckBox chkAutoAcquire;
-        private System.Windows.Forms.Label lblTotalPage;
-        private System.Windows.Forms.TextBox txtTotalPage;
+        private System.Windows.Forms.Label lblPageNumber;
         private System.Windows.Forms.Label lblNextPayment;
         private System.Windows.Forms.TextBox txtNextPayment;
         private System.Windows.Forms.TextBox txtMatchKeyword;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TableLayoutPanel pnlPageNumber;
+        private System.Windows.Forms.TextBox txtPageFrom;
+        private System.Windows.Forms.TextBox txtPageTo;
+        private System.Windows.Forms.Label lblPageLink;
     }
 }

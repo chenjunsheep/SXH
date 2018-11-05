@@ -69,6 +69,7 @@ namespace Sxh.Client
 
         private void btnStop_Click(object sender, EventArgs e)
         {
+            ucPoolTranser.Off();
             sender.CtrlFreeze(false);
             CmSearching.Cancel();
         }
@@ -322,6 +323,7 @@ namespace Sxh.Client
 
         private async Task SearchingClickedAsync()
         {
+            ucPoolTranser.On();
             BusinessCache.PoolTranser.UnLock();
             ButtonGroupFreeze(true);
             CmSearching.Activate();

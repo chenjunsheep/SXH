@@ -46,6 +46,8 @@ namespace Sxh.Client.Controls
             set { _targets = value; }
         }
 
+        private bool Active { get; set; }
+
         #endregion
 
         #region Event
@@ -181,6 +183,16 @@ namespace Sxh.Client.Controls
             }
         }
 
+        public void On()
+        {
+            Active = true;
+        }
+
+        public void Off()
+        {
+            Active = false;
+        }
+
         #endregion
 
         #region Private Method
@@ -194,31 +206,35 @@ namespace Sxh.Client.Controls
                 {
                     if (CmPoolReader.Token.IsCancellationRequested) CmPoolReader.Token.ThrowIfCancellationRequested();
 
-                    dynamic ds = new ExpandoObject();
-                    if (BusinessCache.PoolTranser != null && BusinessCache.PoolTranser.Count > 0)
+                    if (Active)
                     {
-                        ds = (from transfer in BusinessCache.PoolTranser.rowSet
-                                join note in BusinessCache.ProjectPayments on transfer.projectId equals note.Id into temp
-                                from tt in temp.DefaultIfEmpty()
-                                select new
-                                {
-                                    transfer.projectId,
-                                    transfer.minTransferingRate,
-                                    transfer.Yijia,
-                                    transfer.NextRemainDay,
-                                    transfer.ProjectTypeId,
-                                    transfer.projectTitle,
-                                    transfer.DisplayProjectTitle,
-                                    transfer.DisplayTransferingRate,
-                                    transfer.DisplayYijia,
-                                    transfer.DisplayNextRemainDay,
-                                    transfer.transferingCopies,
-                                    transfer.minTransferingPrice,
-                                    transfer.advicePrice,
-                                    notes = tt == null? string.Empty : tt.Note
-                                }).ToList();
+                        dynamic ds = new ExpandoObject();
+                        if (BusinessCache.PoolTranser != null && BusinessCache.PoolTranser.Count > 0)
+                        {
+                            ds = (from transfer in BusinessCache.PoolTranser.rowSet
+                                  join note in BusinessCache.ProjectPayments on transfer.projectId equals note.Id into temp
+                                  from tt in temp.DefaultIfEmpty()
+                                  select new
+                                  {
+                                      transfer.projectId,
+                                      transfer.minTransferingRate,
+                                      transfer.Yijia,
+                                      transfer.NextRemainDay,
+                                      transfer.ProjectTypeId,
+                                      transfer.projectTitle,
+                                      transfer.DisplayProjectTitle,
+                                      transfer.DisplayTransferingRate,
+                                      transfer.DisplayYijia,
+                                      transfer.DisplayNextRemainDay,
+                                      transfer.transferingCopies,
+                                      transfer.minTransferingPrice,
+                                      transfer.advicePrice,
+                                      notes = tt == null ? string.Empty : tt.Note
+                                  }).ToList();
+                        }
+                        gridTransferPool.DataSource = ds;
                     }
-                    gridTransferPool.DataSource = ds;
+                    
                     await Task.Delay(1000);
                 }
             }

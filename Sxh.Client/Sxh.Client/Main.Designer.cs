@@ -33,7 +33,6 @@
             this.pnlMain = new System.Windows.Forms.TableLayoutPanel();
             this.splitMain = new System.Windows.Forms.SplitContainer();
             this.pnlDashboard = new System.Windows.Forms.TableLayoutPanel();
-            this.ucPoolTranser = new Sxh.Client.Controls.UcPoolTranser();
             this.pnlButtonGroup = new System.Windows.Forms.TableLayoutPanel();
             this.flowRight = new System.Windows.Forms.FlowLayoutPanel();
             this.btnStart = new System.Windows.Forms.Button();
@@ -43,11 +42,12 @@
             this.cbReport = new System.Windows.Forms.ComboBox();
             this.btnLogs = new System.Windows.Forms.Button();
             this.btnMonitor = new System.Windows.Forms.Button();
-            this.ucLogs = new Sxh.Client.Controls.UcLogs();
             this.flowMessageGroups = new System.Windows.Forms.FlowLayoutPanel();
             this.lblMessage = new System.Windows.Forms.Label();
             this.lblHighlight = new System.Windows.Forms.Label();
             this.notify = new System.Windows.Forms.NotifyIcon(this.components);
+            this.ucPoolTranser = new Sxh.Client.Controls.UcPoolTranser();
+            this.ucLogs = new Sxh.Client.Controls.UcLogs();
             this.pnlMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitMain)).BeginInit();
             this.splitMain.Panel1.SuspendLayout();
@@ -109,14 +109,6 @@
             this.pnlDashboard.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.pnlDashboard.Size = new System.Drawing.Size(928, 413);
             this.pnlDashboard.TabIndex = 0;
-            // 
-            // ucPoolTranser
-            // 
-            this.ucPoolTranser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucPoolTranser.Location = new System.Drawing.Point(3, 3);
-            this.ucPoolTranser.Name = "ucPoolTranser";
-            this.ucPoolTranser.Size = new System.Drawing.Size(922, 377);
-            this.ucPoolTranser.TabIndex = 4;
             // 
             // pnlButtonGroup
             // 
@@ -218,14 +210,6 @@
             this.btnMonitor.UseVisualStyleBackColor = true;
             this.btnMonitor.Click += new System.EventHandler(this.btnMonitor_Click);
             // 
-            // ucLogs
-            // 
-            this.ucLogs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucLogs.Location = new System.Drawing.Point(0, 0);
-            this.ucLogs.Name = "ucLogs";
-            this.ucLogs.Size = new System.Drawing.Size(928, 110);
-            this.ucLogs.TabIndex = 3;
-            // 
             // flowMessageGroups
             // 
             this.flowMessageGroups.Controls.Add(this.lblMessage);
@@ -268,6 +252,22 @@
             this.notify.Text = "SXH";
             this.notify.DoubleClick += new System.EventHandler(this.notify_DoubleClick);
             // 
+            // ucPoolTranser
+            // 
+            this.ucPoolTranser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucPoolTranser.Location = new System.Drawing.Point(3, 3);
+            this.ucPoolTranser.Name = "ucPoolTranser";
+            this.ucPoolTranser.Size = new System.Drawing.Size(922, 377);
+            this.ucPoolTranser.TabIndex = 4;
+            // 
+            // ucLogs
+            // 
+            this.ucLogs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucLogs.Location = new System.Drawing.Point(0, 0);
+            this.ucLogs.Name = "ucLogs";
+            this.ucLogs.Size = new System.Drawing.Size(928, 110);
+            this.ucLogs.TabIndex = 3;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -281,7 +281,6 @@
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "主界面";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMain_FormClosed);
             this.Load += new System.EventHandler(this.frmMain_Load);

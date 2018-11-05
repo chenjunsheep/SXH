@@ -71,8 +71,9 @@ namespace Sxh.Client.Business.Model
             if (Count > 0 && payments != null && payments.Count() > 0)
             {
                 var list = (from tran in rowSet
-                            join payment in payments on tran.projectId equals payment.Id
-                            select ClientPortionTransferItem.Create(tran, payment)).ToList();
+                            join payment in payments on tran.projectId equals payment.Id into temp
+                            from tt in temp.DefaultIfEmpty()
+                            select ClientPortionTransferItem.Create(tran, tt)).ToList();
                 rowSet = list;
             }
         }

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Dynamic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Shared.Util;
@@ -80,14 +82,17 @@ namespace Sxh.Client.Controls
                 {
                     case Namespace.GridColProjectType:
                         //cell formatting
-                        var typeId = TypeParser.GetInt32Value(grid.Rows[e.RowIndex].Cells[Namespace.GridColProjectTypeId].Value);
-                        if (typeId == (int)Business.Model.ProjectType.Binggou)
+                        var eumnType = (ProjectType)TypeParser.GetInt32Value(grid.Rows[e.RowIndex].Cells[Namespace.GridColProjectTypeId].Value);
+                        switch (eumnType)
                         {
-                            e.Value = Properties.Resources.ico_bing;
-                        }
-                        else
-                        {
-                            e.Value = Properties.Resources.ico_guan;
+                            case Business.Model.ProjectType.Ziguan:
+                                e.Value = Properties.Resources.ico_guan;
+                                break;
+                            case Business.Model.ProjectType.Binggou:
+                                e.Value = Properties.Resources.ico_bing;
+                                break;
+                            default:
+                                break;
                         }
                         break;
                     case Namespace.GridColRateDisplay:
@@ -187,16 +192,37 @@ namespace Sxh.Client.Controls
                 {
                     if (CmPoolReader.Token.IsCancellationRequested) CmPoolReader.Token.ThrowIfCancellationRequested();
 
-                    var data = new List<ClientPortionTransferItem>();
-                    if (BusinessCache.PoolTranser != null)
+                    dynamic ds = new ExpandoObject();
+                    if (BusinessCache.PoolTranser != null && BusinessCache.PoolTranser.Count > 0)
                     {
-                        data = BusinessCache.PoolTranser.rowSet;
+                        //var data = new List<ClientPortionTransferItem>();
+                        //data = BusinessCache.PoolTranser.rowSet;
+
+                        ds = (from transfer in BusinessCache.PoolTranser.rowSet
+                                join note in BusinessCache.ProjectPayments on transfer.projectId equals note.Id into temp
+                                from tt in temp.DefaultIfEmpty()
+                                select new
+                                {
+                                    transfer.projectId,
+                                    transfer.minTransferingRate,
+                                    transfer.Yijia,
+                                    transfer.NextRemainDay,
+                                    transfer.ProjectTypeId,
+                                    transfer.DisplayProjectTitle,
+                                    transfer.DisplayTransferingRate,
+                                    transfer.DisplayYijia,
+                                    transfer.DisplayNextRemainDay,
+                                    transfer.transferingCopies,
+                                    transfer.minTransferingPrice,
+                                    transfer.advicePrice,
+                                    notes = tt == null? string.Empty : tt.Note
+                                }).ToList();
                     }
-                    gridTransferPool.DataSource = data;
+                    gridTransferPool.DataSource = ds;
                     await Task.Delay(1000);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 //do nothing
             }

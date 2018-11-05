@@ -21,7 +21,7 @@ namespace Sxh.Client.Business.Model
 
         public double NextRemainDay { get; set; }
 
-        public int ProjectTypeId { get; set; }
+        public int ProjectTypeId { get; set; } = -1;
 
         public string DisplayTransferingRate
         {

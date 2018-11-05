@@ -42,6 +42,7 @@
             this.transferingCopies = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.minTransferingPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.advicePrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Notes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridTransferPool)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,7 +66,8 @@
             this.DisplayNextRemainDay,
             this.transferingCopies,
             this.minTransferingPrice,
-            this.advicePrice});
+            this.advicePrice,
+            this.Notes});
             this.gridTransferPool.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridTransferPool.Location = new System.Drawing.Point(0, 0);
             this.gridTransferPool.Name = "gridTransferPool";
@@ -189,6 +191,14 @@
             this.advicePrice.ReadOnly = true;
             this.advicePrice.Width = 66;
             // 
+            // Notes
+            // 
+            this.Notes.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Notes.DataPropertyName = "notes";
+            this.Notes.HeaderText = "备注";
+            this.Notes.Name = "Notes";
+            this.Notes.ReadOnly = true;
+            // 
             // UcPoolTranser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -217,5 +227,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn transferingCopies;
         private System.Windows.Forms.DataGridViewTextBoxColumn minTransferingPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn advicePrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Notes;
     }
 }

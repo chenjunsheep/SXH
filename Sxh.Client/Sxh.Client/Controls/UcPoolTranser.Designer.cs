@@ -147,6 +147,7 @@
             // 
             // DisplayProjectTitle
             // 
+            this.DisplayProjectTitle.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.DisplayProjectTitle.DataPropertyName = "DisplayProjectTitle";
             this.DisplayProjectTitle.HeaderText = "名称";
             this.DisplayProjectTitle.Name = "DisplayProjectTitle";

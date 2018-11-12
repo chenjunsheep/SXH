@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RptNextPayment));
             this.pnlMain = new System.Windows.Forms.TableLayoutPanel();
             this.flowButtonGroup = new System.Windows.Forms.FlowLayoutPanel();
-            this.txtKeword = new System.Windows.Forms.TextBox();
+            this.txtKeyword = new System.Windows.Forms.TextBox();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.gridNextPayment = new System.Windows.Forms.DataGridView();
             this.ProjectId = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -68,7 +68,7 @@
             // 
             // flowButtonGroup
             // 
-            this.flowButtonGroup.Controls.Add(this.txtKeword);
+            this.flowButtonGroup.Controls.Add(this.txtKeyword);
             this.flowButtonGroup.Controls.Add(this.btnRefresh);
             this.flowButtonGroup.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowButtonGroup.Location = new System.Drawing.Point(0, 0);
@@ -77,12 +77,12 @@
             this.flowButtonGroup.Size = new System.Drawing.Size(634, 28);
             this.flowButtonGroup.TabIndex = 0;
             // 
-            // txtKeword
+            // txtKeyword
             // 
-            this.txtKeword.Location = new System.Drawing.Point(3, 3);
-            this.txtKeword.Name = "txtKeword";
-            this.txtKeword.Size = new System.Drawing.Size(100, 23);
-            this.txtKeword.TabIndex = 1;
+            this.txtKeyword.Location = new System.Drawing.Point(3, 3);
+            this.txtKeyword.Name = "txtKeyword";
+            this.txtKeyword.Size = new System.Drawing.Size(100, 23);
+            this.txtKeyword.TabIndex = 1;
             // 
             // btnRefresh
             // 
@@ -144,6 +144,7 @@
             // 
             // ProjectName
             // 
+            this.ProjectName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.ProjectName.DataPropertyName = "Name";
             this.ProjectName.HeaderText = "项目名";
             this.ProjectName.Name = "ProjectName";
@@ -211,7 +212,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "RptNextPayment";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "下次付息项目报表";
+            this.Text = "项目付息报表";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.RptNextPayment_Load);
             this.pnlMain.ResumeLayout(false);
@@ -228,7 +229,7 @@
         private System.Windows.Forms.FlowLayoutPanel flowButtonGroup;
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.DataGridView gridNextPayment;
-        private System.Windows.Forms.TextBox txtKeword;
+        private System.Windows.Forms.TextBox txtKeyword;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProjectId;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProjectTypeId;
         private System.Windows.Forms.DataGridViewImageColumn ProjectType;

@@ -40,6 +40,13 @@ namespace Sxh.Client.Business
             set { _projectPayments = value; }
         }
 
+        private static ClientProjectOverviewList _projectOverviewList;
+        public static ClientProjectOverviewList ProjectOverviewList
+        {
+            get { return _projectOverviewList ?? (_projectOverviewList = new ClientProjectOverviewList()); }
+            set { _projectOverviewList = value; }
+        }
+
         private static MonitorInfo _monitorInfo;
         public static MonitorInfo MonitorInfo
         {

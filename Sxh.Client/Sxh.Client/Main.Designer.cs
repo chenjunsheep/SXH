@@ -33,6 +33,7 @@
             this.pnlMain = new System.Windows.Forms.TableLayoutPanel();
             this.splitMain = new System.Windows.Forms.SplitContainer();
             this.pnlDashboard = new System.Windows.Forms.TableLayoutPanel();
+            this.ucPoolTranser = new Sxh.Client.Controls.UcPoolTranser();
             this.pnlButtonGroup = new System.Windows.Forms.TableLayoutPanel();
             this.flowRight = new System.Windows.Forms.FlowLayoutPanel();
             this.btnStart = new System.Windows.Forms.Button();
@@ -42,12 +43,11 @@
             this.cbReport = new System.Windows.Forms.ComboBox();
             this.btnLogs = new System.Windows.Forms.Button();
             this.btnMonitor = new System.Windows.Forms.Button();
+            this.ucLogs = new Sxh.Client.Controls.UcLogs();
             this.flowMessageGroups = new System.Windows.Forms.FlowLayoutPanel();
             this.lblMessage = new System.Windows.Forms.Label();
             this.lblHighlight = new System.Windows.Forms.Label();
             this.notify = new System.Windows.Forms.NotifyIcon(this.components);
-            this.ucPoolTranser = new Sxh.Client.Controls.UcPoolTranser();
-            this.ucLogs = new Sxh.Client.Controls.UcLogs();
             this.pnlMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitMain)).BeginInit();
             this.splitMain.Panel1.SuspendLayout();
@@ -109,6 +109,14 @@
             this.pnlDashboard.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.pnlDashboard.Size = new System.Drawing.Size(928, 413);
             this.pnlDashboard.TabIndex = 0;
+            // 
+            // ucPoolTranser
+            // 
+            this.ucPoolTranser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucPoolTranser.Location = new System.Drawing.Point(3, 3);
+            this.ucPoolTranser.Name = "ucPoolTranser";
+            this.ucPoolTranser.Size = new System.Drawing.Size(922, 377);
+            this.ucPoolTranser.TabIndex = 4;
             // 
             // pnlButtonGroup
             // 
@@ -186,13 +194,13 @@
             this.cbReport.FormattingEnabled = true;
             this.cbReport.Location = new System.Drawing.Point(3, 3);
             this.cbReport.Name = "cbReport";
-            this.cbReport.Size = new System.Drawing.Size(75, 25);
+            this.cbReport.Size = new System.Drawing.Size(100, 25);
             this.cbReport.TabIndex = 2;
             this.cbReport.SelectedIndexChanged += new System.EventHandler(this.cbReport_SelectedIndexChanged);
             // 
             // btnLogs
             // 
-            this.btnLogs.Location = new System.Drawing.Point(84, 3);
+            this.btnLogs.Location = new System.Drawing.Point(109, 3);
             this.btnLogs.Name = "btnLogs";
             this.btnLogs.Size = new System.Drawing.Size(75, 23);
             this.btnLogs.TabIndex = 0;
@@ -202,13 +210,22 @@
             // 
             // btnMonitor
             // 
-            this.btnMonitor.Location = new System.Drawing.Point(165, 3);
+            this.btnMonitor.Location = new System.Drawing.Point(190, 3);
             this.btnMonitor.Name = "btnMonitor";
             this.btnMonitor.Size = new System.Drawing.Size(75, 23);
             this.btnMonitor.TabIndex = 1;
             this.btnMonitor.Text = "监视器";
             this.btnMonitor.UseVisualStyleBackColor = true;
+            this.btnMonitor.Visible = false;
             this.btnMonitor.Click += new System.EventHandler(this.btnMonitor_Click);
+            // 
+            // ucLogs
+            // 
+            this.ucLogs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucLogs.Location = new System.Drawing.Point(0, 0);
+            this.ucLogs.Name = "ucLogs";
+            this.ucLogs.Size = new System.Drawing.Size(928, 110);
+            this.ucLogs.TabIndex = 3;
             // 
             // flowMessageGroups
             // 
@@ -251,22 +268,6 @@
             this.notify.Icon = ((System.Drawing.Icon)(resources.GetObject("notify.Icon")));
             this.notify.Text = "SXH";
             this.notify.DoubleClick += new System.EventHandler(this.notify_DoubleClick);
-            // 
-            // ucPoolTranser
-            // 
-            this.ucPoolTranser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucPoolTranser.Location = new System.Drawing.Point(3, 3);
-            this.ucPoolTranser.Name = "ucPoolTranser";
-            this.ucPoolTranser.Size = new System.Drawing.Size(922, 377);
-            this.ucPoolTranser.TabIndex = 4;
-            // 
-            // ucLogs
-            // 
-            this.ucLogs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucLogs.Location = new System.Drawing.Point(0, 0);
-            this.ucLogs.Name = "ucLogs";
-            this.ucLogs.Size = new System.Drawing.Size(928, 110);
-            this.ucLogs.TabIndex = 3;
             // 
             // frmMain
             // 

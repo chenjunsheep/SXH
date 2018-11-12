@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared.Api", "..\..\Shared.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared.Util", "..\..\Shared.Library\Shared.Util\Shared.Util.csproj", "{AA1E031F-C1A5-4307-9579-A5F2D7D2655C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sxh.Business", "Sxh.Business\Sxh.Business.csproj", "{C52C33B2-BCEE-4E50-B998-CE25D5A45219}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sxh.Business", "Sxh.Business\Sxh.Business.csproj", "{C52C33B2-BCEE-4E50-B998-CE25D5A45219}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sxh.Db", "Sxh.Db\Sxh.Db.csproj", "{20EEB9AF-1258-45D4-B770-EF17F873F3A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sxh.Db", "Sxh.Db\Sxh.Db.csproj", "{20EEB9AF-1258-45D4-B770-EF17F873F3A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sxh.Shared", "..\Sxh.Shared\Sxh.Shared\Sxh.Shared.csproj", "{3942DDCA-7D6C-4316-A741-A80BF83C35BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{20EEB9AF-1258-45D4-B770-EF17F873F3A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20EEB9AF-1258-45D4-B770-EF17F873F3A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20EEB9AF-1258-45D4-B770-EF17F873F3A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3942DDCA-7D6C-4316-A741-A80BF83C35BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3942DDCA-7D6C-4316-A741-A80BF83C35BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3942DDCA-7D6C-4316-A741-A80BF83C35BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3942DDCA-7D6C-4316-A741-A80BF83C35BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,31 +1,28 @@
 ﻿using Shared.Util;
 using Sxh.Client.Business;
-using Sxh.Client.Business.Proxy;
 using Sxh.Client.Business.Repository;
 using Sxh.Client.Util;
 using System;
-using System.Drawing;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Sxh.Client.Report
 {
-    public partial class RptNextPayment : Form
+    public partial class RptProjects : Form
     {
-        public RptNextPayment()
+        public RptProjects()
         {
             InitializeComponent();
         }
 
         #region Event
 
-        private void RptNextPayment_Load(object sender, EventArgs e)
+        private void RptProjects_Load(object sender, EventArgs e)
         {
             Initialize();
         }
 
-        private void gridNextPayment_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void gridProjects_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             var grid = sender as DataGridView;
             if (grid != null)
@@ -50,7 +47,7 @@ namespace Sxh.Client.Report
         {
             this.UiFreeze(false);
             var repo = new LoginRepository();
-            BusinessCache.ProjectPayments = await repo.SyncDataProductPaymentAsync(BusinessCache.UserLogin);
+            BusinessCache.ProjectOverviewList = await repo.SyncDataProjectOverviewAsync(BusinessCache.UserLogin);
             BindData(txtKeyword.Text);
             this.UiFreeze(true);
         }
@@ -61,18 +58,18 @@ namespace Sxh.Client.Report
 
         private void Initialize()
         {
-            gridNextPayment.AutoGenerateColumns = false;
+            gridProjects.AutoGenerateColumns = false;
             BindData();
         }
 
         private void BindData(string keyword = null)
         {
-            var ds = BusinessCache.ProjectPayments.ToList();
+            var ds = BusinessCache.ProjectOverviewList.ToList();
             if (!string.IsNullOrEmpty(keyword))
             {
                 ds = ds.FindAll(p => p.Name.Contains(keyword));
             }
-            gridNextPayment.DataSource = ds;
+            gridProjects.DataSource = ds;
         }
 
         #endregion

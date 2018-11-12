@@ -46,12 +46,15 @@ namespace Sxh.Client
             if (string.IsNullOrEmpty(msg))
             {
                 Text = "服务器验证...";
-                var retToken = await repo.ServerLoginAsync(para);
+                var retToken = await repo.GetTokenAsync(para);
                 if (retToken.Key)
                 {
                     BusinessCache.UserLogin.TokenServer = retToken.Value;
-                    Text = "同步服务器数据...";
-                    BusinessCache.ProjectPayments = await repo.ServerSyncDataAsync(BusinessCache.UserLogin);
+                    Text = "同步服务器数据（项目概要）...";
+                    BusinessCache.ProjectOverviewList = await repo.SyncDataProjectOverviewAsync(BusinessCache.UserLogin);
+                    Text = "同步服务器数据（付息计划）...";
+                    BusinessCache.ProjectPayments = await repo.SyncDataProductPaymentAsync(BusinessCache.UserLogin);
+                    Text = "初始化...";
 
                     var mainForm = new frmMain();
                     mainForm.OnWindowClosed -= MainForm_OnWindowClosed;

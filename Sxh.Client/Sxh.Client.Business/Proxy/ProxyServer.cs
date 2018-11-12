@@ -41,7 +41,36 @@ namespace Sxh.Client.Business.Proxy
             }
         }
 
-        public async Task<ClientPaymentList> SyncData(User user)
+        public async Task<ClientProjectOverviewList> SyncDataProjectOverview(User user)
+        {
+            var ret = new ClientProjectOverviewList();
+
+            try
+            {
+                using (var client = CreateHttpClient(AppSetting.Instance.Server))
+                {
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(AuthenticationMode.BEARER, user.TokenServer);
+
+                    var content = new StringContent("pagersettings", Encoding.UTF8, MediaType.JSON);
+                    var Uri = CreateUri("/api/Project/GetProjects", AppSetting.Instance.Server);
+
+                    var response = await client.PostAsync(Uri, content);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var jsonString = await response.Content.ReadAsStringAsync();
+                        ret = JsonConvert.DeserializeObject<ClientProjectOverviewList>(jsonString);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                //do nothing
+            }
+
+            return ret;
+        }
+
+        public async Task<ClientPaymentList> SyncDataProductPayment(User user)
         {
             var ret = new ClientPaymentList();
 
@@ -52,7 +81,7 @@ namespace Sxh.Client.Business.Proxy
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(AuthenticationMode.BEARER, user.TokenServer);
 
                     var content = new StringContent("pagersettings", Encoding.UTF8, MediaType.JSON);
-                    var Uri = CreateUri("/api/ProductPayments/GetProductPayment", AppSetting.Instance.Server);
+                    var Uri = CreateUri("/api/Project/GetProductPayment", AppSetting.Instance.Server);
 
                     var response = await client.PostAsync(Uri, content);
                     if (response.IsSuccessStatusCode)

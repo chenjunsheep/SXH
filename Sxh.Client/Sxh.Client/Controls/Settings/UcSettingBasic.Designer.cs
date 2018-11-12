@@ -180,7 +180,7 @@
             this.txtMatchKeyword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtMatchKeyword.Name = "txtMatchKeyword";
             this.txtMatchKeyword.Size = new System.Drawing.Size(134, 23);
-            this.txtMatchKeyword.TabIndex = 19;
+            this.txtMatchKeyword.TabIndex = 2;
             // 
             // label1
             // 
@@ -201,7 +201,7 @@
             this.txtNextPayment.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.txtNextPayment.Name = "txtNextPayment";
             this.txtNextPayment.Size = new System.Drawing.Size(134, 23);
-            this.txtNextPayment.TabIndex = 17;
+            this.txtNextPayment.TabIndex = 5;
             // 
             // lblNextPayment
             // 
@@ -243,7 +243,7 @@
             this.txtDelayTransfer.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.txtDelayTransfer.Name = "txtDelayTransfer";
             this.txtDelayTransfer.Size = new System.Drawing.Size(134, 23);
-            this.txtDelayTransfer.TabIndex = 11;
+            this.txtDelayTransfer.TabIndex = 7;
             // 
             // lblDelay
             // 
@@ -263,7 +263,7 @@
             this.txtFreqTranser.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.txtFreqTranser.Name = "txtFreqTranser";
             this.txtFreqTranser.Size = new System.Drawing.Size(134, 23);
-            this.txtFreqTranser.TabIndex = 9;
+            this.txtFreqTranser.TabIndex = 6;
             // 
             // lblFreqTranser
             // 
@@ -283,7 +283,7 @@
             this.txtRate.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.txtRate.Name = "txtRate";
             this.txtRate.Size = new System.Drawing.Size(134, 23);
-            this.txtRate.TabIndex = 6;
+            this.txtRate.TabIndex = 4;
             // 
             // lblRate
             // 
@@ -303,7 +303,7 @@
             this.txtYijia.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.txtYijia.Name = "txtYijia";
             this.txtYijia.Size = new System.Drawing.Size(134, 23);
-            this.txtYijia.TabIndex = 4;
+            this.txtYijia.TabIndex = 3;
             // 
             // lblYijia
             // 
@@ -343,7 +343,7 @@
             this.chkAutoAcquire.Location = new System.Drawing.Point(103, 227);
             this.chkAutoAcquire.Name = "chkAutoAcquire";
             this.chkAutoAcquire.Size = new System.Drawing.Size(15, 22);
-            this.chkAutoAcquire.TabIndex = 13;
+            this.chkAutoAcquire.TabIndex = 10;
             this.chkAutoAcquire.UseVisualStyleBackColor = true;
             // 
             // pnlPageNumber
@@ -370,7 +370,7 @@
             this.txtPageFrom.Location = new System.Drawing.Point(3, 3);
             this.txtPageFrom.Name = "txtPageFrom";
             this.txtPageFrom.Size = new System.Drawing.Size(24, 23);
-            this.txtPageFrom.TabIndex = 0;
+            this.txtPageFrom.TabIndex = 8;
             this.txtPageFrom.TextChanged += new System.EventHandler(this.txtPageFrom_TextChanged);
             // 
             // txtPageTo
@@ -379,7 +379,7 @@
             this.txtPageTo.Location = new System.Drawing.Point(48, 3);
             this.txtPageTo.Name = "txtPageTo";
             this.txtPageTo.Size = new System.Drawing.Size(24, 23);
-            this.txtPageTo.TabIndex = 1;
+            this.txtPageTo.TabIndex = 9;
             this.txtPageTo.TextChanged += new System.EventHandler(this.txtPageTo_TextChanged);
             // 
             // lblPageLink

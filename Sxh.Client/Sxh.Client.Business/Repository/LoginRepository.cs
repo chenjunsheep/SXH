@@ -35,16 +35,22 @@ namespace Sxh.Client.Business.Repository
             }
         }
 
-        public async Task<KeyValuePair<bool, string>> ServerLoginAsync(VmLogin para)
+        public async Task<KeyValuePair<bool, string>> GetTokenAsync(VmLogin para)
         {
             var proxy = new ProxyServer();
             return await proxy.GetToken(para);
         }
 
-        public async Task<ClientPaymentList> ServerSyncDataAsync(User user)
+        public async Task<ClientPaymentList> SyncDataProductPaymentAsync(User user)
         {
             var proxy = new ProxyServer();
-            return await proxy.SyncData(user);
+            return await proxy.SyncDataProductPayment(user);
+        }
+
+        public async Task<ClientProjectOverviewList> SyncDataProjectOverviewAsync(User user)
+        {
+            var proxy = new ProxyServer();
+            return await proxy.SyncDataProjectOverview(user);
         }
     }
 }

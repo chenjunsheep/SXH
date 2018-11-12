@@ -822,41 +822,41 @@ UNION ALL SELECT 2520325, 38, N'定向收购产品一号36个月（5）', 500, N'2018-10-11 
 UNION ALL SELECT 2523341, 38, N'定向收购产品一号36个月（6）', 500, N'2018-10-12 13:29:53'
 GO
 
---INSERT INTO Project
---SELECT 39, N'定向收购产品一号18个月', 1, 2, 1.5, 规模, 14.5, 1, N'到期额外奖励1%'
---GO
+INSERT INTO Project
+SELECT 39, N'定向收购产品一号18个月', 1, 2, 1.5, -1, 14.5, 1, N'到期额外奖励1%'
+GO
 --INSERT INTO Product
 --                    SELECT 000000, 39, N'定向收购产品一号18个月（1）', 500, N'0000-00-00 00:00:00'
 --UNION ALL SELECT 000000, 39, N'定向收购产品一号18个月（2）', 500, N'0000-00-00 00:00:00'
 --GO
 
---INSERT INTO Project
---SELECT 40, N'定向收购产品一号180天', 1, 5, 0.5, 规模, 14, 1, NULL
---GO
+INSERT INTO Project
+SELECT 40, N'定向收购产品一号180天', 1, 5, 0.5, -1, 14, 1, NULL
+GO
 --INSERT INTO Product
 --                    SELECT 000000, 40, N'定向收购产品一号180天（1）', 500, N'0000-00-00 00:00:00'
 --UNION ALL SELECT 000000, 40, N'定向收购产品一号180天（2）', 500, N'0000-00-00 00:00:00'
 --GO
 
---INSERT INTO Project
---SELECT 41, N'置换产品三号一期', 1, 3, 3, 规模, 15, 1, N'50%浮动分成；奖励年华逐年递增1%封顶3%，第4，8，12次付息额外奖励'
---GO
+INSERT INTO Project
+SELECT 41, N'置换产品三号一期', 1, 3, 3, -1, 15, 1, N'50%浮动分成；奖励年华逐年递增1%封顶3%，第4，8，12次付息额外奖励'
+GO
 --INSERT INTO Product
 --                    SELECT 000000, 41, N'置换产品三号一期（1）', 500, N'0000-00-00 00:00:00'
 --UNION ALL SELECT 000000, 41, N'置换产品三号一期（2）', 500, N'0000-00-00 00:00:00'
 --GO
 
---INSERT INTO Project
---SELECT 42, N'置换产品三号二期', 1, 3, 3, 规模, 15, 1, N'50%浮动分成；奖励年华逐年递增1%封顶3%，第4，8，12次付息额外奖励'
---GO
+INSERT INTO Project
+SELECT 42, N'置换产品三号二期', 1, 3, 3, -1, 15, 1, N'50%浮动分成；奖励年华逐年递增1%封顶3%，第4，8，12次付息额外奖励'
+GO
 --INSERT INTO Product
 --                    SELECT 000000, 42, N'置换产品三号二期（1）', 500, N'0000-00-00 00:00:00'
 --UNION ALL SELECT 000000, 42, N'置换产品三号二期（2）', 500, N'0000-00-00 00:00:00'
 --GO
 
---INSERT INTO Project
---SELECT 43, N'置换产品三号三期', 1, 3, 1, 规模, 15, 1, N'到期额外奖励1%'
---GO
+INSERT INTO Project
+SELECT 43, N'置换产品三号三期', 1, 3, 1, -1, 15, 1, N'到期额外奖励1%'
+GO
 --INSERT INTO Product
 --                    SELECT 000000, 43, N'置换产品三号三期（1）', 500, N'0000-00-00 00:00:00'
 --UNION ALL SELECT 000000, 43, N'置换产品三号三期（2）', 500, N'0000-00-00 00:00:00'

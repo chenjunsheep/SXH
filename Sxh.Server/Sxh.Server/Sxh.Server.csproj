@@ -15,6 +15,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\ProductPaymentsController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.3" />
   </ItemGroup>
 
@@ -25,6 +29,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Shared.Library\Shared.Api\Shared.Api.csproj" />
+    <ProjectReference Include="..\..\Sxh.Shared\Sxh.Shared\Sxh.Shared.csproj" />
     <ProjectReference Include="..\Sxh.Business\Sxh.Business.csproj" />
     <ProjectReference Include="..\Sxh.Db\Sxh.Db.csproj" />
   </ItemGroup>

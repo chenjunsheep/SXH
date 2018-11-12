@@ -158,6 +158,12 @@ namespace Sxh.Client
             var reportId = TypeParser.GetInt32Value(cbReport.SelectedValue);
             switch (reportId)
             {
+                case (int)ReportType.ProjectOverview:
+                    {
+                        var rpt = new RptProjects();
+                        rpt.ShowDialog();
+                    }
+                    break;
                 case (int)ReportType.NextPayment:
                     {
                         var rpt = new RptNextPayment();
@@ -360,8 +366,9 @@ namespace Sxh.Client
 
             var items = new[] 
             {
-                new { Id = (int)ReportType.None, Name = "选择报表..." },
-                new { Id = (int)ReportType.NextPayment, Name = "付息报表" },
+                new { Id = (int)ReportType.None, Name = "选择..." },
+                new { Id = (int)ReportType.ProjectOverview, Name = "项目一览表" },
+                new { Id = (int)ReportType.NextPayment, Name = "付息计划表" },
             };
 
             cbReport.DataSource = items;

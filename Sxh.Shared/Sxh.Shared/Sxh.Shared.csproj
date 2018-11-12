@@ -44,6 +44,7 @@
     <Compile Include="Response\Model\Amount.cs" />
     <Compile Include="Response\Model\PaymentItem.cs" />
     <Compile Include="Response\Model\ProjectInvestmentItem.cs" />
+    <Compile Include="Response\Model\ProjectOverviewItem.cs" />
     <Compile Include="Response\Model\ProjectReverseItem.cs" />
     <Compile Include="Response\SxhResult.cs" />
     <Compile Include="Response\Model\CapitalFlowItem.cs" />

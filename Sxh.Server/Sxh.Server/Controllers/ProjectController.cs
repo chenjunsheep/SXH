@@ -6,19 +6,51 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Sxh.Db.Models;
+using Sxh.Shared.Response.Model;
 
 namespace Sxh.Server.Controllers
 {
     [Authorize]
     [Produces("application/json")]
-    [Route("api/ProductPayments")]
-    public class ProductPaymentsController : BaseController
+    [Route("api/Project")]
+    public class ProjectController : BaseController
     {
         private readonly SxhContext _context;
 
-        public ProductPaymentsController(SxhContext context) : base()
+        public ProjectController(SxhContext context) : base()
         {
             _context = context;
+        }
+
+        [HttpPost("GetProjects")]
+        public async Task<IActionResult> GetProjects([FromBody] dynamic pagersettings)
+        {
+            try
+            {
+                var query = from project in _context.Project
+                            orderby project.StatusId descending, project.Id
+                            select new ProjectOverviewItem()
+                            {
+                                Id = project.Id,
+                                Name = project.Name,
+                                StatusId = project.StatusId,
+                                StatusName = project.Status.Name,
+                                PayTypeId = project.PayTypeId,
+                                PayTypeName = project.PayType.Name,
+                                Deadline = project.Deadline,
+                                TotalFunds = project.TotalFunds,
+                                Rate = project.Rate,
+                                Note = project.Note,
+                                ProjectTypeId = project.ProjectTypeId
+                            };
+
+                var ret = await query.ToListAsync();
+                return Ok(ret);
+            }
+            catch (Exception ex)
+            {
+                return ExceptionDefault(ex);
+            }
         }
 
         [HttpPost("GetProductPayment")]

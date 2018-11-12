@@ -60,7 +60,8 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>logo.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -175,6 +176,12 @@
     <Compile Include="Report\RptNextPayment.Designer.cs">
       <DependentUpon>RptNextPayment.cs</DependentUpon>
     </Compile>
+    <Compile Include="Report\RptProjects.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\RptProjects.Designer.cs">
+      <DependentUpon>RptProjects.cs</DependentUpon>
+    </Compile>
     <Compile Include="Settings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -240,6 +247,9 @@
     <EmbeddedResource Include="Report\RptNextPayment.resx">
       <DependentUpon>RptNextPayment.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Report\RptProjects.resx">
+      <DependentUpon>RptProjects.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Settings.resx">
       <DependentUpon>Settings.cs</DependentUpon>
     </EmbeddedResource>
@@ -292,7 +302,6 @@
     <Content Include="account.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="logo.ico" />
     <Content Include="proxySxh.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

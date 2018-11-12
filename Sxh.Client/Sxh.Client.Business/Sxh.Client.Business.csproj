@@ -60,6 +60,8 @@
     <Compile Include="Model\ClientPortionTransferList.cs" />
     <Compile Include="Model\ClientProjectInvestmentItem.cs" />
     <Compile Include="Model\ClientProjectInvestmentList.cs" />
+    <Compile Include="Model\ClientProjectOverviewItem.cs" />
+    <Compile Include="Model\ClientProjectOverviewList.cs" />
     <Compile Include="Model\ClientProjectReverseItem.cs" />
     <Compile Include="Model\ClientProjectReverseList.cs" />
     <Compile Include="Model\MonitorInfo.cs" />

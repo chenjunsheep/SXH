@@ -46,7 +46,8 @@ namespace Sxh.Client.Controls
             set { _targets = value; }
         }
 
-        private bool Active { get; set; }
+        private bool _isRefreshed = false; //in order to avoid multiple thread requests
+        private bool _isActive { get; set; }
 
         #endregion
 
@@ -57,8 +58,12 @@ namespace Sxh.Client.Controls
 
         private async void UcPoolTranser_Load(object sender, EventArgs e)
         {
-            gridTransferPool.AutoGenerateColumns = false;
-            await ReadPoolDataAsync();
+            if (!_isRefreshed)
+            {
+                gridTransferPool.AutoGenerateColumns = false;
+                _isRefreshed = true;
+                await ReadPoolDataAsync();
+            }
         }
 
         private void gridTransferPool_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -185,12 +190,12 @@ namespace Sxh.Client.Controls
 
         public void On()
         {
-            Active = true;
+            _isActive = true;
         }
 
         public void Off()
         {
-            Active = false;
+            _isActive = false;
         }
 
         #endregion
@@ -206,7 +211,7 @@ namespace Sxh.Client.Controls
                 {
                     if (CmPoolReader.Token.IsCancellationRequested) CmPoolReader.Token.ThrowIfCancellationRequested();
 
-                    if (Active)
+                    if (_isActive)
                     {
                         dynamic ds = new ExpandoObject();
                         if (BusinessCache.PoolTranser != null && BusinessCache.PoolTranser.Count > 0)
@@ -232,10 +237,13 @@ namespace Sxh.Client.Controls
                                       notes = tt == null ? string.Empty : tt.Note
                                   }).ToList();
                         }
+                        gridTransferPool.SuspendLayout();
                         gridTransferPool.DataSource = ds;
+                        gridTransferPool.ResetBindings();
+                        gridTransferPool.ResumeLayout(true);
                     }
                     
-                    await Task.Delay(1000);
+                    await Task.Delay(2000);
                 }
             }
             catch (Exception)

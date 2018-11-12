@@ -4,6 +4,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Sxh.Client.Business;
+using Sxh.Client.Business.Logs;
 using Sxh.Client.Business.Model;
 using Sxh.Client.Business.Proxy;
 using Sxh.Client.Business.ViewModel;
@@ -84,9 +85,17 @@ namespace Sxh.Client.Controls.Settings
             var enable = false;
             if (isChecked)
             {
-                var proxyLogin = await ProxyUserProxy.LoginAsync(userProxy);
-                BindWeight(proxyLogin);
-                enable = proxyLogin != null;
+                try
+                {
+                    var proxyLogin = await ProxyUserProxy.LoginAsync(userProxy);
+                    BindWeight(proxyLogin);
+                    enable = proxyLogin != null;
+                }
+                catch (Exception ex)
+                {
+                    enable = false;
+                    LogManager.Instance.Error($"{ex.Message}");
+                }
             }
 
             Enable(enable);

@@ -30,11 +30,26 @@ namespace Sxh.Client
             get { return _cmSearching ?? (_cmSearching = new CancellationManager()); }
         }
 
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams; cp.ExStyle |= 0x02000000; return cp;
+            }
+        }
+
         #endregion
 
         #region Event
 
         public event EventHandler OnWindowClosed;
+
+        protected override void WndProc(ref Message m)
+        {
+            if (m.Msg == 0x0014)
+                return;
+            base.WndProc(ref m);
+        }
 
         private void frmMain_Load(object sender, EventArgs e)
         {

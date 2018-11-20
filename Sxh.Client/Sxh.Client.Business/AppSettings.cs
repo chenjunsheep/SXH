@@ -1,10 +1,5 @@
 ﻿namespace Sxh.Client.Business
 {
-    public class AppSettings
-    {
-        public AppSetting AppSetting { get; set; }
-    }
-
     public class AppSetting
     {
         private static AppSetting _instance;

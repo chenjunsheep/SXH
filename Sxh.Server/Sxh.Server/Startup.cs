@@ -25,6 +25,8 @@ using Sxh.Server.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Shared.Api.Auth.Jwt;
 using System.Threading.Tasks;
+using Microsoft.Extensions.FileProviders;
+using Sxh.Shared.Settings;
 
 namespace Sxh.Server
 {
@@ -62,7 +64,14 @@ namespace Sxh.Server
                 RequestPath = new PathString(string.Empty)
             });
 
+            var rootPath = env.ContentRootPath;
+            AppSetting.Instance.VersionUpdater.ServerConfig.SaveToXml(rootPath); //auto-upgrading configuration
             app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(rootPath, VersionUpdater.ServerSettings.Namespaces.Config.PhysicalFolder)),
+                RequestPath = $"/{VersionUpdater.ServerSettings.Namespaces.Config.VirtrualFolder}"
+            });
 
             app.UseForwardedHeaders(new ForwardedHeadersOptions
             {
@@ -80,9 +89,10 @@ namespace Sxh.Server
         private void OnStartup(IHostingEnvironment env)
         {
             var path = env.ContentRootPath;
-            var contentRootDirectoryInfo = new DirectoryInfo(path);
+
             try
             {
+                var contentRootDirectoryInfo = new DirectoryInfo(path);
                 var pathRoot = $@"{contentRootDirectoryInfo.Parent.Parent.FullName}";
                 if (env.IsDevelopment())
                 {
@@ -109,7 +119,10 @@ namespace Sxh.Server
                     }
                 }
             }
-            catch (Exception) { }
+            catch (Exception)
+            {
+                //ignore
+            }
         }
 
         private void ExcuteProcess(string path)

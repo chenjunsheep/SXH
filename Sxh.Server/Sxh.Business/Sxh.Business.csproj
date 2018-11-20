@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Shared.Library\Shared.Util\Shared.Util.csproj" />
+    <ProjectReference Include="..\..\Sxh.Shared\Sxh.Shared\Sxh.Shared.csproj" />
     <ProjectReference Include="..\Sxh.Db\Sxh.Db.csproj" />
   </ItemGroup>
 

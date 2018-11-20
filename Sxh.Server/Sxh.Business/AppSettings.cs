@@ -1,4 +1,6 @@
-﻿namespace Sxh.Business
+﻿using Sxh.Shared.Settings;
+
+namespace Sxh.Business
 {
     public class AppSettings
     {
@@ -11,6 +13,7 @@
         public double TokenExpiredHour { get; set; }
         public Schedule Schedules { get; set; }
         public ProxyInfo Proxy { get; set; }
+        public VersionUpdater VersionUpdater { get; set; }
 
         private DbConnect _dbConnect;
         public DbConnect DbConnection

@@ -17,7 +17,7 @@ namespace Sxh.Client.Upgrader
         #region Property
 
         private bool IsLoaded { get; set; }
-        public delegate void UpdateUI(int step);
+        public delegate void UpdateUI(Worker.Upgrader.Parameter para);
         public UpdateUI UpdateUiDelegate;
         public Worker.Upgrader UpgradeManager { get; set; }
 
@@ -46,17 +46,20 @@ namespace Sxh.Client.Upgrader
 
         private void Init()
         {
-            UpdateUiDelegate = new UpdateUI((val) =>
+            UpdateUiDelegate = new UpdateUI((para) =>
             {
-                if (val > 0)
-                    probar.Value = val;
+                lblMessage.Text = para.Message;
+
+                if (para.Step > 0)
+                    probar.Value = para.Step;
                 else
                     Close();
             });
-            UpgradeManager.OnUpdateProgess += new Worker.Upgrader.UpdateProgess((val) =>
+
+            UpgradeManager.OnUpdateProgess += new Worker.Upgrader.UpdateProgess((para) =>
             {
 
-                Invoke(UpdateUiDelegate, (int)val);
+                Invoke(UpdateUiDelegate, para);
             });
         }
 
@@ -72,7 +75,7 @@ namespace Sxh.Client.Upgrader
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
-                    Invoke(UpdateUiDelegate, -1);
+                    Invoke(UpdateUiDelegate, Worker.Upgrader.Parameter.Create(-1, string.Empty));
                 }
             });
         }

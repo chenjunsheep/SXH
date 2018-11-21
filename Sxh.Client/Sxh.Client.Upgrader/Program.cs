@@ -22,7 +22,7 @@ namespace Sxh.Client.Upgrader
             {
                 try
                 {
-                    args = new string[] { "Sxh.Client", "http://localhost:898" };
+                    //args = new string[] { "Sxh.Client", "http://localhost:898" };
 
                     if (args == null || args.Length < 1)
                     {
@@ -47,7 +47,7 @@ namespace Sxh.Client.Upgrader
                                 {
                                     FileName = Application.ExecutablePath,
                                     Verb = "runas",
-                                    Arguments = $" {upgrader.ProgramName} {upgrader.ServerDomain}"
+                                    Arguments = $" {upgrader.HostProgram} {upgrader.ServerDomain}"
                                 };
                                 Process.Start(startInfo);
                             }

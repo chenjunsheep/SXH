@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.pnlMain = new System.Windows.Forms.TableLayoutPanel();
             this.probar = new System.Windows.Forms.ProgressBar();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblMessage = new System.Windows.Forms.Label();
             this.pnlMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -40,7 +40,7 @@
             this.pnlMain.ColumnCount = 1;
             this.pnlMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.pnlMain.Controls.Add(this.probar, 0, 1);
-            this.pnlMain.Controls.Add(this.label1, 0, 0);
+            this.pnlMain.Controls.Add(this.lblMessage, 0, 0);
             this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMain.Location = new System.Drawing.Point(0, 0);
             this.pnlMain.Name = "pnlMain";
@@ -58,16 +58,16 @@
             this.probar.Size = new System.Drawing.Size(294, 22);
             this.probar.TabIndex = 0;
             // 
-            // label1
+            // lblMessage
             // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(294, 52);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "upgrading, please wait...";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblMessage.AutoSize = true;
+            this.lblMessage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblMessage.Location = new System.Drawing.Point(3, 0);
+            this.lblMessage.Name = "lblMessage";
+            this.lblMessage.Size = new System.Drawing.Size(294, 52);
+            this.lblMessage.TabIndex = 1;
+            this.lblMessage.Text = "upgrading, please wait...";
+            this.lblMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Main
             // 
@@ -93,6 +93,6 @@
 
         private System.Windows.Forms.TableLayoutPanel pnlMain;
         private System.Windows.Forms.ProgressBar probar;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblMessage;
     }
 }

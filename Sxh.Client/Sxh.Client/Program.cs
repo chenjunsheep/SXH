@@ -14,7 +14,7 @@ namespace Sxh.Client
         [STAThread]
         static void Main()
         {
-            //AutoUpgrade();
+            AutoUpgrade();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frmLogin());
@@ -32,10 +32,7 @@ namespace Sxh.Client
                     p.Close();
                 }
             }
-            catch (Exception)
-            {
-                //ignore
-            }
+            catch { }
 
             var strUpgrader = $"{upgraderName}.exe";
             var path = $"{AppDomain.CurrentDomain.BaseDirectory}{strUpgrader}";

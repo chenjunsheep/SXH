@@ -1,15 +1,10 @@
-﻿using Shared.Util;
-using Sxh.Client.Business;
-using Sxh.Client.Business.Logs;
+﻿using Sxh.Client.Business;
 using Sxh.Client.Business.Model;
-using Sxh.Client.Business.Proxy;
 using Sxh.Client.Business.Repository;
 using Sxh.Client.Business.ViewModel;
 using Sxh.Client.Util;
 using System;
-using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Sxh.Client

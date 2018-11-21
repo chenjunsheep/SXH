@@ -293,22 +293,17 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="release.bat" />
     <None Include="Resources\logo.ico" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\logo_select.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="account.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <None Include="account.xml" />
     <Content Include="logo.ico" />
-    <Content Include="proxySxh.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="proxyTzb.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <None Include="proxySxh.xml" />
+    <None Include="proxyTzb.xml" />
     <None Include="Resources\ico-guan.png" />
     <None Include="Resources\ico-bing.png" />
     <None Include="Resources\pic-zhuanrang.png" />

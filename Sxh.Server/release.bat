@@ -1,4 +1,5 @@
 cd /d %~dp0
+cd Sxh.Server
 
 @echo off
 cls
@@ -12,5 +13,4 @@ dotnet publish -c Release -o %pathRelease%
 
 iisreset /start
 appcmd start sites "Sxh.Core"
-
 @pause

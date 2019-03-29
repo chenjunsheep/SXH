@@ -310,7 +310,7 @@ namespace Sxh.Client
         {
             var settingInfo = BusinessCache.Settings;
             var msg = string.Empty;
-            var keyword = settingInfo.MatchingKeywords.Count <= 5 ? string.Join(" & ", settingInfo.MatchingKeywords) : $"{settingInfo.MatchingKeywords.Count}个项目";
+            var keyword = settingInfo.MatchingKeywords.Count <= 5 ? string.Join(", ", settingInfo.MatchingKeywords) : $"{settingInfo.MatchingKeywords.Count}个项目";
             keyword = string.IsNullOrEmpty(keyword) ? "全部" : keyword;
             msg += $"匹配关键字[{keyword}]";
             if (settingInfo.NextPayment.HasValue)

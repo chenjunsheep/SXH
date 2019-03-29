@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Sxh.Client.Business;
 using Sxh.Client.Business.Logs;
 using Sxh.Client.Business.Model;
 using Sxh.Client.Business.Proxy;
-using Sxh.Client.Business.ViewModel;
 
 namespace Sxh.Client.Controls.Settings
 {

@@ -249,12 +249,17 @@ namespace Sxh.Client
                             try
                             {
                                 var list = new List<ClientPortionTransferItem>();
-                                for (var i = settingInfo.PageFrom; i <= settingInfo.PageTo; i++)
+                                for (var i = 0; i < settingInfo.SearchingKeywords.Count; i++)
                                 {
-                                    var subList = proxySearch.SearchAsync(searchProxy.TokenOffical, ProxySearch.Parameter.Create(settingInfo.SearchingKeywordsString, i)).Result;
-                                    if (subList != null && subList.Count > 0)
-                                        list.AddRange(subList.rowSet);
-                                    if(i < settingInfo.PageTo) Task.Delay(1000);
+                                    var searchingKey = settingInfo.SearchingKeywords[i];
+                                    for (var j = settingInfo.PageFrom; j <= settingInfo.PageTo; j++)
+                                    {
+                                        var subList = proxySearch.SearchAsync(searchProxy.TokenOffical, ProxySearch.Parameter.Create(searchingKey, j)).Result;
+                                        if (subList != null && subList.Count > 0)
+                                            list.AddRange(subList.rowSet);
+                                        if (j < settingInfo.PageTo) Task.Delay(1000);
+                                    }
+                                    if (i < settingInfo.SearchingKeywords.Count - 1) Task.Delay(1000);
                                 }
 
                                 BusinessCache.PoolTranser.Clear();
@@ -305,7 +310,7 @@ namespace Sxh.Client
         {
             var settingInfo = BusinessCache.Settings;
             var msg = string.Empty;
-            var keyword = settingInfo.MatchingKeywords.Count <= 3 ? string.Join(";", settingInfo.MatchingKeywords) : $"{settingInfo.MatchingKeywords.Count}个项目";
+            var keyword = settingInfo.MatchingKeywords.Count <= 5 ? string.Join(" & ", settingInfo.MatchingKeywords) : $"{settingInfo.MatchingKeywords.Count}个项目";
             keyword = string.IsNullOrEmpty(keyword) ? "全部" : keyword;
             msg += $"匹配关键字[{keyword}]";
             if (settingInfo.NextPayment.HasValue)
